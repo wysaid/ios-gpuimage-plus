@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rTp-ch-MIM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--FilterDemoViewController-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" userLabel="FilterDemoViewController" customClass="FilterDemoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcE-FA-ZAN">
+                                <rect key="frame" x="83" y="20" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="换图">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="83" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="72" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="65" y="15" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="67" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="63" y="20" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="galleryBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xUC-eH-Ngm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UfR-O2-1xP">
+                                <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="退出">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="15" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="quitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oS5-cI-5no"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="galleryBtn" destination="GcE-FA-ZAN" id="mmZ-5g-Ibv"/>
+                        <outlet property="quitBtn" destination="UfR-O2-1xP" id="RY5-RV-SVM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="440" y="160"/>
+        </scene>
+        <!--PlayerDemoViewController-->
+        <scene sceneID="5al-dy-ASq">
+            <objects>
+                <viewController id="0xK-vX-cXS" userLabel="PlayerDemoViewController" customClass="PlayerDemoController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O6L-2s-srf"/>
+                        <viewControllerLayoutGuide type="bottom" id="e12-Eo-ACU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SxS-PF-9Jf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkX-nV-glM">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="退出">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="quitBtnClicked:" destination="0xK-vX-cXS" eventType="touchUpInside" id="Cfq-wM-rBI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8K-aX-XZz">
+                                <rect key="frame" x="70" y="20" width="108" height="30"/>
+                                <animations/>
+                                <state key="normal" title="选择本地视频"/>
+                                <connections>
+                                    <action selector="choosVideoBtnClicked:" destination="0xK-vX-cXS" eventType="touchUpInside" id="Aab-SG-kdZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="quitBtn" destination="AkX-nV-glM" id="S8d-vM-pOt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e7Y-jI-yBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="516" y="1028"/>
+        </scene>
+        <!--MainViewController-->
+        <scene sceneID="hCy-D6-p9A">
+            <objects>
+                <viewController id="rTp-ch-MIM" userLabel="MainViewController" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hwx-1t-ilm"/>
+                        <viewControllerLayoutGuide type="bottom" id="t0r-sy-bTh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qmM-Ai-vgV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="139" placeholderIntrinsicHeight="42" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSH-DM-akb">
+                                <rect key="frame" x="16" y="119" width="139" height="42"/>
+                                <animations/>
+                                <state key="normal" title="Camera Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="119" width="139" height="42"/>
+                                </variation>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="331" y="127" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="119" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="331" y="127" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="127" width="139" height="42"/>
+                                </variation>
+                                <connections>
+                                    <action selector="cameraDemoClicked:" destination="rTp-ch-MIM" eventType="touchUpInside" id="j23-43-T8u"/>
+                                    <segue destination="YPn-5I-Eaz" kind="show" id="ap7-7K-6UH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="139" placeholderIntrinsicHeight="42" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEk-gc-S5X">
+                                <rect key="frame" x="16" y="216" width="139" height="42"/>
+                                <animations/>
+                                <state key="normal" title="Player Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="216" width="139" height="42"/>
+                                </variation>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="331" y="224" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="216" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="331" y="224" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="224" width="139" height="42"/>
+                                </variation>
+                                <connections>
+                                    <action selector="playerDemoClicked:" destination="rTp-ch-MIM" eventType="touchUpInside" id="KVl-hW-hQF"/>
+                                    <segue destination="0xK-vX-cXS" kind="show" id="7kd-vs-0nm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="139" placeholderIntrinsicHeight="42" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dN9-9Y-yND">
+                                <rect key="frame" x="16" y="20" width="139" height="42"/>
+                                <animations/>
+                                <state key="normal" title="Filter Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="139" height="42"/>
+                                </variation>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="331" y="28" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="331" y="28" width="139" height="42"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="28" width="139" height="42"/>
+                                </variation>
+                                <connections>
+                                    <action selector="filterDemoClicked:" destination="rTp-ch-MIM" eventType="touchUpInside" id="kU4-jl-YnK"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="ymn-HT-tQd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="cameraDemoBtn" destination="JSH-DM-akb" id="x1c-yi-MkS"/>
+                        <outlet property="filterDemoBtn" destination="dN9-9Y-yND" id="3uj-RX-H1b"/>
+                        <outlet property="playerDemoBtn" destination="DEk-gc-S5X" id="9HF-vc-uq7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hVD-E6-f2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-279" y="159.75"/>
+        </scene>
+        <!--CameraDemoViewController-->
+        <scene sceneID="GHr-Lb-TW7">
+            <objects>
+                <viewController id="YPn-5I-Eaz" userLabel="CameraDemoViewController" customClass="CameraDemoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="neu-hf-69v"/>
+                        <viewControllerLayoutGuide type="bottom" id="I5i-cR-dQF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eVl-vs-Cwb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9Y-3z-xXh">
+                                <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="退出">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="quitBtnClicked:" destination="YPn-5I-Eaz" eventType="touchUpInside" id="uQ3-po-wmD"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZQa-N5-mSp">
+                                <rect key="frame" x="14" y="58" width="258" height="31"/>
+                                <animations/>
+                                <connections>
+                                    <action selector="intensityChanged:" destination="YPn-5I-Eaz" eventType="valueChanged" id="ACi-gK-5Tt"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGC-pO-Cum">
+                                <rect key="frame" x="54" y="20" width="60" height="30"/>
+                                <animations/>
+                                <state key="normal" title="切换前后">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchCameraClicked:" destination="YPn-5I-Eaz" eventType="touchUpInside" id="ENX-nw-w5F"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3Z-Pc-hdi">
+                                <rect key="frame" x="122" y="20" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="拍照">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePicture:" destination="YPn-5I-Eaz" eventType="touchUpInside" id="OBb-VR-0If"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qT5-if-gWi">
+                                <rect key="frame" x="160" y="20" width="60" height="30"/>
+                                <animations/>
+                                <state key="normal" title="开始录像">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordingBtnClicked:" destination="YPn-5I-Eaz" eventType="touchUpInside" id="YTV-rk-MZz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-EV-TjO">
+                                <rect key="frame" x="228" y="20" width="75" height="30"/>
+                                <animations/>
+                                <state key="normal" title="切换闪光灯">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="switchFlashLight:" destination="YPn-5I-Eaz" eventType="touchUpInside" id="Xhf-7J-lw8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="glkView" destination="eVl-vs-Cwb" id="WdA-37-fe7"/>
+                        <outlet property="intensitySlider" destination="ZQa-N5-mSp" id="jKd-Yy-uwj"/>
+                        <outlet property="quitBtn" destination="D9Y-3z-xXh" id="K4H-HD-clr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T7X-rp-pHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-125" y="1017"/>
+        </scene>
+    </scenes>
+</document>

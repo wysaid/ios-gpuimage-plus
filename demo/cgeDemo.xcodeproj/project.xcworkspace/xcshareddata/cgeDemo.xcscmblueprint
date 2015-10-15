@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "28BC856842400B370ABCA9D59CFB95B47A3C0C06+++A21F976",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "28BC856842400B370ABCA9D59CFB95B47A3C0C06+++A21F976" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "28BC856842400B370ABCA9D59CFB95B47A3C0C06+++A21F976" : 0,
+    "81cbb8f7-ab06-40b6-8443-365adae18489++1022+++B50C2C7" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "15D565D4-DD5D-458B-B8BA-A81A0195BE71",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "28BC856842400B370ABCA9D59CFB95B47A3C0C06+++A21F976" : "ios-gpuimage-plus",
+    "81cbb8f7-ab06-40b6-8443-365adae18489++1022+++B50C2C7" : "ios-gpuimage-plus"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "cgeDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "demo\/cgeDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.100.132\/qd_app_code",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "28BC856842400B370ABCA9D59CFB95B47A3C0C06+++A21F976"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.100.132\/qd_app_code",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "81cbb8f7-ab06-40b6-8443-365adae18489++1022+++B50C2C7"
+    }
+  ]
+}
