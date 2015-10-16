@@ -1,10 +1,13 @@
-# iOS-GPUImage-plus
+# iOS-GPUImage-plus ＃
 GPU accelerated filters for iOS based on OpenGL. 
 
-## Starting up!! ##
+## 简介 ##
 
+1. 目前只是放了个demo以及debug+release版本的ios版静态库文件(libcge.a, 支持armv7 armv7s arm64)，不包含核心代码
 
-![0.jpg](https://bitbucket.org/repo/n55nK8/images/1774191801-0.jpg)
-![1.jpg](https://bitbucket.org/repo/n55nK8/images/434085492-1.jpg)
-![2.jpg](https://bitbucket.org/repo/n55nK8/images/1604606939-2.jpg)
-![3.jpg](https://bitbucket.org/repo/n55nK8/images/464663577-3.jpg)
+2. 不定期更新静态库文件以及demo
+
+3. For study only, and no free tech support by now.
+
+## 展示 ##
+
