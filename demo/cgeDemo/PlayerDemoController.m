@@ -69,9 +69,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     CGRect rt = [[UIScreen mainScreen] bounds];
     
     _glkView = [[GLKView alloc] initWithFrame:rt];
-
-//    _glkView setAutoresizingMask:UIVIewAutoREsizingF
-    
+   
     _videoPlayerHandler = [[CGEVideoPlayerViewHandler alloc] initWithGLKView:_glkView];
     
     [[_videoPlayerHandler videoPlayer] setPlayerDelegate:self];
