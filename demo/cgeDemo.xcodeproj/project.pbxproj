@@ -104,10 +104,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D3D348461BD0DEF2005B558C /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				D3BE2E311BCF766C00215A2F /* cgeFrameRecorder.h */,
+				D3BE2E331BCF766C00215A2F /* cgeFrameRenderer.h */,
+				D3BE2E3B1BCF766C00215A2F /* cgeImageHandlerIOS.h */,
+				D3BE2E3F1BCF766C00215A2F /* cgeProcessingContext.h */,
+				D3BE2E421BCF766C00215A2F /* cgeSharedGLContext.h */,
+				D3BE2E481BCF766C00215A2F /* cgeUtilFunctions.h */,
+				D3BE2E391BCF766C00215A2F /* cgeImageHandlerCV.h */,
+				D3BE2E4F1BCF766C00215A2F /* cgeVideoHandlerCV.h */,
+				D3BE2E4B1BCF766C00215A2F /* cgeVideoCamera.h */,
+				D3BE2E4D1BCF766C00215A2F /* cgeVideoCameraViewHandler.h */,
+				D3BE2E511BCF766C00215A2F /* cgeVideoPlayer.h */,
+				D3BE2E531BCF766C00215A2F /* cgeVideoPlayerMuted.h */,
+				D3BE2E551BCF766C00215A2F /* cgeVideoPlayerViewHandler.h */,
+				D3BE2E571BCF766C00215A2F /* cgeVideoWriter.h */,
+			);
+			name = interface;
+			sourceTree = "<group>";
+		};
 		D3FCC7AC1B9C4922003B1D34 /* libCGE */ = {
 			isa = PBXGroup;
 			children = (
 				D3BE2E771BCF7CA200215A2F /* libcge.a */,
+				D3D348461BD0DEF2005B558C /* interface */,
 				DB4342481B50FBE000ED886F /* cgeHeaders */,
 			);
 			name = libCGE;
@@ -186,31 +208,17 @@
 				D3BE2E2E1BCF766C00215A2F /* cge.h */,
 				D3BE2E2F1BCF766C00215A2F /* cgeCommonDefine.h */,
 				D3BE2E301BCF766C00215A2F /* cgeFilters.h */,
-				D3BE2E311BCF766C00215A2F /* cgeFrameRecorder.h */,
-				D3BE2E331BCF766C00215A2F /* cgeFrameRenderer.h */,
 				D3BE2E351BCF766C00215A2F /* cgeGLFunctions.h */,
 				D3BE2E361BCF766C00215A2F /* cgeGlobal.h */,
 				D3BE2E371BCF766C00215A2F /* cgeImageFilter.h */,
 				D3BE2E381BCF766C00215A2F /* cgeImageHandler.h */,
-				D3BE2E391BCF766C00215A2F /* cgeImageHandlerCV.h */,
-				D3BE2E3B1BCF766C00215A2F /* cgeImageHandlerIOS.h */,
 				D3BE2E3D1BCF766C00215A2F /* cgeMat.h */,
 				D3BE2E3E1BCF766C00215A2F /* cgePlatform_IOS.h */,
-				D3BE2E3F1BCF766C00215A2F /* cgeProcessingContext.h */,
 				D3BE2E411BCF766C00215A2F /* cgeShaderFunctions.h */,
-				D3BE2E421BCF766C00215A2F /* cgeSharedGLContext.h */,
 				D3BE2E441BCF766C00215A2F /* cgeStaticAssert.h */,
 				D3BE2E451BCF766C00215A2F /* cgeTextureUtils.h */,
 				D3BE2E471BCF766C00215A2F /* cgeThread.h */,
-				D3BE2E481BCF766C00215A2F /* cgeUtilFunctions.h */,
 				D3BE2E4A1BCF766C00215A2F /* cgeVec.h */,
-				D3BE2E4B1BCF766C00215A2F /* cgeVideoCamera.h */,
-				D3BE2E4D1BCF766C00215A2F /* cgeVideoCameraViewHandler.h */,
-				D3BE2E4F1BCF766C00215A2F /* cgeVideoHandlerCV.h */,
-				D3BE2E511BCF766C00215A2F /* cgeVideoPlayer.h */,
-				D3BE2E531BCF766C00215A2F /* cgeVideoPlayerMuted.h */,
-				D3BE2E551BCF766C00215A2F /* cgeVideoPlayerViewHandler.h */,
-				D3BE2E571BCF766C00215A2F /* cgeVideoWriter.h */,
 				D3BE2E591BCF766C00215A2F /* filters */,
 			);
 			name = cgeHeaders;
