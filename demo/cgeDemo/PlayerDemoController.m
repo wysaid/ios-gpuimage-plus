@@ -36,6 +36,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 @property CGEVideoPlayerViewHandler* videoPlayerHandler;
 
 @property (nonatomic) CGSize videoSize;
+@property (nonatomic) CGSize maskSize;
 
 @end
 
@@ -138,8 +139,21 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (void)videoResolutionChanged: (CGSize)sz
 {
+    _videoSize = sz;
+    
+    if([_videoPlayerHandler isUsingMask])
+    {
+        [[[_videoPlayerHandler videoPlayer] sharedContext] syncProcessingQueue:^{
+            [[_videoPlayerHandler videoPlayer] setMaskTextureRatio:_maskSize.width / _maskSize.height];
+        }];
+        
+        [CGEProcessingContext mainSyncProcessingQueue:^{
+            [self viewFitMaskSize:_maskSize];
+        }];
+        return;
+    }
+    
     [CGEProcessingContext mainSyncProcessingQueue:^{
-        _videoSize = sz;
         
         CGRect rt = [[UIScreen mainScreen] bounds];
         
@@ -161,23 +175,10 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     }];
 }
 
-- (void)setMask
+- (void)viewFitMaskSize:(CGSize)sz
 {
     CGRect rt = [[UIScreen mainScreen] bounds];
-    CGFloat x, y, w = _videoSize.width, h = _videoSize.height;
-    
-    if([_videoPlayerHandler isUsingMask])
-    {
-        [_videoPlayerHandler setMaskUIImage:nil];
-    }
-    else
-    {
-        UIImage* img = [UIImage imageNamed:@"mask1.png"];
-        w = img.size.width;
-        h = img.size.height;
-        [_videoPlayerHandler setMaskUIImage:img];
-    }
-    
+    CGFloat x, y, w = sz.width, h = sz.height;
     float scaling = MIN(rt.size.width / (float)w, rt.size.height / (float)h);
     
     w *= scaling;
@@ -193,6 +194,23 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     NSLog(@"glkView 尺寸: %g, %g, %g, %g", x, y, w, h);
 }
 
+- (void)setMask
+{
+    if([_videoPlayerHandler isUsingMask])
+    {
+        [_videoPlayerHandler setMaskUIImage:nil];
+        _maskSize = _videoSize;
+    }
+    else
+    {
+        UIImage* img = [UIImage imageNamed:@"mask1.png"];
+        _maskSize = img.size;
+        [_videoPlayerHandler setMaskUIImage:img];
+    }
+    
+    [self viewFitMaskSize:_maskSize];
+}
+
 - (void)playDemoVideo
 {
     NSURL *sampleURL = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"mp4"];
@@ -201,6 +219,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (void)playVideoURL: (NSURL*)url
 {
+    [_videoPlayerHandler pause];
     [_videoPlayerHandler startWithURL:url];
 }
 
