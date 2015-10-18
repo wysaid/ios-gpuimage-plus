@@ -16,11 +16,12 @@ static const char* const s_functionList[] = {
     "mask", //0
     "暂停", //1
     "人脸检测", //2
+    "预处理", //3
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
 
-@interface CameraDemoViewController()
+@interface CameraDemoViewController() <CGEFrameProcessingDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
 @property (weak, nonatomic) IBOutlet UISlider *intensitySlider;
 @property CGECameraViewHandler* myCameraViewHandler;
@@ -260,6 +261,39 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [UIView commitAnimations];
 }
 
+#pragma mark - CGEFrameProcessingDelegate
+
+- (BOOL)processingHandle:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
+{
+    char* byteData = (char*)data;
+    
+    int stride = rand() % 3 + 2;
+    
+    static int green = 0;
+    
+    green += stride;
+    
+    for(int i = 0; i < height; i += stride)
+    {
+        int rowStart = bytesPerRow * i;
+        for(int j = 0; j < width; j += stride)
+        {
+            //BGRA
+            int pixelPos = rowStart + j * channels;
+            byteData[pixelPos] = 0;
+            byteData[pixelPos + 1] = green;
+            byteData[pixelPos + 2] *= stride;
+        }
+    }
+    
+    return YES;
+}
+
+- (BOOL)requireDataWriting
+{
+    return YES;
+}
+
 - (void)functionButtonClick: (MyButton*)sender
 {
     NSLog(@"Function Button %d Clicked...\n", [sender index]);
@@ -294,6 +328,18 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             }
 
             break;
+        case 3:
+            if([[_myCameraViewHandler frameRecorder] processingDelegate] == nil)
+            {
+                [[_myCameraViewHandler frameRecorder] setProcessingDelegate:self];
+                [sender setTitle:@"处理中" forState:UIControlStateNormal];
+            }
+            else
+            {
+                [[_myCameraViewHandler frameRecorder] setProcessingDelegate:nil];
+                [sender setTitle:@"处理停止" forState:UIControlStateNormal];
+            }
+            
         default:
             break;
     }
