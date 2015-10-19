@@ -26,7 +26,7 @@ local.properties
 
 # PDT-specific
 .buildpath
-
+xcshareddata/
 
 #################
 ## Visual Studio
