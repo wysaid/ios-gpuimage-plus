@@ -13,10 +13,10 @@
 		D33BBD5A1B94371C00B1E285 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D33BBD591B94371C00B1E285 /* 1.jpg */; };
 		D33BBD5D1B943AE800B1E285 /* CameraDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD5C1B943AE800B1E285 /* CameraDemoViewController.m */; };
 		D33BBD601B943B1400B1E285 /* PlayerDemoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD5F1B943B1400B1E285 /* PlayerDemoController.m */; };
+		D366A49B1BD4D8D9000860B6 /* cge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366A49A1BD4D8D9000860B6 /* cge.framework */; settings = {ASSET_TAGS = (); }; };
 		D3AC46D91BCE5D5A00A3B565 /* 1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D3AC46D81BCE5D5A00A3B565 /* 1.mp4 */; settings = {ASSET_TAGS = (); }; };
 		D3F843E41BC620CD00A4A307 /* mask1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3F843E31BC620CD00A4A307 /* mask1.png */; settings = {ASSET_TAGS = (); }; };
 		D3FCC7B51B9C5446003B1D34 /* demoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FCC7B41B9C5446003B1D34 /* demoUtils.m */; };
-		DB34577D1BD3FDB400AC56DE /* cge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34577B1BD3ECA500AC56DE /* cge.framework */; };
 		DB3C50581B92E1CA005985C1 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB3C50511B92E1CA005985C1 /* 0.jpg */; };
 		DB4342191B4FCC8A00ED886F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4342181B4FCC8A00ED886F /* main.m */; };
 		DB43421C1B4FCC8A00ED886F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB43421B1B4FCC8A00ED886F /* AppDelegate.m */; };
@@ -38,12 +38,12 @@
 		D33BBD5C1B943AE800B1E285 /* CameraDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDemoViewController.m; sourceTree = "<group>"; };
 		D33BBD5E1B943B1400B1E285 /* PlayerDemoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerDemoController.h; sourceTree = "<group>"; };
 		D33BBD5F1B943B1400B1E285 /* PlayerDemoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerDemoController.m; sourceTree = "<group>"; };
+		D366A49A1BD4D8D9000860B6 /* cge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cge.framework; path = ../library/libs/cge.framework; sourceTree = "<group>"; };
 		D3AC46D81BCE5D5A00A3B565 /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
 		D3BE2E6E1BCF779B00215A2F /* libCGE-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "libCGE-Prefix.pch"; path = "../../library/libCGE-Prefix.pch"; sourceTree = "<group>"; };
 		D3F843E31BC620CD00A4A307 /* mask1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask1.png; sourceTree = "<group>"; };
 		D3FCC7B31B9C5446003B1D34 /* demoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demoUtils.h; sourceTree = "<group>"; };
 		D3FCC7B41B9C5446003B1D34 /* demoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demoUtils.m; sourceTree = "<group>"; };
-		DB34577B1BD3ECA500AC56DE /* cge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = cge.framework; path = "../library/libs/Release-iphoneos/cge.framework"; sourceTree = "<group>"; };
 		DB3C50511B92E1CA005985C1 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		DB4342131B4FCC8A00ED886F /* cgeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cgeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4342171B4FCC8A00ED886F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 			files = (
 				DB4342501B50FED100ED886F /* libc++.dylib in Frameworks */,
 				DB43424C1B50FE7C00ED886F /* libstdc++.6.0.9.dylib in Frameworks */,
-				DB34577D1BD3FDB400AC56DE /* cge.framework in Frameworks */,
+				D366A49B1BD4D8D9000860B6 /* cge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +77,7 @@
 		D3FCC7AC1B9C4922003B1D34 /* libCGE */ = {
 			isa = PBXGroup;
 			children = (
-				DB34577B1BD3ECA500AC56DE /* cge.framework */,
+				D366A49A1BD4D8D9000860B6 /* cge.framework */,
 			);
 			name = libCGE;
 			sourceTree = "<group>";
