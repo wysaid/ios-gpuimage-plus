@@ -28,7 +28,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 @property (nonatomic) UIScrollView* myScrollView;
 @property (nonatomic) GLKView* glkView;
 @property (nonatomic) int currentFilterIndex;
-@property (nonatomic) BOOL isRecording;
 @property (nonatomic) NSString* pathToMovie;
 @end
 
@@ -59,34 +58,34 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (IBAction)recordingBtnClicked:(UIButton*)sender {
     
-    if(_isRecording)
+    if([_myCameraViewHandler isRecording])
     {
         [_myCameraViewHandler endRecording:^{
             NSLog(@"End recording...\n");
         }];
-        _isRecording = NO;
+        
         [sender setTitle:@"录制结束" forState:UIControlStateNormal];
         NSURL *outputURL = [NSURL URLWithString:_pathToMovie];
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
         {
             [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    if (error) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
-                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
-                    } else {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album"
-                                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
-                    }
-                });
-            }];
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     
+                     if (error) {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
+                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [alert show];
+                     } else {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album"
+                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                         [alert show];
+                     }
+                 });
+             }];
         }
-
+        
         
     }
     else
@@ -94,7 +93,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         unlink([_pathToMovie UTF8String]);
         NSURL *movieURL = [NSURL fileURLWithPath:_pathToMovie];
         [_myCameraViewHandler startRecording:movieURL size:CGSizeMake(480, 640)];
-        _isRecording = YES;
         [sender setTitle:@"正在录制" forState:UIControlStateNormal];
     }
 }
@@ -140,7 +138,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     _glkView = [[GLKView alloc] initWithFrame:CGRectMake(x, y, w, h)];
     
     _myCameraViewHandler = [[CGECameraViewHandler alloc] initWithGLKView:_glkView];
-
+    
     if([_myCameraViewHandler setupCamera: AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES])
     {
         [[_myCameraViewHandler videoCamera] startCameraCapture];
@@ -244,7 +242,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         UIImage* img = [UIImage imageNamed:@"mask1.png"];
         w = img.size.width;
         h = img.size.height;
-        [_myCameraViewHandler setMaskUIImage:img];        
+        [_myCameraViewHandler setMaskUIImage:img];
     }
     
     float scaling = MIN(rt.size.width / (float)w, rt.size.height / (float)h);
@@ -265,24 +263,23 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (BOOL)processingHandle:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
 {
-    char* byteData = (char*)data;
+    unsigned char* byteData = (unsigned char*)data;
     
-    int stride = rand() % 3 + 2;
-    
-    static int green = 0;
-    
-    green += stride;
+    const int stride = 2;//rand() % 3 + 2;
     
     for(int i = 0; i < height; i += stride)
     {
-        int rowStart = bytesPerRow * i;
+        const int rowStart = bytesPerRow * i;
+        int sum = 0;
         for(int j = 0; j < width; j += stride)
         {
             //BGRA
-            int pixelPos = rowStart + j * channels;
-            byteData[pixelPos] = 0;
-            byteData[pixelPos + 1] = green;
-            byteData[pixelPos + 2] *= stride;
+            const int pixelPos = rowStart + j * channels;
+            sum += (int)byteData[pixelPos] | (byteData[pixelPos + 1] << 8) | (byteData[pixelPos + 2] << 16);
+            byteData[pixelPos] = sum & 0xff;
+            byteData[pixelPos + 1] = (sum >> 8) & 0xff;
+            byteData[pixelPos + 2] = (sum >> 16) & 0xff;
+            //            byteData[pixelPos + 3] = 255;
         }
     }
     
@@ -326,7 +323,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                 [_myCameraViewHandler enableFaceDetect:YES showFaceRects:YES];
                 [sender setTitle:@"正在检测" forState:UIControlStateNormal];
             }
-
+            
             break;
         case 3:
             if([[_myCameraViewHandler frameRecorder] processingDelegate] == nil)
