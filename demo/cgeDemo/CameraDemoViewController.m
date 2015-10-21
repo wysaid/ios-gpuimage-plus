@@ -12,10 +12,17 @@
 #import "demoUtils.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
+#define SHOW_FULLSCREEN 0
+#define RECORD_WIDTH 480
+#define RECORD_HEIGHT 640
+
+#define _AVCaptureSessionPreset(w, h) AVCaptureSessionPreset ## w ## x ## h
+#define AVCaptureSessionPreset(w, h) _AVCaptureSessionPreset(w, h)
+
 static const char* const s_functionList[] = {
     "mask", //0
     "暂停", //1
-    "人脸检测", //2
+    "人脸美化", //2
     "预处理", //3
 };
 
@@ -70,29 +77,29 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
         {
             [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
-             {
-                 dispatch_async(dispatch_get_main_queue(), ^{
-                     
-                     if (error) {
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
-                                                                        delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                         [alert show];
-                     } else {
-                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album"
-                                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                         [alert show];
-                     }
-                 });
-             }];
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    if (error) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
+                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
+                    } else {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album"
+                                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
+                    }
+                });
+            }];
         }
-        
+
         
     }
     else
     {
         unlink([_pathToMovie UTF8String]);
         NSURL *movieURL = [NSURL fileURLWithPath:_pathToMovie];
-        [_myCameraViewHandler startRecording:movieURL size:CGSizeMake(480, 640)];
+        [_myCameraViewHandler startRecording:movieURL size:CGSizeMake(RECORD_WIDTH, RECORD_HEIGHT)];
         [sender setTitle:@"正在录制" forState:UIControlStateNormal];
     }
 }
@@ -125,7 +132,13 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     sliderRT.size.width = rt.size.width;
     [_intensitySlider setFrame:sliderRT];
     
-    CGFloat x, y, w = 480.0, h = 640.0;
+#if SHOW_FULLSCREEN
+    
+    _glkView = [[GLKView alloc] initWithFrame:rt];
+    
+#else
+    
+    CGFloat x, y, w = RECORD_WIDTH, h = RECORD_HEIGHT;
     
     CGFloat scaling = MIN(rt.size.width / (float)w, rt.size.height / (float)h);
     
@@ -135,12 +148,14 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     x = (rt.size.width - w) / 2.0;
     y = (rt.size.height - h) / 2.0;
     
-    _glkView = [[GLKView alloc] initWithFrame:CGRectMake(x, y, w, h)];
+    _glkView = [[GLKView alloc] initWithFrame: CGRectMake(x, y, w, h)];
     
+#endif
+
     _myCameraViewHandler = [[CGECameraViewHandler alloc] initWithGLKView:_glkView];
-    
-    if([_myCameraViewHandler setupCamera: AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES authorizationFailed:^{
-        NSLog(@"未获得设备权限!!\n");
+
+    if([_myCameraViewHandler setupCamera: AVCaptureSessionPreset(RECORD_HEIGHT, RECORD_WIDTH) cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES authorizationFailed:^{
+        NSLog(@"未取得相机或者麦克风权限!!");
     }])
     {
         [[_myCameraViewHandler videoCamera] startCameraCapture];
@@ -207,6 +222,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         void cgePrintGLInfo();
         cgePrintGLInfo();
     }];
+    
+    [_myCameraViewHandler fitViewSizeKeepRatio:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -233,7 +250,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 - (void)setMask
 {
     CGRect rt = [[UIScreen mainScreen] bounds];
-    CGFloat x, y, w = 480.0, h = 640.0;
+    
+    CGFloat x, y, w = RECORD_WIDTH, h = RECORD_HEIGHT;
     
     if([_myCameraViewHandler isUsingMask])
     {
@@ -244,7 +262,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         UIImage* img = [UIImage imageNamed:@"mask1.png"];
         w = img.size.width;
         h = img.size.height;
-        [_myCameraViewHandler setMaskUIImage:img];
+        [_myCameraViewHandler setMaskUIImage:img];        
     }
     
     float scaling = MIN(rt.size.width / (float)w, rt.size.height / (float)h);
@@ -255,15 +273,25 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     x = (rt.size.width - w) / 2.0;
     y = (rt.size.height - h) / 2.0;
     
+    [_myCameraViewHandler fitViewSizeKeepRatio:YES];
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
+    
+#if SHOW_FULLSCREEN
+    
+    [_glkView setFrame:rt];
+    
+#else
+    
     [_glkView setFrame:CGRectMake(x, y, w, h)];
+    
+#endif
+    
     [UIView commitAnimations];
 }
 
-#pragma mark - CGEFrameProcessingDelegate
-
-- (BOOL)processingHandle:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
+- (void)processingData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
 {
     unsigned char* byteData = (unsigned char*)data;
     
@@ -281,15 +309,36 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             byteData[pixelPos] = sum & 0xff;
             byteData[pixelPos + 1] = (sum >> 8) & 0xff;
             byteData[pixelPos + 2] = (sum >> 16) & 0xff;
-            //            byteData[pixelPos + 3] = 255;
         }
     }
-    
-    return YES;
 }
 
-- (BOOL)requireDataWriting
+#pragma mark - CGEFrameProcessingDelegate
+
+//- (BOOL)processingHandleData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
+//{
+//    [self processingData:data width:width height:height bytesPerRow:bytesPerRow channels:channels];
+//    
+//    return YES;
+//}
+//
+//- (BOOL)requireDataWriting
+//{
+//    return YES;
+//}
+
+- (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
 {
+    CVPixelBufferLockBaseAddress(imageBuffer, 0); //read&write
+    size_t outBytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    
+    void *outBuffer = (void *)CVPixelBufferGetBaseAddress(imageBuffer);
+    
+    [self processingData:outBuffer width:(int)width height:(int)height bytesPerRow:(int)outBytesPerRow channels:4];
+    CVPixelBufferUnlockBaseAddress(imageBuffer, 0); //write back
+    
     return YES;
 }
 
@@ -322,10 +371,10 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             }
             else
             {
-                [_myCameraViewHandler enableFaceDetect:YES showFaceRects:YES];
+                [_myCameraViewHandler enableFaceDetect:YES setupDefaultFilters:YES];
                 [sender setTitle:@"正在检测" forState:UIControlStateNormal];
             }
-            
+
             break;
         case 3:
             if([[_myCameraViewHandler frameRecorder] processingDelegate] == nil)

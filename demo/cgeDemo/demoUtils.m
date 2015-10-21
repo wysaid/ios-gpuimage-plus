@@ -14,7 +14,7 @@ const char* g_effectConfig[] = {
     "#unpack @krblend ol test.jpg 100",
     "#unpack @krblend add test.jpg 100",
     "#unpack @krblend darken test.jpg 100",
-    "#unpack @blur lerp 1 1",
+    "#unpack @blur lerp 0.75",
     "#unpack @style sketch 0.9",
     "@style min",
     "@style max",
@@ -40,7 +40,7 @@ const char* g_effectConfig[] = {
     "@curve R(0, 0)(149, 145)(255, 255)G(0, 0)(149, 145)(255, 255)B(0, 0)(149, 145)(255, 255) @pixblend colordodge 0.937 0.482 0.835 1 20",//421
     "@curve G(0, 0)(101, 127)(255, 255) @pixblend colordodge 0.937 0.482 0.835 1 20"   ,//422
     "@curve B(0, 0)(70, 87)(140, 191)(255, 255) @pixblend pinlight 0.247 0.49 0.894 1 20"   ,//423
-    "@curve R(0, 0)(53, 28)(172, 203)(255, 255) @blend softlight e424_t.jpg 20"   ,//424
+    "@curve R(0, 0)(53, 28)(172, 203)(255, 255)"   ,//424
     "@adjust saturation 0.7 @pixblend screen 0.8112 0.243 1 1 40"   ,//425
     "@adjust saturation 0.7 @pixblend screen 1 0.243 0.69 1 30"   ,//426
     
