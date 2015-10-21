@@ -139,7 +139,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     _myCameraViewHandler = [[CGECameraViewHandler alloc] initWithGLKView:_glkView];
     
-    if([_myCameraViewHandler setupCamera: AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES])
+    if([_myCameraViewHandler setupCamera: AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES authorizationFailed:^{
+        NSLog(@"未获得设备权限!!\n");
+    }])
     {
         [[_myCameraViewHandler videoCamera] startCameraCapture];
     }

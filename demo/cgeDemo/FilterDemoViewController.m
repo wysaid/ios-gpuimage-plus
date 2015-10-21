@@ -81,7 +81,7 @@
     if(_myImage == nil)
         return;
     
-    UIImage* newImage = filterUIImage_MultipleEffects(_myImage, config, intensity, nil);
+    UIImage* newImage = cgeFilterUIImage_MultipleEffects(_myImage, config, intensity, nil);
     
     [_myImageView setImage:newImage];
 }
