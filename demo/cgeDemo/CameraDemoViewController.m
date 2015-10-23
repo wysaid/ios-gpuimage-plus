@@ -67,33 +67,34 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     if([_myCameraViewHandler isRecording])
     {
-        [_myCameraViewHandler endRecording:^{
+        void (^finishBlock)(void) = ^{
             NSLog(@"End recording...\n");
-        }];
-        
-        [sender setTitle:@"录制结束" forState:UIControlStateNormal];
-        NSURL *outputURL = [NSURL URLWithString:_pathToMovie];
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
-        {
-            [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
+            
+            [sender setTitle:@"录制结束" forState:UIControlStateNormal];
+            NSURL *outputURL = [NSURL URLWithString:_pathToMovie];
+            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+            if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
             {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    if (error) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
-                                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
-                    } else {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album"
-                                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                        [alert show];
-                    }
-                });
-            }];
-        }
-
+                [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
+                 {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         
+                         if (error)
+                         {
+                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                             [alert show];
+                         }
+                         else
+                         {
+                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                             [alert show];
+                         }
+                     });
+                 }];
+            }
+        };
         
+        [_myCameraViewHandler endRecording:finishBlock];
     }
     else
     {
@@ -124,7 +125,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [super viewDidLoad];
     cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
     
-    _pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.m4v"];
+    _pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
     
     CGRect rt = [[UIScreen mainScreen] bounds];
     
