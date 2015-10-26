@@ -42,6 +42,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 @implementation PlayerDemoController
 - (IBAction)quitBtnClicked:(id)sender {
+    
     NSLog(@"Player Demo Quit...");
     [self dismissViewControllerAnimated:true completion:nil];
     [_videoPlayerHandler clear];

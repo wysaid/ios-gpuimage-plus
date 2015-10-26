@@ -343,6 +343,18 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     return YES;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [touches enumerateObjectsUsingBlock:^(UITouch* touch, BOOL* stop) {
+        CGPoint touchPoint = [touch locationInView:_glkView];
+        CGSize sz = [_glkView frame].size;
+        CGPoint transPoint = CGPointMake(touchPoint.x / sz.width, touchPoint.y / sz.height);
+        
+        [_myCameraViewHandler focusPoint:transPoint];
+        NSLog(@"touch position: %g, %g, transPoint: %g, %g", touchPoint.x, touchPoint.y, transPoint.x, transPoint.y);
+    }];
+}
+
 - (void)functionButtonClick: (MyButton*)sender
 {
     NSLog(@"Function Button %d Clicked...\n", [sender index]);
