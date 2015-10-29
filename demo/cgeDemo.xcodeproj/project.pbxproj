@@ -44,7 +44,7 @@
 		D3FCC7B31B9C5446003B1D34 /* demoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demoUtils.h; sourceTree = "<group>"; };
 		D3FCC7B41B9C5446003B1D34 /* demoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demoUtils.m; sourceTree = "<group>"; };
 		DB3C50511B92E1CA005985C1 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
-		DB4342131B4FCC8A00ED886F /* cge demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cge demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB4342131B4FCC8A00ED886F /* libCGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = libCGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB4342171B4FCC8A00ED886F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB4342181B4FCC8A00ED886F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB43421A1B4FCC8A00ED886F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		DB4342141B4FCC8A00ED886F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DB4342131B4FCC8A00ED886F /* cge demo.app */,
+				DB4342131B4FCC8A00ED886F /* libCGE.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,9 +150,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DB4342121B4FCC8A00ED886F /* cge demo */ = {
+		DB4342121B4FCC8A00ED886F /* libCGE */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DB4342361B4FCC8A00ED886F /* Build configuration list for PBXNativeTarget "cge demo" */;
+			buildConfigurationList = DB4342361B4FCC8A00ED886F /* Build configuration list for PBXNativeTarget "libCGE" */;
 			buildPhases = (
 				DB43420F1B4FCC8A00ED886F /* Sources */,
 				DB4342101B4FCC8A00ED886F /* Frameworks */,
@@ -162,9 +162,9 @@
 			);
 			dependencies = (
 			);
-			name = "cge demo";
+			name = libCGE;
 			productName = cgeDemo;
-			productReference = DB4342131B4FCC8A00ED886F /* cge demo.app */;
+			productReference = DB4342131B4FCC8A00ED886F /* libCGE.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -195,7 +195,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DB4342121B4FCC8A00ED886F /* cge demo */,
+				DB4342121B4FCC8A00ED886F /* libCGE */,
 			);
 		};
 /* End PBXProject section */
@@ -296,7 +296,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4075e8de-82fb-42d4-928e-cac43a0c1513";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -334,7 +334,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "4075e8de-82fb-42d4-928e-cac43a0c1513";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -395,7 +395,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DB4342361B4FCC8A00ED886F /* Build configuration list for PBXNativeTarget "cge demo" */ = {
+		DB4342361B4FCC8A00ED886F /* Build configuration list for PBXNativeTarget "libCGE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DB4342371B4FCC8A00ED886F /* Debug */,

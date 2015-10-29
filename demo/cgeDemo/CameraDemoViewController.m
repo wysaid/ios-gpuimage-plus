@@ -24,6 +24,7 @@ static const char* const s_functionList[] = {
     "暂停", //1
     "人脸美化", //2
     "预处理", //3
+    "截取帧", //4
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -59,6 +60,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [_myCameraViewHandler takePicture:^(UIImage* image){
         
         [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+        NSLog(@"拍照完成， 已保存到相册!\n");
         
     } filterConfig:g_effectConfig[_currentFilterIndex] filterIntensity:1.0 isFrontCameraMirrored:YES];
 }
@@ -70,28 +72,30 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         void (^finishBlock)(void) = ^{
             NSLog(@"End recording...\n");
             
-            [sender setTitle:@"录制结束" forState:UIControlStateNormal];
-            NSURL *outputURL = [NSURL URLWithString:_pathToMovie];
-            ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-            if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
-            {
-                [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
-                 {
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         
-                         if (error)
-                         {
-                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                             [alert show];
-                         }
-                         else
-                         {
-                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                             [alert show];
-                         }
-                     });
-                 }];
-            }
+            [CGESharedGLContext mainSyncProcessingQueue:^{
+                [sender setTitle:@"录制结束" forState:UIControlStateNormal];
+                NSURL *outputURL = [NSURL URLWithString:_pathToMovie];
+                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+                if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
+                {
+                    [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
+                     {
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             
+                             if (error)
+                             {
+                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                 [alert show];
+                             }
+                             else
+                             {
+                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                 [alert show];
+                             }
+                         });
+                     }];
+                }
+            }];
         };
         
         [_myCameraViewHandler endRecording:finishBlock];
@@ -400,6 +404,22 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                 [[_myCameraViewHandler frameRecorder] setProcessingDelegate:nil];
                 [sender setTitle:@"处理停止" forState:UIControlStateNormal];
             }
+            break;
+        case 4:
+        {
+            [_myCameraViewHandler takeShot:^(UIImage *image) {
+                if(image != nil)
+                {
+                    [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+                    NSLog(@"截取完成， 已保存到相册!!\n");
+                }
+                else
+                {
+                    NSLog(@"截取失败!!!");
+                }
+            }];
+        }
+            break;
             
         default:
             break;
