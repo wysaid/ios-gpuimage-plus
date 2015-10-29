@@ -36,7 +36,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 @property (nonatomic) UIScrollView* myScrollView;
 @property (nonatomic) GLKView* glkView;
 @property (nonatomic) int currentFilterIndex;
-@property (nonatomic) NSString* pathToMovie;
+@property (nonatomic) NSURL* movieURL;
 @end
 
 @implementation CameraDemoViewController
@@ -67,45 +67,30 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (IBAction)recordingBtnClicked:(UIButton*)sender {
     
+    [sender setEnabled:NO];
+    
     if([_myCameraViewHandler isRecording])
     {
         void (^finishBlock)(void) = ^{
             NSLog(@"End recording...\n");
             
-            [CGESharedGLContext mainSyncProcessingQueue:^{
-                [sender setTitle:@"录制结束" forState:UIControlStateNormal];
-                NSURL *outputURL = [NSURL URLWithString:_pathToMovie];
-                ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-                if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputURL])
-                {
-                    [library writeVideoAtPathToSavedPhotosAlbum:outputURL completionBlock:^(NSURL *assetURL, NSError *error)
-                     {
-                         dispatch_async(dispatch_get_main_queue(), ^{
-                             
-                             if (error)
-                             {
-                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                 [alert show];
-                             }
-                             else
-                             {
-                                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                                 [alert show];
-                             }
-                         });
-                     }];
-                }
+            [CGESharedGLContext mainASyncProcessingQueue:^{
+                [sender setTitle:@"录制完成" forState:UIControlStateNormal];
+                [sender setEnabled:YES];
             }];
+            
+            [self saveVideo:_movieURL];
+            
         };
         
         [_myCameraViewHandler endRecording:finishBlock];
     }
     else
     {
-        unlink([_pathToMovie UTF8String]);
-        NSURL *movieURL = [NSURL fileURLWithPath:_pathToMovie];
-        [_myCameraViewHandler startRecording:movieURL size:CGSizeMake(RECORD_WIDTH, RECORD_HEIGHT)];
+        unlink([_movieURL.path UTF8String]);
+        [_myCameraViewHandler startRecording:_movieURL size:CGSizeMake(RECORD_WIDTH, RECORD_HEIGHT)];
         [sender setTitle:@"正在录制" forState:UIControlStateNormal];
+        [sender setEnabled:YES];
     }
 }
 
@@ -123,13 +108,41 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [_myCameraViewHandler setCameraFlashMode:flashLightList[flashLightIndex]];
 }
 
+- (void)saveVideo :(NSURL*)videoURL
+{
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:videoURL])
+    {
+        [library writeVideoAtPathToSavedPhotosAlbum:videoURL completionBlock:^(NSURL *assetURL, NSError *error)
+         {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 
+                 if (error)
+                 {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     [alert show];
+                 }
+                 else
+                 {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     [alert show];
+                 }
+             });
+         }];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File format is not compatibale with album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
     
-    _pathToMovie = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"];
+    _movieURL = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"]];
     
     CGRect rt = [[UIScreen mainScreen] bounds];
     
