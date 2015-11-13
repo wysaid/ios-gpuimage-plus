@@ -16,7 +16,10 @@ void loadImageOKCallback(UIImage* img, void* arg);
 extern const char* g_effectConfig[];
 extern int g_configNum;
 
-@interface demoUtils : NSObject
+@interface DemoUtils : NSObject
+
++ (void)saveVideo :(NSURL*)videoURL;
++ (void)saveImage :(UIImage*)image;
 
 @end
 

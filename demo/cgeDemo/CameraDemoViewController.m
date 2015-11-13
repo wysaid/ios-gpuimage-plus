@@ -10,14 +10,13 @@
 #import "cgeUtilFunctions.h"
 #import "cgeVideoCameraViewHandler.h"
 #import "demoUtils.h"
-#import <AssetsLibrary/ALAssetsLibrary.h>
 
 #define SHOW_FULLSCREEN 0
 #define RECORD_WIDTH 480
 #define RECORD_HEIGHT 640
 
-#define _AVCaptureSessionPreset(w, h) AVCaptureSessionPreset ## w ## x ## h
-#define AVCaptureSessionPreset(w, h) _AVCaptureSessionPreset(w, h)
+#define _MYAVCaptureSessionPreset(w, h) AVCaptureSessionPreset ## w ## x ## h
+#define MYAVCaptureSessionPreset(w, h) _MYAVCaptureSessionPreset(w, h)
 
 static const char* const s_functionList[] = {
     "mask", //0
@@ -58,8 +57,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (IBAction)takePicture:(id)sender {
     [_myCameraViewHandler takePicture:^(UIImage* image){
-        
-        [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+        [DemoUtils saveImage:image];
         NSLog(@"拍照完成， 已保存到相册!\n");
         
     } filterConfig:g_effectConfig[_currentFilterIndex] filterIntensity:1.0 isFrontCameraMirrored:YES];
@@ -79,10 +77,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                 [sender setEnabled:YES];
             }];
             
-            [self saveVideo:_movieURL];
+            [DemoUtils saveVideo:_movieURL];
             
         };
         
+//        [_myCameraViewHandler endRecording:nil];
+//        finishBlock();
         [_myCameraViewHandler endRecording:finishBlock];
     }
     else
@@ -106,35 +106,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     flashLightIndex %= sizeof(flashLightList) / sizeof(*flashLightList);
     
     [_myCameraViewHandler setCameraFlashMode:flashLightList[flashLightIndex]];
-}
-
-- (void)saveVideo :(NSURL*)videoURL
-{
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:videoURL])
-    {
-        [library writeVideoAtPathToSavedPhotosAlbum:videoURL completionBlock:^(NSURL *assetURL, NSError *error)
-         {
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 
-                 if (error)
-                 {
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                     [alert show];
-                 }
-                 else
-                 {
-                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                     [alert show];
-                 }
-             });
-         }];
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File format is not compatibale with album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 - (void)viewDidLoad
@@ -172,7 +143,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
     _myCameraViewHandler = [[CGECameraViewHandler alloc] initWithGLKView:_glkView];
 
-    if([_myCameraViewHandler setupCamera: AVCaptureSessionPreset(RECORD_HEIGHT, RECORD_WIDTH) cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES authorizationFailed:^{
+    if([_myCameraViewHandler setupCamera: MYAVCaptureSessionPreset(RECORD_HEIGHT, RECORD_WIDTH) cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES authorizationFailed:^{
         NSLog(@"未取得相机或者麦克风权限!!");
     }])
     {
@@ -333,32 +304,32 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 #pragma mark - CGEFrameProcessingDelegate
 
-//- (BOOL)processingHandleData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
-//{
-//    [self processingData:data width:width height:height bytesPerRow:bytesPerRow channels:channels];
-//    
-//    return YES;
-//}
-//
-//- (BOOL)requireDataWriting
-//{
-//    return YES;
-//}
-
-- (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
+- (BOOL)processingHandleData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
 {
-    CVPixelBufferLockBaseAddress(imageBuffer, 0); //read&write
-    size_t outBytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    
-    void *outBuffer = (void *)CVPixelBufferGetBaseAddress(imageBuffer);
-    
-    [self processingData:outBuffer width:(int)width height:(int)height bytesPerRow:(int)outBytesPerRow channels:4];
-    CVPixelBufferUnlockBaseAddress(imageBuffer, 0); //write back
+    [self processingData:data width:width height:height bytesPerRow:bytesPerRow channels:channels];
     
     return YES;
 }
+
+- (BOOL)requireDataWriting
+{
+    return YES;
+}
+
+//- (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
+//{
+//    CVPixelBufferLockBaseAddress(imageBuffer, 0); //read&write
+//    size_t outBytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+//    size_t width = CVPixelBufferGetWidth(imageBuffer);
+//    size_t height = CVPixelBufferGetHeight(imageBuffer);
+//    
+//    void *outBuffer = (void *)CVPixelBufferGetBaseAddress(imageBuffer);
+//    
+//    [self processingData:outBuffer width:(int)width height:(int)height bytesPerRow:(int)outBytesPerRow channels:4];
+//    CVPixelBufferUnlockBaseAddress(imageBuffer, 0); //write back
+//    
+//    return YES;
+//}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -402,6 +373,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             else
             {
                 [_myCameraViewHandler enableFaceDetect:YES setupDefaultFilters:YES];
+//                [_myCameraViewHandler enableFaceDetect:YES withFilterConfig:"@style halftone 1.2 "];
                 [sender setTitle:@"正在检测" forState:UIControlStateNormal];
             }
 
@@ -421,9 +393,11 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         case 4:
         {
             [_myCameraViewHandler takeShot:^(UIImage *image) {
+                
+                [DemoUtils saveImage:image];
+
                 if(image != nil)
                 {
-                    [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
                     NSLog(@"截取完成， 已保存到相册!!\n");
                 }
                 else

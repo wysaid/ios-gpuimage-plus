@@ -219,7 +219,16 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 - (void)playVideoURL: (NSURL*)url
 {
     [_videoPlayerHandler pause];
-    [_videoPlayerHandler startWithURL:url];
+    [_videoPlayerHandler startWithURL:url completionHandler:^(NSError* err) {
+        if(!err)
+        {
+            [[[_videoPlayerHandler videoPlayer] avPlayer] play];
+        }
+        else
+        {
+            NSLog(@"play video failed: %@", err);
+        }
+    }];
 }
 
 - (void)functionButtonClick: (MyButton*)sender

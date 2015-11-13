@@ -9,6 +9,15 @@
 #import "FilterDemoViewController.h"
 #import "cgeUtilFunctions.h"
 #import "demoUtils.h"
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import "cgeVideoWriter.h"
+
+static const char* const s_functionList[] = {
+    "保存结果", //0
+    "视频生成", //1
+};
+
+static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
 
 @interface FilterDemoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *galleryBtn;
@@ -30,7 +39,7 @@
     CGRect rt = [[UIScreen mainScreen] bounds];
     NSLog(@"Screen Rect: %g %g %g %g", rt.origin.x, rt.origin.y, rt.size.width, rt.size.height);
     _myImageView = [[UIImageView alloc] initWithFrame:rt];
-    _myImage = [UIImage imageNamed:@"1.jpg"];
+    _myImage = [UIImage imageNamed:@"test2.jpg"];
     [_myImageView setImage:_myImage];
     [self.view insertSubview:_myImageView belowSubview:_galleryBtn];
     _myImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -40,7 +49,24 @@
     scrollRT.size.height = 50;
     _myScrollView = [[UIScrollView alloc] initWithFrame:scrollRT];
 
-    CGRect frame = CGRectMake(0, 0, 70, 50);
+    CGRect frame = CGRectMake(0, 0, 85, 50);
+    
+    for(int i = 0; i != s_functionNum; ++i)
+    {
+        MyButton* btn = [[MyButton alloc] initWithFrame:frame];
+        [btn setTitle:[NSString stringWithUTF8String:s_functionList[i]] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        [btn.layer setBorderColor:[UIColor redColor].CGColor];
+        [btn.layer setBorderWidth:2.0f];
+        [btn.layer setCornerRadius:11.0f];
+        [btn setIndex:i];
+        [btn addTarget:self action:@selector(functionButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_myScrollView addSubview:btn];
+        frame.origin.x += frame.size.width;
+    }
+    
+    frame.size.width = 70;
+    
     for(int i = 0; i != g_configNum; ++i)
     {
         MyButton* btn = [[MyButton alloc] initWithFrame:frame];
@@ -111,6 +137,55 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)videoTestCase
+{
+    NSArray* arr = @[@"test.jpg", @"test1.jpg", @"test2.jpg"];
+
+    __block NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
+
+    NSString* audioPath = [[NSBundle mainBundle] pathForResource:@"liuguangshimeng" ofType:@"m4a"];
+    __block NSURL* audioURL = [NSURL fileURLWithPath:audioPath];
+
+    id retrieveFunc = ^UIImage *(NSString* imgName) {
+        return [UIImage imageNamed:imgName];
+    };
+
+    [CGEVideoWriter generateVideoWithImages:video2Save size:CGSizeMake(480, 640) imgSrc:arr imgRetrieveFunc:retrieveFunc audioURL:audioURL quality:AVAssetExportPresetMediumQuality secPerFrame:3.0 completionHandler:^(BOOL success) {
+
+        if(success)
+        {
+            NSLog(@"生成视频成功...");
+            [DemoUtils saveVideo:video2Save];
+        }
+        else
+        {
+            NSLog(@"生成视频失败!\n");
+        }
+    }];
+
+}
+
+- (void)functionButtonClick: (MyButton*)sender
+{
+    NSLog(@"Function button %d clicked...\n", [sender index]);
+    
+    switch ([sender index])
+    {
+        case 0:
+        {
+            UIImage* image = [_myImageView image];
+            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+            NSLog(@"文件已保存");
+        }
+            break;
+        case 1:
+            [self videoTestCase];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

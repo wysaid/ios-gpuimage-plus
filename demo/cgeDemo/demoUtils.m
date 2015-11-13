@@ -7,9 +7,11 @@
 //
 
 #import "demoUtils.h"
+#import <AssetsLibrary/ALAssetsLibrary.h>
 
 const char* g_effectConfig[] = {
     nil,
+    "@beautify bilateral 10 4 1 @style haze -0.5 -0.5 1 1 1 @curve RGB(0, 0)(94, 20)(160, 168)(255, 255) @curve R(0, 0)(129, 119)(255, 255)B(0, 0)(135, 151)(255, 255)RGB(0, 0)(146, 116)(255, 255)",
     "#unpack @blur lerp 0.75",
     "#unpack @style sketch 0.9",
     "@beautify bilateral 100 3.5 2 ",
@@ -30,9 +32,9 @@ const char* g_effectConfig[] = {
     "@style min",
     "@style max",
     "@style haze 0.5 -0.14 1 0.8 1 ",
-    "@krblend sr 0.jpg 100 ",
-    "#unpack @krblend ol test.jpg 100",
-    "#unpack @krblend add test.jpg 100",
+    "@krblend sr test.jpg 100 ",
+    "#unpack @krblend ol test1.jpg 100",
+    "#unpack @krblend add test2.jpg 100",
     "#unpack @krblend darken test.jpg 100",
     "@curve R(0, 0)(71, 74)(164, 165)(255, 255) @pixblend screen 0.94118 0.29 0.29 1 20",
     "@curve G(0, 0)(144, 166)(255, 255) @pixblend screen 0.94118 0.29 0.29 1 20",
@@ -125,7 +127,44 @@ void loadImageOKCallback(UIImage* img, void* arg)
 }
 
 
-@implementation demoUtils
+@implementation DemoUtils
+
++ (void)saveVideo :(NSURL*)videoURL
+{
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:videoURL])
+    {
+        [library writeVideoAtPathToSavedPhotosAlbum:videoURL completionBlock:^(NSURL *assetURL, NSError *error)
+         {
+             dispatch_async(dispatch_get_main_queue(), ^{
+
+                 if (error)
+                 {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     [alert show];
+                 }
+                 else
+                 {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Video Saved" message:@"Saved To Photo Album" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     [alert show];
+                 }
+             });
+         }];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File format is not compatibale with album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
++ (void)saveImage:(UIImage *)image
+{
+    if(image != nil)
+    {
+        [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+    }
+}
 
 @end
 
@@ -133,3 +172,4 @@ void loadImageOKCallback(UIImage* img, void* arg)
 
 
 @end
+
