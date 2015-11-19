@@ -25,8 +25,6 @@
 		DB4342221B4FCC8A00ED886F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB4342201B4FCC8A00ED886F /* Main.storyboard */; };
 		DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4342231B4FCC8A00ED886F /* Images.xcassets */; };
 		DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4342251B4FCC8A00ED886F /* LaunchScreen.xib */; };
-		DB43424C1B50FE7C00ED886F /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB43424B1B50FE7C00ED886F /* libstdc++.6.0.9.dylib */; };
-		DB4342501B50FED100ED886F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DB43424F1B50FED100ED886F /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +54,6 @@
 		DB4342211B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB4342231B4FCC8A00ED886F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB4342261B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		DB43424B1B50FE7C00ED886F /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		DB43424D1B50FEC000ED886F /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		DB43424F1B50FED100ED886F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB4342501B50FED100ED886F /* libc++.dylib in Frameworks */,
-				DB43424C1B50FE7C00ED886F /* libstdc++.6.0.9.dylib in Frameworks */,
 				D34CD2E91BD4E64E00154CEE /* cge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,9 +95,6 @@
 			children = (
 				DB4342151B4FCC8A00ED886F /* cgeDemo */,
 				D3FCC7AC1B9C4922003B1D34 /* libCGE */,
-				DB43424F1B50FED100ED886F /* libc++.dylib */,
-				DB43424B1B50FE7C00ED886F /* libstdc++.6.0.9.dylib */,
-				DB43424D1B50FEC000ED886F /* libstdc++.dylib */,
 				DB4342141B4FCC8A00ED886F /* Products */,
 			);
 			sourceTree = "<group>";
