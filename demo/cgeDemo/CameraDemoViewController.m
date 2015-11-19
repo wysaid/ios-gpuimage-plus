@@ -24,6 +24,7 @@ static const char* const s_functionList[] = {
     "人脸美化", //2
     "预处理", //3
     "截取帧", //4
+    "手电筒", //5
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -343,6 +344,22 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     }];
 }
 
+- (void)switchTorchMode
+{
+    AVCaptureTorchMode mode[3] = {
+        AVCaptureTorchModeOff,
+        AVCaptureTorchModeOn,
+        AVCaptureTorchModeAuto
+    };
+    
+    static int torchModeIndex = 0;
+    
+    ++torchModeIndex;
+    torchModeIndex %= 3;
+    
+    [_myCameraViewHandler setTorchMode:mode[torchModeIndex]];
+}
+
 - (void)functionButtonClick: (MyButton*)sender
 {
     NSLog(@"Function Button %d Clicked...\n", [sender index]);
@@ -408,6 +425,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         }
             break;
             
+        case 5:
+            [self switchTorchMode];
+            break;
         default:
             break;
     }

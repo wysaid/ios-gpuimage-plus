@@ -172,6 +172,17 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         [UIView commitAnimations];
         NSLog(@"glkView 尺寸: %g, %g, %g, %g", x, y, w, h);
     }];
+
+}
+
+- (void)playTimeUpdated:(CMTime)currentTime
+{
+    NSLog(@"播放进度更新: %g\n", CMTimeGetSeconds(currentTime));
+}
+
+- (void)playerStatusChanged:(AVPlayerItemStatus)status
+{
+    NSLog(@"播放器状态更新: %d\n", (int)status);
 }
 
 - (void)viewFitMaskSize:(CGSize)sz
@@ -222,7 +233,10 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [_videoPlayerHandler startWithURL:url completionHandler:^(NSError* err) {
         if(!err)
         {
-            [[[_videoPlayerHandler videoPlayer] avPlayer] play];
+            CMTime videoTime = [_videoPlayerHandler videoDuration];
+            NSLog(@"视频总时长: %g 秒\n", CMTimeGetSeconds(videoTime));
+            
+            [_videoPlayerHandler resume];
         }
         else
         {
