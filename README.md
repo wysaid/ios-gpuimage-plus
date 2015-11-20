@@ -14,16 +14,16 @@ GPU accelerated filters for iOS based on OpenGL.
 ## 展示 ##
 
 ![iOS-GPUImage-plus](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/0.jpg "iOS-GPUImage-plus")
-<br>demo主界面
+<br/>demo主界面
 
 ![iOS-GPUImage-plus](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/1.jpg "iOS-GPUImage-plus")
-<br>图片滤镜
+<br/>图片滤镜
 
 ![iOS-GPUImage-plus](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/2.jpg "iOS-GPUImage-plus")
-<br>相机实时滤镜 (支持带声音录像)
+<br/>相机实时滤镜 (支持带声音录像)
 
 ![iOS-GPUImage-plus](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/3.jpg "iOS-GPUImage-plus")
-<br>视频播放实时滤镜
+<br/>视频播放实时滤镜
 
 ## 文档 ##
 
