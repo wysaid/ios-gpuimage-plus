@@ -7,12 +7,14 @@
 //
 
 #import "MainViewController.h"
-
+#import "demoUtils.h"
+#import "cgeUtilFunctions.h"
 
 @interface MainViewController()
 @property (weak, nonatomic) IBOutlet UIButton *filterDemoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cameraDemoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *playerDemoBtn;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 @end
@@ -27,11 +29,43 @@
 - (IBAction)playerDemoClicked:(id)sender {
     NSLog(@"player demo clicked!");
 }
+- (IBAction)testCasesDemoClicked:(id)sender {
+    NSLog(@"test cases' demo clicked!");
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"flash screen loaded!");
+    cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
+
+    CGRect rt = [[UIScreen mainScreen] bounds];
+    [_scrollView setFrame:rt];
+    [_scrollView setScrollEnabled:YES];
+
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView performWithoutAnimation:^{
+            NSArray* subviews = [_scrollView subviews];
+
+            int index = 0;
+            int buttonWidth = rt.size.width / 2, buttonHeight = 40;
+
+            for(UIView* view in subviews)
+            {
+                [view setFrame:CGRectMake(20.0, 25 + index * (buttonHeight + 25), buttonWidth, buttonHeight)];
+                //                [view setBackgroundColor:[UIColor redColor]];
+                [view.layer setShadowColor:[UIColor redColor].CGColor];
+                [view.layer setShadowOffset:CGSizeMake(2, 2)];
+                [view.layer setBorderWidth:1.5];
+                [view.layer setBorderColor:[UIColor blueColor].CGColor];
+                [view.layer setShadowOpacity:1.0];
+                ++index;
+            }
+        }];
+    });
+
 }
 
 

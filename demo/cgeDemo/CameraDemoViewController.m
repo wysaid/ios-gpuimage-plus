@@ -29,7 +29,7 @@ static const char* const s_functionList[] = {
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
 
-@interface CameraDemoViewController() <CGEFrameProcessingDelegate>
+@interface CameraDemoViewController() <CGECameraFrameProcessingDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
 @property (weak, nonatomic) IBOutlet UISlider *intensitySlider;
 @property CGECameraViewHandler* myCameraViewHandler;
@@ -42,7 +42,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 @implementation CameraDemoViewController
 - (IBAction)quitBtnClicked:(id)sender {
     NSLog(@"Camera Demo Quit...");
-    [[[_myCameraViewHandler frameRecorder] videoCamera] stopCameraCapture];
+    [[[_myCameraViewHandler cameraRecorder] cameraDevice] stopCameraCapture];
     [self dismissViewControllerAnimated:true completion:nil];
     //手动释放， 避免任何引用计数引起的内存泄漏
     [_myCameraViewHandler clear];
@@ -50,7 +50,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [CGESharedGLContext clearGlobalGLContext];
 }
 - (IBAction)intensityChanged:(UISlider*)sender {
-    [_myCameraViewHandler setFilterIntensity:[sender value]];
+    [_myCameraViewHandler setFilterIntensity:[sender value] * 3.0f - 1.0f]; //[-1, 2]
 }
 - (IBAction)switchCameraClicked:(id)sender {
     [_myCameraViewHandler switchCamera :YES]; //使用handler封装的 switchCamera 方法可以将前置摄像头产生的图像反向
@@ -61,7 +61,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         [DemoUtils saveImage:image];
         NSLog(@"拍照完成， 已保存到相册!\n");
         
-    } filterConfig:g_effectConfig[_currentFilterIndex] filterIntensity:1.0 isFrontCameraMirrored:YES];
+    } filterConfig:g_effectConfig[_currentFilterIndex] filterIntensity:1.0f isFrontCameraMirrored:YES];
 }
 
 - (IBAction)recordingBtnClicked:(UIButton*)sender {
@@ -112,7 +112,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
     
     _movieURL = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"]];
     
@@ -148,7 +147,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         NSLog(@"未取得相机或者麦克风权限!!");
     }])
     {
-        [[_myCameraViewHandler videoCamera] startCameraCapture];
+        [[_myCameraViewHandler cameraDevice] startCameraCapture];
     }
     else
     {
@@ -303,7 +302,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     }
 }
 
-#pragma mark - CGEFrameProcessingDelegate
+#pragma mark - CGECameraFrameProcessingDelegate
 
 - (BOOL)processingHandleData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
 {
@@ -370,14 +369,14 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             [self setMask];
             break;
         case 1:
-            if([[_myCameraViewHandler videoCamera] captureIsRunning])
+            if([[_myCameraViewHandler cameraDevice] captureIsRunning])
             {
-                [[_myCameraViewHandler videoCamera] stopCameraCapture];
+                [[_myCameraViewHandler cameraDevice] stopCameraCapture];
                 [sender setTitle:@"启动相机" forState:UIControlStateNormal];
             }
             else
             {
-                [[_myCameraViewHandler videoCamera] startCameraCapture];
+                [[_myCameraViewHandler cameraDevice] startCameraCapture];
                 [sender setTitle:@"暂停相机" forState:UIControlStateNormal];
             }
             break;
@@ -396,14 +395,14 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
             break;
         case 3:
-            if([[_myCameraViewHandler frameRecorder] processingDelegate] == nil)
+            if([[_myCameraViewHandler cameraRecorder] processingDelegate] == nil)
             {
-                [[_myCameraViewHandler frameRecorder] setProcessingDelegate:self];
+                [[_myCameraViewHandler cameraRecorder] setProcessingDelegate:self];
                 [sender setTitle:@"处理中" forState:UIControlStateNormal];
             }
             else
             {
-                [[_myCameraViewHandler frameRecorder] setProcessingDelegate:nil];
+                [[_myCameraViewHandler cameraRecorder] setProcessingDelegate:nil];
                 [sender setTitle:@"处理停止" forState:UIControlStateNormal];
             }
             break;

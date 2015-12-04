@@ -14,7 +14,6 @@
 
 static const char* const s_functionList[] = {
     "保存结果", //0
-    "视频生成", //1
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -33,8 +32,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
     
     CGRect rt = [[UIScreen mainScreen] bounds];
     NSLog(@"Screen Rect: %g %g %g %g", rt.origin.x, rt.origin.y, rt.size.width, rt.size.height);
@@ -139,34 +136,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     // Dispose of any resources that can be recreated.
 }
 
-- (void)videoTestCase
-{
-    NSArray* arr = @[@"test.jpg", @"test1.jpg", @"test2.jpg"];
-
-    __block NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
-
-    NSString* audioPath = [[NSBundle mainBundle] pathForResource:@"liuguangshimeng" ofType:@"m4a"];
-    __block NSURL* audioURL = [NSURL fileURLWithPath:audioPath];
-
-    id retrieveFunc = ^UIImage *(NSString* imgName) {
-        return [UIImage imageNamed:imgName];
-    };
-
-    [CGEVideoWriter generateVideoWithImages:video2Save size:CGSizeMake(480, 640) imgSrc:arr imgRetrieveFunc:retrieveFunc audioURL:audioURL quality:AVAssetExportPresetMediumQuality secPerFrame:3.0 completionHandler:^(BOOL success) {
-
-        if(success)
-        {
-            NSLog(@"生成视频成功...");
-            [DemoUtils saveVideo:video2Save];
-        }
-        else
-        {
-            NSLog(@"生成视频失败!\n");
-        }
-    }];
-
-}
-
 - (void)functionButtonClick: (MyButton*)sender
 {
     NSLog(@"Function button %d clicked...\n", [sender index]);
@@ -181,7 +150,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         }
             break;
         case 1:
-            [self videoTestCase];
             break;
         default:
             break;

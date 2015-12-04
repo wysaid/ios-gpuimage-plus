@@ -65,8 +65,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 {
     [super viewDidLoad];
     
-    cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
-    
     CGRect rt = [[UIScreen mainScreen] bounds];
     
     _glkView = [[GLKView alloc] initWithFrame:rt];
@@ -123,7 +121,13 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [self.view addSubview:_myScrollView];
     
     _videoSize = CGSizeMake(640, 480);
-    [self playDemoVideo];
+
+    if(!_defaultVideoURL)
+    {
+        _defaultVideoURL = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"mp4"];
+    }
+
+    [self playVideoURL:_defaultVideoURL];
 }
 
 #pragma mark - CGEVideoPlayerDelegate
@@ -143,6 +147,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     if([_videoPlayerHandler isUsingMask])
     {
         [[[_videoPlayerHandler videoPlayer] sharedContext] syncProcessingQueue:^{
+            [[[_videoPlayerHandler videoPlayer] sharedContext] makeCurrent];
             [[_videoPlayerHandler videoPlayer] setMaskTextureRatio:_maskSize.width / _maskSize.height];
         }];
         
@@ -221,12 +226,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [self viewFitMaskSize:_maskSize];
 }
 
-- (void)playDemoVideo
-{
-    NSURL *sampleURL = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"mp4"];
-    [self playVideoURL:sampleURL];
-}
-
 - (void)playVideoURL: (NSURL*)url
 {
     [_videoPlayerHandler pause];
@@ -268,11 +267,13 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             break;
             
         case 2:
-            [self playDemoVideo];
+        {
+            NSURL *url = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"mp4"];
+            [self playVideoURL:url];
+        }
             break;
         case 3:
         {
-            [_videoPlayerHandler pause];
             NSURL *url = [[NSBundle mainBundle] URLForResource:@"1" withExtension:@"mp4"];
             [self playVideoURL:url];
         }

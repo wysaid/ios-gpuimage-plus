@@ -7,13 +7,21 @@
 //
 
 #import "demoUtils.h"
+#import "cgeSharedGLContext.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
 const char* g_effectConfig[] = {
     nil,
     "@beautify bilateral 10 4 1 @style haze -0.5 -0.5 1 1 1 @curve RGB(0, 0)(94, 20)(160, 168)(255, 255) @curve R(0, 0)(129, 119)(255, 255)B(0, 0)(135, 151)(255, 255)RGB(0, 0)(146, 116)(255, 255)",
-    "#unpack @blur lerp 0.75",
+    "#unpack @blur lerp 0.75", //可调节模糊强度
+    "@blur lerp 1", //可调节混合强度
+    "#unpack @dynamic wave 1", //可调节速度
+    "@dynamic wave 0.5",       //可调节混合
     "#unpack @style sketch 0.9",
+    "#unpack @krblend sr test.jpg 100 ",
+    "#unpack @krblend ol test1.jpg 100",
+    "#unpack @krblend add test2.jpg 100",
+    "#unpack @krblend darken test.jpg 100",
     "@beautify bilateral 100 3.5 2 ",
     "@style crosshatch 0.01 0.003 ",
     "@style edge 1 2 ",
@@ -32,10 +40,6 @@ const char* g_effectConfig[] = {
     "@style min",
     "@style max",
     "@style haze 0.5 -0.14 1 0.8 1 ",
-    "@krblend sr test.jpg 100 ",
-    "#unpack @krblend ol test1.jpg 100",
-    "#unpack @krblend add test2.jpg 100",
-    "#unpack @krblend darken test.jpg 100",
     "@curve R(0, 0)(71, 74)(164, 165)(255, 255) @pixblend screen 0.94118 0.29 0.29 1 20",
     "@curve G(0, 0)(144, 166)(255, 255) @pixblend screen 0.94118 0.29 0.29 1 20",
     "@curve B(0, 0)(68, 72)(149, 184)(255, 255) @pixblend screen 0.94118 0.29 0.29 1 20",
@@ -153,17 +157,24 @@ void loadImageOKCallback(UIImage* img, void* arg)
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File format is not compatibale with album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [CGEProcessingContext mainSyncProcessingQueue:^{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"File format is not compatibale with album!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }];
     }
 }
 
 + (void)saveImage:(UIImage *)image
 {
-    if(image != nil)
-    {
-        [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
-    }
+    [CGEProcessingContext mainSyncProcessingQueue:^{
+
+        if(image != nil)
+        {
+            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+        }
+    }];
+
+    
 }
 
 @end

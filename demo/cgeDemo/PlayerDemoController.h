@@ -10,4 +10,6 @@
 
 @interface PlayerDemoController : UIViewController
 
+@property(nonatomic)NSURL* defaultVideoURL;
+
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D308A7781C1146E200C6F446 /* SimpleTestCasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */; };
 		D334E8D11BCCB81F00D32A2D /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D334E8D01BCCB81F00D32A2D /* test.mp4 */; };
 		D33BBD551B940FFD00B1E285 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D33BBD541B940FFD00B1E285 /* test.jpg */; };
 		D33BBD571B942EB900B1E285 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD561B942EB900B1E285 /* MainViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D308A7761C1146E200C6F446 /* SimpleTestCasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTestCasesViewController.h; sourceTree = "<group>"; };
+		D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTestCasesViewController.m; sourceTree = "<group>"; };
 		D334E8D01BCCB81F00D32A2D /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		D33BBD541B940FFD00B1E285 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		D33BBD561B942EB900B1E285 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 		DB4342151B4FCC8A00ED886F /* cgeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D308A7761C1146E200C6F446 /* SimpleTestCasesViewController.h */,
+				D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */,
 				D3FCC7B31B9C5446003B1D34 /* demoUtils.h */,
 				D3FCC7B41B9C5446003B1D34 /* demoUtils.m */,
 				DB43421A1B4FCC8A00ED886F /* AppDelegate.h */,
@@ -228,6 +233,7 @@
 			files = (
 				DB43421F1B4FCC8A00ED886F /* FilterDemoViewController.m in Sources */,
 				D3FCC7B51B9C5446003B1D34 /* demoUtils.m in Sources */,
+				D308A7781C1146E200C6F446 /* SimpleTestCasesViewController.m in Sources */,
 				D33BBD601B943B1400B1E285 /* PlayerDemoController.m in Sources */,
 				DB43421C1B4FCC8A00ED886F /* AppDelegate.m in Sources */,
 				DB4342191B4FCC8A00ED886F /* main.m in Sources */,
