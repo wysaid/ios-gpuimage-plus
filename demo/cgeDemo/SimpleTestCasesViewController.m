@@ -6,7 +6,7 @@
 //  Copyright © 2015年 wysaid. All rights reserved.
 //
 
-// 此处为测试使用的无需显示效果的例子。
+// 此处为测试使用的无需显示效果的例子。 (Here are the test cases that need no display.)
 
 #import "SimpleTestCasesViewController.h"
 #import "cgeVideoWriter.h"
@@ -122,11 +122,11 @@ enum DemoTestCase{
 
 - (void)generateVideoWithImageTestCase
 {
-    NSArray* arr = @[@"test.jpg", @"test1.jpg", @"test2.jpg"];
+    NSArray* arr = @[@"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg"];
 
     NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
 
-    NSString* audioPath = [[NSBundle mainBundle] pathForResource:@"liuguangshimeng" ofType:@"m4a"];
+    NSString* audioPath = [[NSBundle mainBundle] pathForResource:@"yanzhilei" ofType:@"m4a"];
     NSURL* audioURL = [NSURL fileURLWithPath:audioPath];
 
     id retrieveFunc = ^UIImage *(NSString* imgName) {
@@ -185,7 +185,23 @@ enum DemoTestCase{
     NSURL *url = [[NSBundle mainBundle] URLForResource:srcFilename withExtension:@"mp4"];
     NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
 
-    _videoFrameRecorder = [CGEVideoFrameRecorder generateVideoWithFilter:video2Save size:CGSizeMake(0, 0) sourceURL:url filterConfig:g_effectConfig[4] filterIntensity:1.0f compressLevel:2 withDelegate:self];
+    NSDictionary* videoConfig = @{
+//      @"sourceAsset" : (AVAsset*)sourceAsset     //输入视频Asset(Asset和URL 任选其一)
+      @"sourceURL" : url,                          //输入视频URL  (Asset和URL 任选其一)
+      @"filterConfig" : [NSString stringWithUTF8String:g_effectConfig[4]],  //滤镜配置 (可不写)
+      @"filterIntensity" : @(0.9f),                //滤镜强度 (不写默认 1.0, 范围[0, 1])
+      @"blendImage" : [UIImage imageNamed:@"mask1.png"],       //每一帧混合图片 (可不写)
+      @"blendMode" : @(CGE_BLEND_OVERLAY),         //混合模式 (当blendImage不存在时无效)
+      @"blendIntensity" : @(0.8f)                  //混合强度 (不写默认 1.0, 范围[0, 1])
+    };
+    
+    _videoFrameRecorder = [CGEVideoFrameRecorder generateVideoWithFilter:video2Save size:CGSizeMake(0, 0) withDelegate:self videoConfig:videoConfig];
+    
+    
+    
+    
+    
+//    _videoFrameRecorder = [CGEVideoFrameRecorder generateVideoWithFilter:video2Save size:CGSizeMake(0, 0) sourceURL:url filterConfig:g_effectConfig[4] filterIntensity:1.0f blendImage:nil blendMode:CGE_BLEND_MIX compressLevel:2 withDelegate:self];
 
 //    _videoFrameRecorder = [[CGEVideoFrameRecorder alloc]initWithContext:[CGESharedGLContext globalGLContext]];
 //
