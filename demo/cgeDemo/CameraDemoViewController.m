@@ -25,6 +25,7 @@ static const char* const s_functionList[] = {
     "预处理", //3
     "截取帧", //4
     "手电筒", //5
+    "分辨率", //6
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -54,6 +55,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 }
 - (IBAction)switchCameraClicked:(id)sender {
     [_myCameraViewHandler switchCamera :YES]; //使用handler封装的 switchCamera 方法可以将前置摄像头产生的图像反向
+
+    CMVideoDimensions dim = [[[_myCameraViewHandler cameraDevice] inputCamera] activeFormat].highResolutionStillImageDimensions;
+    NSLog(@"拍照最大分辨率: %d, %d\n", dim.width, dim.height);
 }
 
 - (IBAction)takePicture:(id)sender {
@@ -213,6 +217,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     }];
     
     [_myCameraViewHandler fitViewSizeKeepRatio:YES];
+
+    //拍照时使用最大分辨率
+    [[_myCameraViewHandler cameraRecorder] setPictureHighResolution:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -359,6 +366,41 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [_myCameraViewHandler setTorchMode:mode[torchModeIndex]];
 }
 
+- (void)switchResolution
+{
+    NSString* resolutionList[] = {
+        AVCaptureSessionPresetPhoto,
+        AVCaptureSessionPresetHigh,
+        AVCaptureSessionPresetMedium,
+        AVCaptureSessionPresetLow,
+        AVCaptureSessionPreset352x288,
+        AVCaptureSessionPreset640x480,
+        AVCaptureSessionPreset1280x720,
+        AVCaptureSessionPreset1920x1080,
+        AVCaptureSessionPreset3840x2160,
+        AVCaptureSessionPresetiFrame960x540,
+        AVCaptureSessionPresetiFrame1280x720,
+        AVCaptureSessionPresetInputPriority
+    };
+
+    static const int listNum = sizeof(resolutionList) / sizeof(*resolutionList);
+    static int index = 0;
+
+    if([[_myCameraViewHandler cameraDevice] captureSessionPreset] != resolutionList[index])
+    {
+        [_myCameraViewHandler setCameraSessionPreset:resolutionList[index]];
+    }
+
+    CMVideoDimensions dim = [[[_myCameraViewHandler cameraDevice] inputCamera] activeFormat].highResolutionStillImageDimensions;
+    NSLog(@"Preset: %@, 拍照最大分辨率: %d, %d\n", [[_myCameraViewHandler cameraDevice] captureSessionPreset], dim.width, dim.height);
+
+    //拍照时使用最大分辨率
+    [[_myCameraViewHandler cameraRecorder] setPictureHighResolution:YES];
+
+    ++index;
+    index %= listNum;
+}
+
 - (void)functionButtonClick: (MyButton*)sender
 {
     NSLog(@"Function Button %d Clicked...\n", [sender index]);
@@ -427,6 +469,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         case 5:
             [self switchTorchMode];
             break;
+        case 6:
+            [self switchResolution];
         default:
             break;
     }

@@ -6,7 +6,7 @@
 //  Copyright © 2015年 wysaid. All rights reserved.
 //
 
-// 此处为测试使用的无需显示效果的例子。 (Here are the test cases that need no display.)
+// 此处为测试使用的无需显示效果的例子。(Here are the test cases that need no display.)
 
 #import "SimpleTestCasesViewController.h"
 #import "cgeVideoWriter.h"
@@ -122,7 +122,7 @@ enum DemoTestCase{
 
 - (void)generateVideoWithImageTestCase
 {
-    NSArray* arr = @[@"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg", @"test.jpg", @"test1.jpg", @"test2.jpg"];
+    NSArray* arr = @[@"test.jpg", @"test1.jpg", @"test2.jpg"];
 
     NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
 
