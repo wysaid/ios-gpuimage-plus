@@ -17,6 +17,9 @@ const char* g_effectConfig[] = {
     "@blur lerp 1", //可调节混合强度
     "#unpack @dynamic wave 1", //可调节速度
     "@dynamic wave 0.5",       //可调节混合
+    "#unpack @dynamic wave 0 40 0.01 1", //较大angle
+    "#unpack @dynamic wave 0 10 0.05 1", //较大strength
+    "#unpack @dynamic wave 0 20 0.005 1", //较大strength
     "#unpack @style sketch 0.9",
     "#unpack @krblend sr test.jpg 100 ",
     "#unpack @krblend ol test1.jpg 100",
