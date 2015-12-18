@@ -161,7 +161,7 @@ enum DemoTestCase{
             [_videoFrameRecorder clear];
             _videoFrameRecorder = nil;
         }];
-    }];
+    } withCompressionLevel:2];
 }
 
 - (void)videoResolutionChanged: (CGSize)size

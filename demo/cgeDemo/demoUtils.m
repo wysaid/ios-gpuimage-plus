@@ -19,7 +19,7 @@ const char* g_effectConfig[] = {
     "@dynamic wave 0.5",       //可调节混合
     "#unpack @dynamic wave 0 40 0.01 1", //较大angle
     "#unpack @dynamic wave 0 10 0.05 1", //较大strength
-    "#unpack @dynamic wave 0 20 0.005 1", //较大strength
+    "#unpack @dynamic wave 8.5 20 0.012 ", //静态波纹
     "#unpack @style sketch 0.9",
     "#unpack @krblend sr test.jpg 100 ",
     "#unpack @krblend ol test1.jpg 100",

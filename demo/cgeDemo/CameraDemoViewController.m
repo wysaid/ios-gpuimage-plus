@@ -88,7 +88,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         
 //        [_myCameraViewHandler endRecording:nil];
 //        finishBlock();
-        [_myCameraViewHandler endRecording:finishBlock];
+        [_myCameraViewHandler endRecording:finishBlock withCompressionLevel:2];
     }
     else
     {
