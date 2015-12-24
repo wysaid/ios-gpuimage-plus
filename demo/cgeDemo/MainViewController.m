@@ -40,13 +40,13 @@
     NSLog(@"flash screen loaded!");
     cgeSetLoadImageCallback(loadImageCallback, loadImageOKCallback, nil);
 
-    CGRect rt = [[UIScreen mainScreen] bounds];
-    [_scrollView setFrame:rt];
-    [_scrollView setScrollEnabled:YES];
-
-
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView performWithoutAnimation:^{
+            
+            CGRect rt = [[UIScreen mainScreen] bounds];
+            [_scrollView setFrame:rt];
+            [_scrollView setScrollEnabled:YES];
+            
             NSArray* subviews = [_scrollView subviews];
 
             int index = 0;

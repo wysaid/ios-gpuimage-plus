@@ -20,6 +20,7 @@ extern int g_configNum;
 
 + (void)saveVideo :(NSURL*)videoURL;
 + (void)saveImage :(UIImage*)image;
++ (void)saveImage :(UIImage*)image completionBlock:(void (^)(NSURL*, NSError*))block;
 
 @end
 

@@ -13,12 +13,14 @@
 #import "demoUtils.h"
 
 #import "cgeVideoFrameRecorder.h"
+#import "cgeUtilFunctions.h"
 
 #define ADD_TEXT(...) [self addText:[NSString stringWithFormat:__VA_ARGS__]];
 
 static NSString* s_functionList[] = {
     @"图片视频测试", //0
-    @"视频滤镜测试", //0
+    @"视频滤镜测试", //1
+    @"离屏渲染滤镜", //2
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -26,6 +28,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 enum DemoTestCase{
     Test_VideoGeneration,
     Test_VideoFileFilter,
+    Test_OffscreenFilter,
 
 };
 
@@ -36,6 +39,8 @@ enum DemoTestCase{
 @property (nonatomic) UITextView* myTextView;
 
 @property (nonatomic) CGEVideoFrameRecorder* videoFrameRecorder;
+@property (atomic) BOOL shouldRunningOffscreenFilters;
+@property (atomic) BOOL isRunningOffscreenFilters;
 
 @end
 
@@ -47,6 +52,8 @@ enum DemoTestCase{
     [self dismissViewControllerAnimated:true completion:nil];
     [_videoFrameRecorder clear];
     _videoFrameRecorder = nil;
+    _shouldRunningOffscreenFilters = NO;
+    [CGESharedGLContext clearGlobalGLContext];
 }
 
 - (void)viewDidLoad
@@ -86,16 +93,10 @@ enum DemoTestCase{
 
 - (void)addText:(NSString*)text
 {
-    if([NSThread isMainThread])
-    {
+    [CGEProcessingContext mainASyncProcessingQueue:^{
         [_myTextView insertText:text];
-    }
-    else
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_myTextView insertText:text];
-        });
-    }
+        [_myTextView scrollRectToVisible:[_myTextView caretRectForPosition:_myTextView.endOfDocument] animated:YES];
+    }];
 }
 
 - (void)functionButtonClick: (MyButton*)sender
@@ -115,6 +116,14 @@ enum DemoTestCase{
             ADD_TEXT(@"This test case would add a filter to a movie and save it to the album\n");
             [self filterVideoFileTestCase];
             break;
+        case Test_OffscreenFilter:
+            ADD_TEXT(@"This test case would write some test image to your album\n");
+            
+            _shouldRunningOffscreenFilters = !_shouldRunningOffscreenFilters;
+            
+            if(_shouldRunningOffscreenFilters)
+                [self offscreenFilterTestCase];
+            
         default:
             break;
     }
@@ -211,6 +220,66 @@ enum DemoTestCase{
 //    [_videoFrameRecorder setupWithURL:url];
 //    [_videoFrameRecorder startRecording:video2Save];
 //    [_videoFrameRecorder start];
+}
+
+- (void)offscreenFilterTestCase
+{
+    NSLog(@"离屏渲染测试...");
+    static BOOL tested = NO;
+    
+    if(tested)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warn" message:@"You have tested this case, switch to your album, and see the results!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    __block __weak SimpleTestCasesViewController* weakSelf = self;
+
+    [CGESharedGLContext globalAsyncProcessingQueue:^{
+        
+        weakSelf.isRunningOffscreenFilters = YES;
+        
+        UIImage* img = [UIImage imageNamed:@"test2.jpg"];
+        dispatch_semaphore_t syncSemaphore = dispatch_semaphore_create(0);
+        
+        ADD_TEXT(@"Start Running Filters...\n");
+        
+        int filterCnt = 0;
+        
+        for(int i = 0; i != g_configNum; ++i)
+        {
+            if(!weakSelf.shouldRunningOffscreenFilters)
+            {
+                ADD_TEXT(@"The offscreen filter test case is interrupted!\n");
+                [CGESharedGLContext mainASyncProcessingQueue:^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warn" message:@"You have stopped this case, switch to your album, and see the results!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }];
+                break;
+            }
+            
+            const char* config = g_effectConfig[i];
+            if(config != nil && *config != '\0')
+            {
+                ADD_TEXT(@"This is the %d th filter...\n", ++filterCnt);
+                UIImage* resultImage = cgeFilterUIImage_MultipleEffects(img, g_effectConfig[i], 1.0f, nil);
+                
+                
+                [DemoUtils saveImage:resultImage completionBlock:^(NSURL *url, NSError *err) {
+                    dispatch_semaphore_signal(syncSemaphore);
+                    ADD_TEXT(@"The image is saved!\n");
+                }];
+                
+                dispatch_semaphore_wait(syncSemaphore, DISPATCH_TIME_FOREVER);
+            }
+        }
+       
+        weakSelf.isRunningOffscreenFilters = NO;
+        
+        if(weakSelf.shouldRunningOffscreenFilters)
+            tested = YES;
+    }];
 }
 
 @end

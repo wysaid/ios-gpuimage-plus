@@ -10,10 +10,15 @@
 #import "cgeUtilFunctions.h"
 #import "demoUtils.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
+#import <GLKit/GLKit.h>
 #import "cgeVideoWriter.h"
+//#import "cgeFaceFunctions.h"
+#import "cgeImageViewHandler.h"
 
 static const char* const s_functionList[] = {
     "保存结果", //0
+    "人脸测试", //1
+    "显示切换", //2
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -21,9 +26,10 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 @interface FilterDemoViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *galleryBtn;
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
-@property (nonatomic) UIImage* myImage;
-@property (nonatomic) UIImageView* myImageView;
+@property (weak, nonatomic) IBOutlet UISlider *intensitySlider;
+@property (nonatomic) CGEImageViewHandler* myImageView;
 @property (nonatomic) UIScrollView* myScrollView;
+@property (nonatomic) GLKView* glkView;
 @end
 
 @implementation FilterDemoViewController
@@ -35,11 +41,19 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     CGRect rt = [[UIScreen mainScreen] bounds];
     NSLog(@"Screen Rect: %g %g %g %g", rt.origin.x, rt.origin.y, rt.size.width, rt.size.height);
-    _myImageView = [[UIImageView alloc] initWithFrame:rt];
-    _myImage = [UIImage imageNamed:@"test2.jpg"];
-    [_myImageView setImage:_myImage];
-    [self.view insertSubview:_myImageView belowSubview:_galleryBtn];
-    _myImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    CGRect sliderRT = [_intensitySlider bounds];
+    sliderRT.size.width = rt.size.width - 20;
+    [_intensitySlider setBounds:sliderRT];
+    
+    _glkView = [[GLKView alloc] initWithFrame:rt];
+    
+    UIImage* myImage = [UIImage imageNamed:@"test2.jpg"];
+    
+    _myImageView = [[CGEImageViewHandler alloc] initWithGLKView:_glkView withImage:myImage];
+    
+    [self.view insertSubview:_glkView belowSubview:_quitBtn];
+//    _myImageView.contentMode = UIViewContentModeScaleAspectFit;
     
     CGRect scrollRT = rt;
     scrollRT.origin.y = scrollRT.size.height - 60;
@@ -86,9 +100,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     [self.view addSubview:_myScrollView];
 //    [self.view insertSubview:_myScrollView belowSubview:_galleryBtn];
-    CGRect btnRect = [_quitBtn bounds];
-    btnRect.origin.x = rt.size.width - btnRect.size.width - 10;
-    [_quitBtn setFrame:btnRect];
+    [_myImageView setViewDisplayMode:CGEImageViewDisplayModeAspectFit];
 }
 
 - (void)filterButtonClicked: (MyButton*)sender
@@ -96,17 +108,11 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     NSLog(@"Filter %d Clicked...\n", [sender index]);
     
     const char* config = g_effectConfig[[sender index]];
-    [self filterImage:config intensity:1.0f];
+    [_myImageView setFilterWithConfig:config];
 }
-
-- (void) filterImage: (const char*)config intensity:(float)intensity
-{
-    if(_myImage == nil)
-        return;
-    
-    UIImage* newImage = cgeFilterUIImage_MultipleEffects(_myImage, config, intensity, nil);
-    
-    [_myImageView setImage:newImage];
+- (IBAction)intensityChanged:(UISlider*)sender {
+    float currentIntensity = [sender value] * 3.0f - 1.0f; //[-1, 2]
+    [_myImageView setFilterIntensity: currentIntensity];
 }
 
 - (IBAction)galleryBtnClicked:(id)sender
@@ -120,13 +126,15 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 - (IBAction)quitBtnClicked:(id)sender {
     NSLog(@"Filter Demo Quit...");
     [self dismissViewControllerAnimated:true completion:nil];
+    [_myImageView clear];
+    _myImageView = nil;
 }
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    _myImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* myImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    [_myImageView setImage:_myImage];
+    [_myImageView setUIImage:myImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -144,13 +152,20 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     {
         case 0:
         {
-            UIImage* image = [_myImageView image];
+            UIImage* image = [_myImageView resultImage];
             [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
             NSLog(@"文件已保存");
         }
             break;
         case 1:
+            NSLog(@"重要功能, 暂不添加.");
             break;
+        case 2:
+        {
+            static int modeIndex = 0;
+            [_myImageView setViewDisplayMode: (CGEImageViewDisplayMode)modeIndex++];
+            modeIndex %= CGEImageViewDisplayModeAspectFit + 1;
+        }
         default:
             break;
     }

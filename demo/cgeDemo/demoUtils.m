@@ -21,8 +21,8 @@ const char* g_effectConfig[] = {
     "#unpack @dynamic wave 0 10 0.05 1", //较大strength
     "#unpack @dynamic wave 8.5 20 0.012 ", //静态波纹
     "#unpack @style sketch 0.9",
+    "@adjust brightness 0.18 @adjust contrast 1.44 @adjust hsl 0 -0.4 0 @adjust contrast 1.4 @style edge 0.07 0 @style sketch 0.7 @krblend colorburn test1.jpg 70 ",
     "#unpack @krblend sr test.jpg 100 ",
-    "#unpack @krblend ol test1.jpg 100",
     "#unpack @krblend add test2.jpg 100",
     "#unpack @krblend darken test.jpg 100",
     "@beautify bilateral 100 3.5 2 ",
@@ -169,15 +169,18 @@ void loadImageOKCallback(UIImage* img, void* arg)
 
 + (void)saveImage:(UIImage *)image
 {
-    [CGEProcessingContext mainSyncProcessingQueue:^{
+    [DemoUtils saveImage:image completionBlock:nil];
+}
 
++ (void)saveImage:(UIImage *)image completionBlock:(void (^)(NSURL *, NSError *))block
+{
+    [CGEProcessingContext mainSyncProcessingQueue:^{
+        
         if(image != nil)
         {
-            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:block];
         }
     }];
-
-    
 }
 
 @end

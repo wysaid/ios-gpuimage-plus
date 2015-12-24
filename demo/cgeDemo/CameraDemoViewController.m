@@ -51,7 +51,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [CGESharedGLContext clearGlobalGLContext];
 }
 - (IBAction)intensityChanged:(UISlider*)sender {
-    [_myCameraViewHandler setFilterIntensity:[sender value] * 3.0f - 1.0f]; //[-1, 2]
+    float currentIntensity = [sender value] * 3.0f - 1.0f; //[-1, 2]
+    [_myCameraViewHandler setFilterIntensity: currentIntensity];
 }
 - (IBAction)switchCameraClicked:(id)sender {
     [_myCameraViewHandler switchCamera :YES]; //使用handler封装的 switchCamera 方法可以将前置摄像头产生的图像反向
@@ -122,8 +123,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     CGRect rt = [[UIScreen mainScreen] bounds];
     
     CGRect sliderRT = [_intensitySlider bounds];
-    sliderRT.size.width = rt.size.width;
-    [_intensitySlider setFrame:sliderRT];
+    sliderRT.size.width = rt.size.width - 20;
+    [_intensitySlider setBounds:sliderRT];
     
 #if SHOW_FULLSCREEN
     
@@ -206,9 +207,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     _myScrollView.contentSize = CGSizeMake(frame.origin.x, 50);
     
     [self.view addSubview:_myScrollView];
-    CGRect btnRect = [_quitBtn bounds];
-    btnRect.origin.x = rt.size.width - btnRect.size.width - 10;
-    [_quitBtn setFrame:btnRect];
     
     [CGESharedGLContext globalSyncProcessingQueue:^{
         [CGESharedGLContext useGlobalGLContext];
