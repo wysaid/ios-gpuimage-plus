@@ -28,6 +28,9 @@
 		DB4342221B4FCC8A00ED886F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB4342201B4FCC8A00ED886F /* Main.storyboard */; };
 		DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4342231B4FCC8A00ED886F /* Images.xcassets */; };
 		DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4342251B4FCC8A00ED886F /* LaunchScreen.xib */; };
+		DB7EAD7D1C32B47700F662FE /* GifDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */; };
+		DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */; };
+		DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */ = {isa = PBXBuildFile; fileRef = DB7EAD801C32B4FE00F662FE /* gitTest0.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,10 @@
 		DB4342211B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB4342231B4FCC8A00ED886F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB4342261B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DB7EAD7B1C32B47700F662FE /* GifDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifDemoViewController.h; sourceTree = "<group>"; };
+		DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDemoViewController.m; sourceTree = "<group>"; };
+		DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		DB7EAD801C32B4FE00F662FE /* gitTest0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gitTest0.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */,
 				D36839871BFDC0A20037CC4A /* libc++.tbd in Frameworks */,
 				D36839881BFDC0A20037CC4A /* libstdc++.6.0.9.tbd in Frameworks */,
 				D34CD2E91BD4E64E00154CEE /* cge.framework in Frameworks */,
@@ -88,6 +96,7 @@
 		DB3C50501B92E1CA005985C1 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				DB7EAD801C32B4FE00F662FE /* gitTest0.gif */,
 				D3D7D9361C1535B2003F6143 /* yanzhilei.m4a */,
 				D3DD61311BF5CD9700EEF604 /* test1.jpg */,
 				D3DD61321BF5CD9700EEF604 /* test2.jpg */,
@@ -102,6 +111,7 @@
 		DB43420A1B4FCC8900ED886F = {
 			isa = PBXGroup;
 			children = (
+				DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */,
 				DB4342151B4FCC8A00ED886F /* cgeDemo */,
 				D3FCC7AC1B9C4922003B1D34 /* libCGE */,
 				D36839851BFDC0A20037CC4A /* libc++.tbd */,
@@ -121,18 +131,20 @@
 		DB4342151B4FCC8A00ED886F /* cgeDemo */ = {
 			isa = PBXGroup;
 			children = (
-				D308A7761C1146E200C6F446 /* SimpleTestCasesViewController.h */,
-				D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */,
-				D3FCC7B31B9C5446003B1D34 /* demoUtils.h */,
-				D3FCC7B41B9C5446003B1D34 /* demoUtils.m */,
 				DB43421A1B4FCC8A00ED886F /* AppDelegate.h */,
 				DB43421B1B4FCC8A00ED886F /* AppDelegate.m */,
+				D3FCC7B31B9C5446003B1D34 /* demoUtils.h */,
+				D3FCC7B41B9C5446003B1D34 /* demoUtils.m */,
 				DB43421D1B4FCC8A00ED886F /* FilterDemoViewController.h */,
 				DB43421E1B4FCC8A00ED886F /* FilterDemoViewController.m */,
 				D33BBD5B1B943AE800B1E285 /* CameraDemoViewController.h */,
 				D33BBD5C1B943AE800B1E285 /* CameraDemoViewController.m */,
 				D33BBD5E1B943B1400B1E285 /* PlayerDemoController.h */,
 				D33BBD5F1B943B1400B1E285 /* PlayerDemoController.m */,
+				DB7EAD7B1C32B47700F662FE /* GifDemoViewController.h */,
+				DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */,
+				D308A7761C1146E200C6F446 /* SimpleTestCasesViewController.h */,
+				D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */,
 				D33BBD581B942ED800B1E285 /* MainViewController.h */,
 				D33BBD561B942EB900B1E285 /* MainViewController.m */,
 				DB4342201B4FCC8A00ED886F /* Main.storyboard */,
@@ -218,6 +230,7 @@
 				D3D7D9371C1535B2003F6143 /* yanzhilei.m4a in Resources */,
 				D3AC46D91BCE5D5A00A3B565 /* 1.mp4 in Resources */,
 				D3DD61351BF5CD9700EEF604 /* test2.jpg in Resources */,
+				DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */,
 				D334E8D11BCCB81F00D32A2D /* test.mp4 in Resources */,
 				DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */,
 				D3DD61341BF5CD9700EEF604 /* test1.jpg in Resources */,
@@ -234,6 +247,7 @@
 				DB43421F1B4FCC8A00ED886F /* FilterDemoViewController.m in Sources */,
 				D3FCC7B51B9C5446003B1D34 /* demoUtils.m in Sources */,
 				D308A7781C1146E200C6F446 /* SimpleTestCasesViewController.m in Sources */,
+				DB7EAD7D1C32B47700F662FE /* GifDemoViewController.m in Sources */,
 				D33BBD601B943B1400B1E285 /* PlayerDemoController.m in Sources */,
 				DB43421C1B4FCC8A00ED886F /* AppDelegate.m in Sources */,
 				DB4342191B4FCC8A00ED886F /* main.m in Sources */,

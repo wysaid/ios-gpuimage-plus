@@ -9,8 +9,6 @@
 #import "FilterDemoViewController.h"
 #import "cgeUtilFunctions.h"
 #import "demoUtils.h"
-#import <AssetsLibrary/ALAssetsLibrary.h>
-#import <GLKit/GLKit.h>
 #import "cgeVideoWriter.h"
 //#import "cgeFaceFunctions.h"
 #import "cgeImageViewHandler.h"
@@ -153,7 +151,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         case 0:
         {
             UIImage* image = [_myImageView resultImage];
-            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
+            [DemoUtils saveImage:image];
+//            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
             NSLog(@"文件已保存");
         }
             break;
