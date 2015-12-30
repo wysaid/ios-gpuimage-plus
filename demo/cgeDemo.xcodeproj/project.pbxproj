@@ -111,11 +111,11 @@
 		DB43420A1B4FCC8900ED886F = {
 			isa = PBXGroup;
 			children = (
-				DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */,
 				DB4342151B4FCC8A00ED886F /* cgeDemo */,
 				D3FCC7AC1B9C4922003B1D34 /* libCGE */,
 				D36839851BFDC0A20037CC4A /* libc++.tbd */,
 				D36839861BFDC0A20037CC4A /* libstdc++.6.0.9.tbd */,
+				DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */,
 				DB4342141B4FCC8A00ED886F /* Products */,
 			);
 			sourceTree = "<group>";

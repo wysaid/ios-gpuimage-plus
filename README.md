@@ -11,6 +11,8 @@ GPU accelerated filters for iOS based on OpenGL.
 
 4. Android version: [https://github.com/wysaid/android-gpuimage-plus](https://github.com/wysaid/android-gpuimage-plus "http://wysaid.org")
 
+5. <b>2.2.0 版本更新</b>: 支持gif 播放保存。
+
 ## 展示 ##
 
 ![iOS-GPUImage-plus](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/0.jpg "iOS-GPUImage-plus")
