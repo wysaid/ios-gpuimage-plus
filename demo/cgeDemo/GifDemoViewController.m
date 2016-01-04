@@ -16,6 +16,7 @@ static const char* const s_functionList[] = {
     "显示切换", //2
     "demo 1", //3
     "demo 2", //4
+    "demo 3", //5
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -175,9 +176,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                 [CGESharedGLContext mainASyncProcessingQueue:^{
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"image saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
-                }];                
+                }];
             }];
-
+            
         }
             break;
         case 1:
@@ -208,6 +209,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         }
             break;
         case 4:
+        {
+            NSURL *url = [[NSBundle mainBundle] URLForResource:@"gitTest1" withExtension:@"gif"];
+            [self showGifUrl:url];
+        }
+            break;
+        case 5:
         {
             UIImage* img1 = [UIImage imageNamed:@"test.jpg"];
             UIImage* img2 = [UIImage imageNamed:@"test1.jpg"];

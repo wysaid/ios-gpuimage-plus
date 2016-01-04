@@ -28,6 +28,7 @@
 		DB4342221B4FCC8A00ED886F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB4342201B4FCC8A00ED886F /* Main.storyboard */; };
 		DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4342231B4FCC8A00ED886F /* Images.xcassets */; };
 		DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4342251B4FCC8A00ED886F /* LaunchScreen.xib */; };
+		DB7990891C3A5B1500AF23CA /* gitTest1.gif in Resources */ = {isa = PBXBuildFile; fileRef = DB7990881C3A5B1500AF23CA /* gitTest1.gif */; };
 		DB7EAD7D1C32B47700F662FE /* GifDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */; };
 		DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */; };
 		DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */ = {isa = PBXBuildFile; fileRef = DB7EAD801C32B4FE00F662FE /* gitTest0.gif */; };
@@ -64,6 +65,7 @@
 		DB4342211B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB4342231B4FCC8A00ED886F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB4342261B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DB7990881C3A5B1500AF23CA /* gitTest1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gitTest1.gif; sourceTree = "<group>"; };
 		DB7EAD7B1C32B47700F662FE /* GifDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifDemoViewController.h; sourceTree = "<group>"; };
 		DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDemoViewController.m; sourceTree = "<group>"; };
 		DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -96,6 +98,7 @@
 		DB3C50501B92E1CA005985C1 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				DB7990881C3A5B1500AF23CA /* gitTest1.gif */,
 				DB7EAD801C32B4FE00F662FE /* gitTest0.gif */,
 				D3D7D9361C1535B2003F6143 /* yanzhilei.m4a */,
 				D3DD61311BF5CD9700EEF604 /* test1.jpg */,
@@ -228,6 +231,7 @@
 				DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */,
 				D33BBD551B940FFD00B1E285 /* test.jpg in Resources */,
 				D3D7D9371C1535B2003F6143 /* yanzhilei.m4a in Resources */,
+				DB7990891C3A5B1500AF23CA /* gitTest1.gif in Resources */,
 				D3AC46D91BCE5D5A00A3B565 /* 1.mp4 in Resources */,
 				D3DD61351BF5CD9700EEF604 /* test2.jpg in Resources */,
 				DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */,
