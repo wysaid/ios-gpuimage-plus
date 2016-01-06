@@ -450,10 +450,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         {
             [_myCameraViewHandler takeShot:^(UIImage *image) {
                 
-                [DemoUtils saveImage:image];
-
                 if(image != nil)
                 {
+                    [DemoUtils saveImage:image];
                     NSLog(@"截取完成， 已保存到相册!!\n");
                 }
                 else
