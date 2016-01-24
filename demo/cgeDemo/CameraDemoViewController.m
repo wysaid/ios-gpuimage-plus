@@ -26,6 +26,7 @@ static const char* const s_functionList[] = {
     "截取帧", //4
     "手电筒", //5
     "分辨率", //6
+    "裁剪录制", //7
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -309,32 +310,25 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 #pragma mark - CGECameraFrameProcessingDelegate
 
-- (BOOL)processingHandleData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
+- (BOOL)bufferRequestRGBA
 {
-    [self processingData:data width:width height:height bytesPerRow:bytesPerRow channels:channels];
+    return YES;
+}
+
+- (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
+{
+    CVPixelBufferLockBaseAddress(imageBuffer, 0); //read&write
+    size_t outBytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    size_t height = CVPixelBufferGetHeight(imageBuffer);
+    
+    void *outBuffer = (void *)CVPixelBufferGetBaseAddress(imageBuffer);
+    
+    [self processingData:outBuffer width:(int)width height:(int)height bytesPerRow:(int)outBytesPerRow channels:4];
+    CVPixelBufferUnlockBaseAddress(imageBuffer, 0); //write back
     
     return YES;
 }
-
-- (BOOL)requireDataWriting
-{
-    return YES;
-}
-
-//- (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
-//{
-//    CVPixelBufferLockBaseAddress(imageBuffer, 0); //read&write
-//    size_t outBytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-//    size_t width = CVPixelBufferGetWidth(imageBuffer);
-//    size_t height = CVPixelBufferGetHeight(imageBuffer);
-//    
-//    void *outBuffer = (void *)CVPixelBufferGetBaseAddress(imageBuffer);
-//    
-//    [self processingData:outBuffer width:(int)width height:(int)height bytesPerRow:(int)outBytesPerRow channels:4];
-//    CVPixelBufferUnlockBaseAddress(imageBuffer, 0); //write back
-//    
-//    return YES;
-//}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -397,6 +391,46 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
     ++index;
     index %= listNum;
+}
+
+//这个例子主要用于说明如何录制视频显示区域的某一部分
+- (void)cropRecording: (MyButton*)sender
+{
+    if([_myCameraViewHandler isRecording])
+    {
+        void (^finishBlock)(void) = ^{
+            NSLog(@"End recording...\n");
+            
+            [CGESharedGLContext mainASyncProcessingQueue:^{
+                [sender setTitle:@"录制完成" forState:UIControlStateNormal];
+                [sender setEnabled:YES];
+            }];
+            
+            [DemoUtils saveVideo:_movieURL];
+            
+        };
+        [_myCameraViewHandler endRecording:finishBlock withCompressionLevel:2];
+    }
+    else
+    {
+        unlink([_movieURL.path UTF8String]);
+        
+        CGRect rts[] = {
+            CGRectMake(0.25, 0.25, 0.5, 0.5), //录制屏幕正中四分之一大小
+            CGRectMake(0.5, 0.0, 0.5, 1.0), //录制屏幕右边一半
+            CGRectMake(0.0, 0.0, 1.0, 0.5), //录制屏幕上边一半
+        };
+        
+        CGRect rt = rts[rand() % sizeof(rts) / sizeof(*rts)];
+        
+        CGSize videoSize = CGSizeMake(RECORD_WIDTH * rt.size.width, RECORD_HEIGHT * rt.size.height);
+        
+        NSLog(@"裁剪区域大小: %g, %g, %g, %g, 录制尺寸: %g, %g", rt.origin.x, rt.origin.y, rt.size.width, rt.size.height, videoSize.width, videoSize.height);
+        
+        [_myCameraViewHandler startRecording:_movieURL size:videoSize cropArea:rt];
+        [sender setTitle:@"停止录制" forState:UIControlStateNormal];
+        [sender setEnabled:YES];
+    }
 }
 
 - (void)functionButtonClick: (MyButton*)sender
@@ -468,6 +502,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             break;
         case 6:
             [self switchResolution];
+        case 7:
+            [self cropRecording:sender];
         default:
             break;
     }
