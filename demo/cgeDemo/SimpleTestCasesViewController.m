@@ -21,6 +21,10 @@ static NSString* s_functionList[] = {
     @"图片视频测试", //0
     @"视频滤镜测试", //1
     @"离屏渲染滤镜", //2
+    @"生成慢速视频", //3
+    @"生成快速2x视频", //4
+    @"生成快速4x视频", //5
+    @"生成倒放视频", //6
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -29,6 +33,10 @@ enum DemoTestCase{
     Test_VideoGeneration,
     Test_VideoFileFilter,
     Test_OffscreenFilter,
+    Test_SlowVideo,
+    Test_Fast2xVideo,
+    Test_Fast4xVideo,
+    Test_ReverseVideo,
 
 };
 
@@ -50,15 +58,37 @@ enum DemoTestCase{
 
     NSLog(@"Simple Test Cases Quit...");
     [self dismissViewControllerAnimated:true completion:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [_videoFrameRecorder clear];
     _videoFrameRecorder = nil;
     _shouldRunningOffscreenFilters = NO;
     [CGESharedGLContext clearGlobalGLContext];
 }
 
+- (void)enterBackground
+{
+    NSLog(@"enterBackground...");
+}
+
+- (void)restoreActive
+{
+    NSLog(@"restoreActive...");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enterBackground)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(restoreActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 
     int buttonWidth = 150;
     CGRect rt = [[UIScreen mainScreen] bounds];
@@ -123,7 +153,19 @@ enum DemoTestCase{
             
             if(_shouldRunningOffscreenFilters)
                 [self offscreenFilterTestCase];
-            
+            break;
+        case Test_SlowVideo:
+            [self remuxingVideoWithSpeedTestCase:2.0];
+            break;
+        case Test_Fast2xVideo:
+            [self remuxingVideoWithSpeedTestCase:0.5];
+            break;
+        case Test_Fast4xVideo:
+            [self remuxingVideoWithSpeedTestCase:0.25];
+            break;
+        case Test_ReverseVideo:
+            [self remuxingVideoWithSpeedTestCase:-1.0];
+            break;
         default:
             break;
     }
@@ -189,7 +231,7 @@ enum DemoTestCase{
         return;
     }
 
-    NSString* srcFilename = rand()%2 ? @"1" : @"test";
+    NSString* srcFilename = (rand()%10) < 5 ? @"1" : @"test";
 
     NSURL *url = [[NSBundle mainBundle] URLForResource:srcFilename withExtension:@"mp4"];
     NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
@@ -280,6 +322,47 @@ enum DemoTestCase{
         if(weakSelf.shouldRunningOffscreenFilters)
             tested = YES;
     }];
+}
+
+- (void)remuxingVideoWithSpeedTestCase:(double)speed
+{
+    static BOOL isTestCaseRunning = NO;
+    
+    if(isTestCaseRunning)
+    {
+        ADD_TEXT(@"❕Test case is running, please wait...\n");
+        return;
+    }
+    
+    isTestCaseRunning = YES;
+    NSString* srcFilename = (rand()%10) < 5 ? @"1" : @"test";
+    NSURL *url = [[NSBundle mainBundle] URLForResource:srcFilename withExtension:@"mp4"];
+    NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/remuxingVideo.mp4"]];
+    
+    id handler = ^(BOOL success) {
+        
+        if(success)
+        {
+            ADD_TEXT(@"Saving video to album");
+            [DemoUtils saveVideo:video2Save];
+        }
+        else
+        {
+            ADD_TEXT(@"Gen video failed!\n");
+        }
+        
+        isTestCaseRunning = NO;
+    };
+    
+    if(speed > 0)
+    {
+        [CGEVideoWriter remuxingVideoWithSpeed:video2Save inputURL:url speed:speed quality:AVAssetExportPresetMediumQuality completionHandler:handler];
+    }
+    else
+    {
+        [CGEVideoWriter reverseVideo:video2Save inputURL:url quality:AVAssetExportPresetMediumQuality completionHandler:handler];
+    }
+    
 }
 
 @end
