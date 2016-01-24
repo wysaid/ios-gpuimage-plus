@@ -19,6 +19,9 @@ static const char* const s_functionList[] = {
     "暂停", //1
     "demo 1", //2
     "demo 2", //3
+    "加速", //4
+    "减速", //5
+    "倒放", //6
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -45,6 +48,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     NSLog(@"Player Demo Quit...");
     [self dismissViewControllerAnimated:true completion:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [_videoPlayerHandler clear];
     _videoPlayerHandler = nil;
     [CGESharedGLContext clearGlobalGLContext];
@@ -61,9 +66,31 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [self presentViewController:videoPicker animated:YES completion:nil];
 }
 
+- (void)enterBackground
+{
+    NSLog(@"enterBackground...");
+    [_videoPlayerHandler pause];
+}
+
+- (void)restoreActive
+{
+    NSLog(@"restoreActive...");
+    [_videoPlayerHandler resume];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enterBackground)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(restoreActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
     
     CGRect rt = [[UIScreen mainScreen] bounds];
     
@@ -278,6 +305,21 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             [self playVideoURL:url];
         }
             break;
+        case 4:
+        {
+            [[[_videoPlayerHandler videoPlayer] avPlayer] setRate:2.0];
+        }
+            break;
+        case 5:
+        {
+            [[[_videoPlayerHandler videoPlayer] avPlayer] setRate:0.5];
+        }
+            break;
+        case 6:
+        {
+            [[[_videoPlayerHandler videoPlayer] avPlayer] seekToTime:[[[[_videoPlayerHandler videoPlayer] avPlayer] currentItem] duration] toleranceBefore:kCMTimeZero toleranceAfter:kCMTimePositiveInfinity];
+            [[[_videoPlayerHandler videoPlayer] avPlayer] setRate:-1.0];
+        }
         default:
             break;
     }
