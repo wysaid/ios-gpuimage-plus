@@ -32,7 +32,9 @@ GPU accelerated filters for iOS based on OpenGL.
 本lib使用简单， 滤镜自定义可以全部通过纯文本配置来完成。 (目前不提供编辑器)
 
 文本解析器的目的是让完全不懂GLSL甚至编程的人也知道如何快速添加新的特效。
+
 <code>
+
 简要介绍：
 
 EffectString解析规则和常用方法说明:
