@@ -27,6 +27,14 @@ GPU accelerated filters for iOS based on OpenGL.
 ![iOS-GPUImage-plus](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/3.jpg "iOS-GPUImage-plus")
 <br/>视频播放实时滤镜
 
+## Donate ##
+
+如果你觉得本lib对您有所帮助， 欢迎对本工作进行支持/捐赠, 以促进我后续维护更新。 对于捐赠者， 提的功能性issue, 我会酌情考虑加入
+
+Alipay:
+![Alipay](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/alipay.jpg "alipay")
+
+
 ## 文档 ##
 
 本lib使用简单， 滤镜自定义可以全部通过纯文本配置来完成。 (目前不提供编辑器)
