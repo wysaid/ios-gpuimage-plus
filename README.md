@@ -29,7 +29,7 @@ GPU accelerated filters for iOS based on OpenGL.
 
 ## Donate ##
 
-如果你觉得本lib对您有所帮助， 欢迎对本工作进行支持/捐赠, 以促进我后续维护更新。 对于捐赠者， 提的功能性issue, 我会酌情考虑加入
+如果你觉得本lib对您有所帮助， 欢迎对本工作进行支持/捐赠, 以促进我后续维护更新。 对于捐赠者提出的功能性issue, 我会酌情考虑加入
 
 Alipay:
 ![Alipay](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/alipay.jpg "alipay")
