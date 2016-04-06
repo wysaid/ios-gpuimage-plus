@@ -35,6 +35,16 @@ Alipay:
 
 ![Alipay](https://raw.githubusercontent.com/wysaid/ios-gpuimage-plus/master/screenshots/alipay.jpg "alipay")
 
+Paypal:
+
+<form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="admin@wysaid.org">
+<input type="hidden" name="item_name" value="I like you">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="amount" value="9.90">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Donate with paypal">
+</form>
 
 ## 文档 ##
 
