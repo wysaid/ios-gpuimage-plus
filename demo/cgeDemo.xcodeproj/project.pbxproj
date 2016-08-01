@@ -29,6 +29,12 @@
 		DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4342231B4FCC8A00ED886F /* Images.xcassets */; };
 		DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4342251B4FCC8A00ED886F /* LaunchScreen.xib */; };
 		DB7990891C3A5B1500AF23CA /* gitTest1.gif in Resources */ = {isa = PBXBuildFile; fileRef = DB7990881C3A5B1500AF23CA /* gitTest1.gif */; };
+		DB7B5D651D4F770300D980B3 /* edgy_amber.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7B5D5F1D4F770300D980B3 /* edgy_amber.png */; };
+		DB7B5D661D4F770300D980B3 /* filmstock.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7B5D601D4F770300D980B3 /* filmstock.png */; };
+		DB7B5D671D4F770300D980B3 /* foggy_night.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7B5D611D4F770300D980B3 /* foggy_night.png */; };
+		DB7B5D681D4F770300D980B3 /* late_sunset.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7B5D621D4F770300D980B3 /* late_sunset.png */; };
+		DB7B5D691D4F770300D980B3 /* soft_warming.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7B5D631D4F770300D980B3 /* soft_warming.png */; };
+		DB7B5D6A1D4F770300D980B3 /* wildbird.png in Resources */ = {isa = PBXBuildFile; fileRef = DB7B5D641D4F770300D980B3 /* wildbird.png */; };
 		DB7EAD7D1C32B47700F662FE /* GifDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */; };
 		DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */; };
 		DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */ = {isa = PBXBuildFile; fileRef = DB7EAD801C32B4FE00F662FE /* gitTest0.gif */; };
@@ -66,6 +72,12 @@
 		DB4342231B4FCC8A00ED886F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB4342261B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DB7990881C3A5B1500AF23CA /* gitTest1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gitTest1.gif; sourceTree = "<group>"; };
+		DB7B5D5F1D4F770300D980B3 /* edgy_amber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edgy_amber.png; sourceTree = "<group>"; };
+		DB7B5D601D4F770300D980B3 /* filmstock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filmstock.png; sourceTree = "<group>"; };
+		DB7B5D611D4F770300D980B3 /* foggy_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foggy_night.png; sourceTree = "<group>"; };
+		DB7B5D621D4F770300D980B3 /* late_sunset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = late_sunset.png; sourceTree = "<group>"; };
+		DB7B5D631D4F770300D980B3 /* soft_warming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soft_warming.png; sourceTree = "<group>"; };
+		DB7B5D641D4F770300D980B3 /* wildbird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wildbird.png; sourceTree = "<group>"; };
 		DB7EAD7B1C32B47700F662FE /* GifDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifDemoViewController.h; sourceTree = "<group>"; };
 		DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDemoViewController.m; sourceTree = "<group>"; };
 		DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -98,6 +110,12 @@
 		DB3C50501B92E1CA005985C1 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				DB7B5D5F1D4F770300D980B3 /* edgy_amber.png */,
+				DB7B5D601D4F770300D980B3 /* filmstock.png */,
+				DB7B5D611D4F770300D980B3 /* foggy_night.png */,
+				DB7B5D621D4F770300D980B3 /* late_sunset.png */,
+				DB7B5D631D4F770300D980B3 /* soft_warming.png */,
+				DB7B5D641D4F770300D980B3 /* wildbird.png */,
 				DB7990881C3A5B1500AF23CA /* gitTest1.gif */,
 				DB7EAD801C32B4FE00F662FE /* gitTest0.gif */,
 				D3D7D9361C1535B2003F6143 /* yanzhilei.m4a */,
@@ -226,6 +244,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB7B5D671D4F770300D980B3 /* foggy_night.png in Resources */,
+				DB7B5D661D4F770300D980B3 /* filmstock.png in Resources */,
 				D3F843E41BC620CD00A4A307 /* mask1.png in Resources */,
 				DB4342221B4FCC8A00ED886F /* Main.storyboard in Resources */,
 				DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */,
@@ -233,10 +253,14 @@
 				D3D7D9371C1535B2003F6143 /* yanzhilei.m4a in Resources */,
 				DB7990891C3A5B1500AF23CA /* gitTest1.gif in Resources */,
 				D3AC46D91BCE5D5A00A3B565 /* 1.mp4 in Resources */,
+				DB7B5D681D4F770300D980B3 /* late_sunset.png in Resources */,
 				D3DD61351BF5CD9700EEF604 /* test2.jpg in Resources */,
 				DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */,
+				DB7B5D6A1D4F770300D980B3 /* wildbird.png in Resources */,
 				D334E8D11BCCB81F00D32A2D /* test.mp4 in Resources */,
 				DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */,
+				DB7B5D651D4F770300D980B3 /* edgy_amber.png in Resources */,
+				DB7B5D691D4F770300D980B3 /* soft_warming.png in Resources */,
 				D3DD61341BF5CD9700EEF604 /* test1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

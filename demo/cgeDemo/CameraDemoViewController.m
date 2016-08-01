@@ -31,7 +31,7 @@ static const char* const s_functionList[] = {
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
 
-@interface CameraDemoViewController() <CGECameraFrameProcessingDelegate>
+@interface CameraDemoViewController() <CGEFrameProcessingDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
 @property (weak, nonatomic) IBOutlet UISlider *intensitySlider;
 @property CGECameraViewHandler* myCameraViewHandler;
@@ -455,15 +455,16 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             }
             break;
         case 2:
-            if([_myCameraViewHandler faceDetectEnabled])
+            //美颜
+            if([_myCameraViewHandler isGlobalFilterEnabled])
             {
-                [_myCameraViewHandler enableFaceDetect:NO];
+                [_myCameraViewHandler enableFaceBeautify:NO];
                 [sender setTitle:@"检测停止" forState:UIControlStateNormal];
             }
             else
             {
-                [_myCameraViewHandler enableFaceDetect:YES setupDefaultFilters:YES];
-//                [_myCameraViewHandler enableFaceDetect:YES withFilterConfig:"@style halftone 1.2 "];
+                [_myCameraViewHandler enableFaceBeautify:YES];
+//                [_myCameraViewHandler enableGlobalFilter:"@style halftone 1.2 "];
                 [sender setTitle:@"正在检测" forState:UIControlStateNormal];
             }
 

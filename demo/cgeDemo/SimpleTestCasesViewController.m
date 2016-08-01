@@ -356,11 +356,11 @@ enum DemoTestCase{
     
     if(speed > 0)
     {
-        [CGEVideoWriter remuxingVideoWithSpeed:video2Save inputURL:url speed:speed quality:AVAssetExportPresetMediumQuality completionHandler:handler];
+        [CGEVideoWriter remuxingVideoWithTimescale:video2Save inputURL:url timescale:speed quality:AVAssetExportPresetMediumQuality completionHandler:handler];
     }
     else
     {
-        [CGEVideoWriter reverseVideo:video2Save inputURL:url quality:AVAssetExportPresetMediumQuality completionHandler:handler];
+        [CGEVideoWriter reverseVideo:video2Save inputURL:url completionHandler:handler];
     }
     
 }
