@@ -292,48 +292,31 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [UIView commitAnimations];
 }
 
-- (void)processingData:(void *)data width:(int)width height:(int)height bytesPerRow:(int)bytesPerRow channels:(int)channels
-{
-    unsigned char* byteData = (unsigned char*)data;
-    
-    const int stride = 2;//rand() % 3 + 2;
-    
-    for(int i = 0; i < height; i += stride)
-    {
-        const int rowStart = bytesPerRow * i;
-        int sum = 0;
-        for(int j = 0; j < width; j += stride)
-        {
-            //BGRA
-            const int pixelPos = rowStart + j * channels;
-            sum += (int)byteData[pixelPos] | (byteData[pixelPos + 1] << 8) | (byteData[pixelPos + 2] << 16);
-            byteData[pixelPos] = sum & 0xff;
-            byteData[pixelPos + 1] = (sum >> 8) & 0xff;
-            byteData[pixelPos + 2] = (sum >> 16) & 0xff;
-        }
-    }
-}
-
-#pragma mark - CGECameraFrameProcessingDelegate
+#pragma mark - CGEFrameProcessingDelegate
 
 - (BOOL)bufferRequestRGBA
 {
-    return YES;
+    return NO;
+}
+
+// draw your own content!
+- (void)drawProcResults:(void *)handler
+{
+    static float x = 0;
+    static float dx = 10.0f;
+    glEnable(GL_SCISSOR_TEST);
+    x += dx;
+    if(x < 0 || x > 500)
+        dx = -dx;
+    glScissor(x, 100, 200, 200);
+    glClearColor(1, 0.5, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glDisable(GL_SCISSOR_TEST);
 }
 
 - (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
 {
-    CVPixelBufferLockBaseAddress(imageBuffer, 0); //read&write
-    size_t outBytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    
-    void *outBuffer = (void *)CVPixelBufferGetBaseAddress(imageBuffer);
-    
-    [self processingData:outBuffer width:(int)width height:(int)height bytesPerRow:(int)outBytesPerRow channels:4];
-    CVPixelBufferUnlockBaseAddress(imageBuffer, 0); //write back
-    
-    return YES;
+    return NO;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
