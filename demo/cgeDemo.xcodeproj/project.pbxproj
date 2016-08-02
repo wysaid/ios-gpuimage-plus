@@ -38,7 +38,18 @@
 		DB7EAD7D1C32B47700F662FE /* GifDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */; };
 		DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */; };
 		DB7EAD811C32B4FE00F662FE /* gitTest0.gif in Resources */ = {isa = PBXBuildFile; fileRef = DB7EAD801C32B4FE00F662FE /* gitTest0.gif */; };
+		DBA877A71D508CBD0006D6A9 /* libfilterLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA877A61D508CB70006D6A9 /* libfilterLib.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBA877A51D508CB70006D6A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DB49260D1C43809300D1CBA5;
+			remoteInfo = filterLib;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D308A7761C1146E200C6F446 /* SimpleTestCasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTestCasesViewController.h; sourceTree = "<group>"; };
@@ -82,6 +93,7 @@
 		DB7EAD7C1C32B47700F662FE /* GifDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifDemoViewController.m; sourceTree = "<group>"; };
 		DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DB7EAD801C32B4FE00F662FE /* gitTest0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gitTest0.gif; sourceTree = "<group>"; };
+		DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = filterLib.xcodeproj; path = ../library/filterLib.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA877A71D508CBD0006D6A9 /* libfilterLib.a in Frameworks */,
 				DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */,
 				D36839871BFDC0A20037CC4A /* libc++.tbd in Frameworks */,
 				D36839881BFDC0A20037CC4A /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -102,6 +115,7 @@
 		D3FCC7AC1B9C4922003B1D34 /* libCGE */ = {
 			isa = PBXGroup;
 			children = (
+				DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */,
 				D34CD2E81BD4E64E00154CEE /* cge.framework */,
 			);
 			name = libCGE;
@@ -186,6 +200,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		DBA877A21D508CB70006D6A9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBA877A61D508CB70006D6A9 /* libfilterLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -232,12 +254,28 @@
 			mainGroup = DB43420A1B4FCC8900ED886F;
 			productRefGroup = DB4342141B4FCC8A00ED886F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DBA877A21D508CB70006D6A9 /* Products */;
+					ProjectRef = DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DB4342121B4FCC8A00ED886F /* libCGE */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DBA877A61D508CB70006D6A9 /* libfilterLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfilterLib.a;
+			remoteRef = DBA877A51D508CB70006D6A9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DB4342111B4FCC8A00ED886F /* Resources */ = {
@@ -408,7 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/cge.framework/Headers";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/cge.framework/Headers $(SRCROOT)/../library/filterLib";
 			};
 			name = Debug;
 		};
@@ -429,7 +467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/cge.framework/Headers";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/cge.framework/Headers $(SRCROOT)/../library/filterLib";
 			};
 			name = Release;
 		};

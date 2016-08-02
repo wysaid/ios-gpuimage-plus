@@ -10,6 +10,7 @@
 #import "cgeUtilFunctions.h"
 #import "cgeVideoCameraViewHandler.h"
 #import "demoUtils.h"
+#import "cgeCustomFilters.h"
 
 #define SHOW_FULLSCREEN 0
 #define RECORD_WIDTH 480
@@ -20,13 +21,18 @@
 
 static const char* const s_functionList[] = {
     "mask", //0
-    "暂停", //1
-    "人脸美化", //2
-    "预处理", //3
-    "截取帧", //4
-    "手电筒", //5
-    "分辨率", //6
-    "裁剪录制", //7
+    "Pause", //1
+    "Beautify", //2
+    "PreCalc", //3
+    "TakeShot", //4
+    "Torch", //5
+    "Resolution", //6
+    "CropRec", //7
+    "MyFilter0", //8
+    "MyFilter1", //9
+    "MyFilter2", //10
+    "MyFilter3", //11
+    "MyFilter4", //12
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -169,7 +175,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     scrollRT.size.height = 50;
     _myScrollView = [[UIScrollView alloc] initWithFrame:scrollRT];
     
-    CGRect frame = CGRectMake(0, 0, 85, 50);
+    CGRect frame = CGRectMake(0, 0, 95, 50);
     
     for(int i = 0; i != s_functionNum; ++i)
     {
@@ -433,6 +439,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     }
 }
 
+- (void)setCustomFilter:(CustomFilterType)type
+{
+    void* customFilter = cgeCreateCustomFilter(type, 1.0f, _myCameraViewHandler.cameraRecorder.sharedContext);
+    [_myCameraViewHandler.cameraRecorder setFilterWithAddress:customFilter];
+}
+
 - (void)functionButtonClick: (MyButton*)sender
 {
     NSLog(@"Function Button %d Clicked...\n", [sender index]);
@@ -455,6 +467,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             }
             break;
         case 2:
+            
             //美颜
             if([_myCameraViewHandler isGlobalFilterEnabled])
             {
@@ -503,8 +516,25 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             break;
         case 6:
             [self switchResolution];
+            break;
         case 7:
             [self cropRecording:sender];
+            break;
+        case 8:
+            [self setCustomFilter:CGE_CUSTOM_FILTER_0];
+            break;
+        case 9:
+            [self setCustomFilter:CGE_CUSTOM_FILTER_1];
+            break;
+        case 10:
+            [self setCustomFilter:CGE_CUSTOM_FILTER_2];
+            break;
+        case 11:
+            [self setCustomFilter:CGE_CUSTOM_FILTER_3];
+            break;
+        case 12:
+            [self setCustomFilter:CGE_CUSTOM_FILTER_4];
+            break;
         default:
             break;
     }

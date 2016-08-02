@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DB4926F31C438EF700D1CBA5 /* CustomHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB4926F11C438EF700D1CBA5 /* CustomHelper.cpp */; };
+		DB4926F61C43968D00D1CBA5 /* cgeCustomFilters.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4926F41C43968D00D1CBA5 /* cgeCustomFilters.mm */; };
+		DBA877921D50727F0006D6A9 /* CustomFilter_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA8778F1D50727F0006D6A9 /* CustomFilter_0.cpp */; };
+		DBA877931D50727F0006D6A9 /* CustomFilter_N.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBA877901D50727F0006D6A9 /* CustomFilter_N.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB49260B1C43809300D1CBA5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DB49260D1C43809300D1CBA5 /* libfilterLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfilterLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB4926F11C438EF700D1CBA5 /* CustomHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomHelper.cpp; sourceTree = "<group>"; };
+		DB4926F21C438EF700D1CBA5 /* CustomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHelper.h; sourceTree = "<group>"; };
+		DB4926F41C43968D00D1CBA5 /* cgeCustomFilters.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = cgeCustomFilters.mm; sourceTree = "<group>"; };
+		DB4926F51C43968D00D1CBA5 /* cgeCustomFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cgeCustomFilters.h; sourceTree = "<group>"; };
+		DBA8778E1D5072620006D6A9 /* CustomFilter_0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFilter_0.h; sourceTree = "<group>"; };
+		DBA8778F1D50727F0006D6A9 /* CustomFilter_0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomFilter_0.cpp; sourceTree = "<group>"; };
+		DBA877901D50727F0006D6A9 /* CustomFilter_N.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomFilter_N.cpp; sourceTree = "<group>"; };
+		DBA877911D50727F0006D6A9 /* CustomFilter_N.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFilter_N.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB49260A1C43809300D1CBA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DB4926041C43809300D1CBA5 = {
+			isa = PBXGroup;
+			children = (
+				DB49260F1C43809300D1CBA5 /* CustomFilters */,
+				DB49260E1C43809300D1CBA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DB49260E1C43809300D1CBA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB49260D1C43809300D1CBA5 /* libfilterLib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB49260F1C43809300D1CBA5 /* CustomFilters */ = {
+			isa = PBXGroup;
+			children = (
+				DB4926F51C43968D00D1CBA5 /* cgeCustomFilters.h */,
+				DB4926F41C43968D00D1CBA5 /* cgeCustomFilters.mm */,
+				DB4926F11C438EF700D1CBA5 /* CustomHelper.cpp */,
+				DB4926F21C438EF700D1CBA5 /* CustomHelper.h */,
+				DBA8778F1D50727F0006D6A9 /* CustomFilter_0.cpp */,
+				DBA8778E1D5072620006D6A9 /* CustomFilter_0.h */,
+				DBA877901D50727F0006D6A9 /* CustomFilter_N.cpp */,
+				DBA877911D50727F0006D6A9 /* CustomFilter_N.h */,
+			);
+			name = CustomFilters;
+			path = filterLib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB49260C1C43809300D1CBA5 /* filterLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB4926161C43809300D1CBA5 /* Build configuration list for PBXNativeTarget "filterLib" */;
+			buildPhases = (
+				DB4926091C43809300D1CBA5 /* Sources */,
+				DB49260A1C43809300D1CBA5 /* Frameworks */,
+				DB49260B1C43809300D1CBA5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = filterLib;
+			productName = filterLib;
+			productReference = DB49260D1C43809300D1CBA5 /* libfilterLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB4926051C43809300D1CBA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = wysaid;
+				TargetAttributes = {
+					DB49260C1C43809300D1CBA5 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = DB4926081C43809300D1CBA5 /* Build configuration list for PBXProject "filterLib" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DB4926041C43809300D1CBA5;
+			productRefGroup = DB49260E1C43809300D1CBA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB49260C1C43809300D1CBA5 /* filterLib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB4926091C43809300D1CBA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBA877931D50727F0006D6A9 /* CustomFilter_N.cpp in Sources */,
+				DB4926F31C438EF700D1CBA5 /* CustomHelper.cpp in Sources */,
+				DBA877921D50727F0006D6A9 /* CustomFilter_0.cpp in Sources */,
+				DB4926F61C43968D00D1CBA5 /* cgeCustomFilters.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DB4926141C43809300D1CBA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DB4926151C43809300D1CBA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB4926171C43809300D1CBA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cge.framework/Headers/libCGE-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = cge.framework/Headers;
+			};
+			name = Debug;
+		};
+		DB4926181C43809300D1CBA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cge.framework/Headers/libCGE-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = cge.framework/Headers;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB4926081C43809300D1CBA5 /* Build configuration list for PBXProject "filterLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB4926141C43809300D1CBA5 /* Debug */,
+				DB4926151C43809300D1CBA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB4926161C43809300D1CBA5 /* Build configuration list for PBXNativeTarget "filterLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB4926171C43809300D1CBA5 /* Debug */,
+				DB4926181C43809300D1CBA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB4926051C43809300D1CBA5 /* Project object */;
+}
