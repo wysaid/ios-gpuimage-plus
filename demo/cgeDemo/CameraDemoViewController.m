@@ -302,6 +302,10 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 // draw your own content!
 - (void)drawProcResults:(void *)handler
 {
+    // unmark below, if you can use cpp. (remember #include "cgeImageHandler.h")
+//    using namespace CGE;
+//    CGEImageHandler* cppHandler = (CGEImageHandler*)handler;
+    
     static float x = 0;
     static float dx = 10.0f;
     glEnable(GL_SCISSOR_TEST);
