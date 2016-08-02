@@ -305,6 +305,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     // unmark below, if you can use cpp. (remember #include "cgeImageHandler.h")
 //    using namespace CGE;
 //    CGEImageHandler* cppHandler = (CGEImageHandler*)handler;
+//    cppHandler->setAsTarget();
     
     static float x = 0;
     static float dx = 10.0f;
