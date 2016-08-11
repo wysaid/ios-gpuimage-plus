@@ -52,7 +52,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     NSLog(@"Camera Demo Quit...");
     [[[_myCameraViewHandler cameraRecorder] cameraDevice] stopCameraCapture];
     [self dismissViewControllerAnimated:true completion:nil];
-    //手动释放， 避免任何引用计数引起的内存泄漏
+    //safe clear to avoid memLeaks.
     [_myCameraViewHandler clear];
     _myCameraViewHandler = nil;
     [CGESharedGLContext clearGlobalGLContext];
@@ -62,16 +62,16 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [_myCameraViewHandler setFilterIntensity: currentIntensity];
 }
 - (IBAction)switchCameraClicked:(id)sender {
-    [_myCameraViewHandler switchCamera :YES]; //使用handler封装的 switchCamera 方法可以将前置摄像头产生的图像反向
+    [_myCameraViewHandler switchCamera :YES]; //Pass YES to mirror the front camera.
 
     CMVideoDimensions dim = [[[_myCameraViewHandler cameraDevice] inputCamera] activeFormat].highResolutionStillImageDimensions;
-    NSLog(@"拍照最大分辨率: %d, %d\n", dim.width, dim.height);
+    NSLog(@"Max Photo Resolution: %d, %d\n", dim.width, dim.height);
 }
 
 - (IBAction)takePicture:(id)sender {
     [_myCameraViewHandler takePicture:^(UIImage* image){
         [DemoUtils saveImage:image];
-        NSLog(@"拍照完成， 已保存到相册!\n");
+        NSLog(@"Take Picture OK, Saved To The Album!\n");
         
     } filterConfig:g_effectConfig[_currentFilterIndex] filterIntensity:1.0f isFrontCameraMirrored:YES];
 }
@@ -86,7 +86,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             NSLog(@"End recording...\n");
             
             [CGESharedGLContext mainASyncProcessingQueue:^{
-                [sender setTitle:@"录制完成" forState:UIControlStateNormal];
+                [sender setTitle:@"Rec OK" forState:UIControlStateNormal];
                 [sender setEnabled:YES];
             }];
             
@@ -102,7 +102,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     {
         unlink([_movieURL.path UTF8String]);
         [_myCameraViewHandler startRecording:_movieURL size:CGSizeMake(RECORD_WIDTH, RECORD_HEIGHT)];
-        [sender setTitle:@"正在录制" forState:UIControlStateNormal];
+        [sender setTitle:@"Recording" forState:UIControlStateNormal];
         [sender setEnabled:YES];
     }
 }
@@ -156,7 +156,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     _myCameraViewHandler = [[CGECameraViewHandler alloc] initWithGLKView:_glkView];
 
     if([_myCameraViewHandler setupCamera: MYAVCaptureSessionPreset(RECORD_HEIGHT, RECORD_WIDTH) cameraPosition:AVCaptureDevicePositionFront isFrontCameraMirrored:YES authorizationFailed:^{
-        NSLog(@"未取得相机或者麦克风权限!!");
+        NSLog(@"Not allowed to open camera and microphone, please choose allow in the 'settings' page!!!");
     }])
     {
         [[_myCameraViewHandler cameraDevice] startCameraCapture];
@@ -198,7 +198,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         MyButton* btn = [[MyButton alloc] initWithFrame:frame];
         
         if(i == 0)
-            [btn setTitle:@"原图" forState:UIControlStateNormal];
+            [btn setTitle:@"Origin" forState:UIControlStateNormal];
         else
             [btn setTitle:[NSString stringWithFormat:@"filter%d", i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -223,7 +223,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     [_myCameraViewHandler fitViewSizeKeepRatio:YES];
 
-    //拍照时使用最大分辨率
+    //Set to the max resolution for taking photos.
     [[_myCameraViewHandler cameraRecorder] setPictureHighResolution:YES];
 }
 
@@ -299,7 +299,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     return NO;
 }
 
-// draw your own content!
+// Draw your own content!
+// The content would be shown in realtime, and can be recorded to the video.
 - (void)drawProcResults:(void *)handler
 {
     // unmark below, if you can use cpp. (remember #include "cgeImageHandler.h")
@@ -319,6 +320,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     glDisable(GL_SCISSOR_TEST);
 }
 
+//The realtime buffer for processing. Default format is YUV, and you can change the return value of "bufferRequestRGBA" to recieve buffer of format-RGBA.
 - (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
 {
     return NO;
@@ -378,16 +380,15 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     }
 
     CMVideoDimensions dim = [[[_myCameraViewHandler cameraDevice] inputCamera] activeFormat].highResolutionStillImageDimensions;
-    NSLog(@"Preset: %@, 拍照最大分辨率: %d, %d\n", [[_myCameraViewHandler cameraDevice] captureSessionPreset], dim.width, dim.height);
+    NSLog(@"Preset: %@, max resolution: %d, %d\n", [[_myCameraViewHandler cameraDevice] captureSessionPreset], dim.width, dim.height);
 
-    //拍照时使用最大分辨率
     [[_myCameraViewHandler cameraRecorder] setPictureHighResolution:YES];
 
     ++index;
     index %= listNum;
 }
 
-//这个例子主要用于说明如何录制视频显示区域的某一部分
+//This example shows how to record the specified area of your camera view.
 - (void)cropRecording: (MyButton*)sender
 {
     if([_myCameraViewHandler isRecording])
@@ -410,19 +411,19 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         unlink([_movieURL.path UTF8String]);
         
         CGRect rts[] = {
-            CGRectMake(0.25, 0.25, 0.5, 0.5), //录制屏幕正中四分之一大小
-            CGRectMake(0.5, 0.0, 0.5, 1.0), //录制屏幕右边一半
-            CGRectMake(0.0, 0.0, 1.0, 0.5), //录制屏幕上边一半
+            CGRectMake(0.25, 0.25, 0.5, 0.5), //Record a quarter of the camera view in the center.
+            CGRectMake(0.5, 0.0, 0.5, 1.0), //Record the right (half) side of the camera view.
+            CGRectMake(0.0, 0.0, 1.0, 0.5), //Record the up (half) side of the camera view.
         };
         
         CGRect rt = rts[rand() % sizeof(rts) / sizeof(*rts)];
         
         CGSize videoSize = CGSizeMake(RECORD_WIDTH * rt.size.width, RECORD_HEIGHT * rt.size.height);
         
-        NSLog(@"裁剪区域大小: %g, %g, %g, %g, 录制尺寸: %g, %g", rt.origin.x, rt.origin.y, rt.size.width, rt.size.height, videoSize.width, videoSize.height);
+        NSLog(@"Crop area: %g, %g, %g, %g, record resolution: %g, %g", rt.origin.x, rt.origin.y, rt.size.width, rt.size.height, videoSize.width, videoSize.height);
         
         [_myCameraViewHandler startRecording:_movieURL size:videoSize cropArea:rt];
-        [sender setTitle:@"停止录制" forState:UIControlStateNormal];
+        [sender setTitle:@"Rec stopped" forState:UIControlStateNormal];
         [sender setEnabled:YES];
     }
 }
@@ -446,12 +447,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             if([[_myCameraViewHandler cameraDevice] captureIsRunning])
             {
                 [[_myCameraViewHandler cameraDevice] stopCameraCapture];
-                [sender setTitle:@"启动相机" forState:UIControlStateNormal];
+                [sender setTitle:@"Start Cam" forState:UIControlStateNormal];
             }
             else
             {
                 [[_myCameraViewHandler cameraDevice] startCameraCapture];
-                [sender setTitle:@"暂停相机" forState:UIControlStateNormal];
+                [sender setTitle:@"Stop Cam" forState:UIControlStateNormal];
             }
             break;
         case 2:
@@ -460,13 +461,13 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             if([_myCameraViewHandler isGlobalFilterEnabled])
             {
                 [_myCameraViewHandler enableFaceBeautify:NO];
-                [sender setTitle:@"检测停止" forState:UIControlStateNormal];
+                [sender setTitle:@"Stopped" forState:UIControlStateNormal];
             }
             else
             {
                 [_myCameraViewHandler enableFaceBeautify:YES];
 //                [_myCameraViewHandler enableGlobalFilter:"@style halftone 1.2 "];
-                [sender setTitle:@"正在检测" forState:UIControlStateNormal];
+                [sender setTitle:@"Running" forState:UIControlStateNormal];
             }
 
             break;
@@ -474,12 +475,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             if([[_myCameraViewHandler cameraRecorder] processingDelegate] == nil)
             {
                 [[_myCameraViewHandler cameraRecorder] setProcessingDelegate:self];
-                [sender setTitle:@"处理中" forState:UIControlStateNormal];
+                [sender setTitle:@"Processing" forState:UIControlStateNormal];
             }
             else
             {
                 [[_myCameraViewHandler cameraRecorder] setProcessingDelegate:nil];
-                [sender setTitle:@"处理停止" forState:UIControlStateNormal];
+                [sender setTitle:@"Stopped" forState:UIControlStateNormal];
             }
             break;
         case 4:
@@ -489,11 +490,11 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                 if(image != nil)
                 {
                     [DemoUtils saveImage:image];
-                    NSLog(@"截取完成， 已保存到相册!!\n");
+                    NSLog(@"TakeShot OK, saved to the album!!\n");
                 }
                 else
                 {
-                    NSLog(@"截取失败!!!");
+                    NSLog(@"Take shot failed!!!");
                 }
             }];
         }

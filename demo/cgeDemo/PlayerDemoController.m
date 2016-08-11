@@ -16,12 +16,12 @@
 
 static const char* const s_functionList[] = {
     "mask", //0
-    "暂停", //1
+    "Pause", //1
     "demo 1", //2
     "demo 2", //3
-    "加速", //4
-    "减速", //5
-    "倒放", //6
+    "SP_Up", //4
+    "SP_Down", //5
+    "Reverse", //6
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -130,7 +130,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         MyButton* btn = [[MyButton alloc] initWithFrame:frame];
         
         if(i == 0)
-            [btn setTitle:@"原图" forState:UIControlStateNormal];
+            [btn setTitle:@"Origin" forState:UIControlStateNormal];
         else
             [btn setTitle:[NSString stringWithFormat:@"filter%d", i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -161,7 +161,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (void)videoPlayingComplete:(CGEVideoPlayer*)player playItem:(AVPlayerItem *)item
 {
-    NSLog(@"播放结束， 重新开始播放...\n");
+    NSLog(@"Play complete, replay...\n");
     [player restart];
 }
 
@@ -209,12 +209,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 
 - (void)playTimeUpdated:(CMTime)currentTime
 {
-    NSLog(@"播放进度更新: %g\n", CMTimeGetSeconds(currentTime));
+    NSLog(@"Play progress: %g\n", CMTimeGetSeconds(currentTime));
 }
 
 - (void)playerStatusChanged:(AVPlayerItemStatus)status
 {
-    NSLog(@"播放器状态更新: %d\n", (int)status);
+    NSLog(@"Player status update: %d\n", (int)status);
 }
 
 - (void)viewFitMaskSize:(CGSize)sz
@@ -233,7 +233,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [UIView setAnimationDuration:0.5];
     [_glkView setFrame:CGRectMake(x, y, w, h)];
     [UIView commitAnimations];
-    NSLog(@"glkView 尺寸: %g, %g, %g, %g", x, y, w, h);
+    NSLog(@"glkView size: %g, %g, %g, %g", x, y, w, h);
 }
 
 - (void)setMask
@@ -260,7 +260,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         if(!err)
         {
             CMTime videoTime = [_videoPlayerHandler videoDuration];
-            NSLog(@"视频总时长: %g 秒\n", CMTimeGetSeconds(videoTime));
+            NSLog(@"video total time: %g 秒\n", CMTimeGetSeconds(videoTime));
             
             [_videoPlayerHandler resume];
         }
@@ -284,12 +284,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             if([_videoPlayerHandler isPlaying])
             {
                 [_videoPlayerHandler pause];
-                [sender setTitle:@"已暂停" forState:UIControlStateNormal];
+                [sender setTitle:@"paused" forState:UIControlStateNormal];
             }
             else
             {
                 [_videoPlayerHandler resume];
-                [sender setTitle:@"播放中" forState:UIControlStateNormal];
+                [sender setTitle:@"playing" forState:UIControlStateNormal];
             }
             break;
             

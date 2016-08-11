@@ -18,13 +18,13 @@
 #define ADD_TEXT(...) [self addText:[NSString stringWithFormat:__VA_ARGS__]];
 
 static NSString* s_functionList[] = {
-    @"图片视频测试", //0
-    @"视频滤镜测试", //1
-    @"离屏渲染滤镜", //2
-    @"生成慢速视频", //3
-    @"生成快速2x视频", //4
-    @"生成快速4x视频", //5
-    @"生成倒放视频", //6
+    @"Image2Video", //0
+    @"VideoFilter", //1
+    @"OffscreenFilter", //2
+    @"GenSlowVideo", //3
+    @"Gen2xVideo", //4
+    @"Gen4xVideo", //5
+    @"GenReverseVideo", //6
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -188,12 +188,12 @@ enum DemoTestCase{
 
         if(success)
         {
-            ADD_TEXT(@"生成视频成功! 已保存至相册!\n");
+            ADD_TEXT(@"Success, saved to album!\n");
             [DemoUtils saveVideo:video2Save];
         }
         else
         {
-            ADD_TEXT(@"生成视频失败!\n");
+            ADD_TEXT(@"Failed!\n");
         }
     }];
     
@@ -204,7 +204,7 @@ enum DemoTestCase{
     ADD_TEXT(@"videoReadingComplete...");
 
     [videoFrameRecorder endRecording:^{
-        ADD_TEXT(@"滤镜视频生成完毕!\n");
+        ADD_TEXT(@"Generate filtered video OK!\n");
 
         [CGEProcessingContext mainSyncProcessingQueue:^{
 
@@ -217,7 +217,7 @@ enum DemoTestCase{
 
 - (void)videoResolutionChanged: (CGSize)size
 {
-    ADD_TEXT(@"视频文件分辨率: %g, %g\n", size.width, size.height);
+    ADD_TEXT(@"Video size: %g, %g\n", size.width, size.height);
 }
 
 - (void)filterVideoFileTestCase
@@ -227,7 +227,7 @@ enum DemoTestCase{
         [_videoFrameRecorder end];
         [_videoFrameRecorder clear];
         _videoFrameRecorder = nil;
-        ADD_TEXT(@"中止视频读取!\n");
+        ADD_TEXT(@"Reading canceled!\n");
         return;
     }
 
@@ -237,13 +237,13 @@ enum DemoTestCase{
     NSURL* video2Save = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/photoVideo.mp4"]];
 
     NSDictionary* videoConfig = @{
-//      @"sourceAsset" : (AVAsset*)sourceAsset     //输入视频Asset(Asset和URL 任选其一)
-      @"sourceURL" : url,                          //输入视频URL  (Asset和URL 任选其一)
-      @"filterConfig" : [NSString stringWithUTF8String:g_effectConfig[4]],  //滤镜配置 (可不写)
-      @"filterIntensity" : @(0.9f),                //滤镜强度 (不写默认 1.0, 范围[0, 1])
-      @"blendImage" : [UIImage imageNamed:@"mask1.png"],       //每一帧混合图片 (可不写)
-      @"blendMode" : @(CGE_BLEND_OVERLAY),         //混合模式 (当blendImage不存在时无效)
-      @"blendIntensity" : @(0.8f)                  //混合强度 (不写默认 1.0, 范围[0, 1])
+//      @"sourceAsset" : (AVAsset*)sourceAsset     //input video Asset(Choose just one of "Asset" & "URL")
+      @"sourceURL" : url,                          //input video URL  (Choose just one of "Asset" & "URL")
+      @"filterConfig" : [NSString stringWithUTF8String:g_effectConfig[4]],  //Filter String (optional)
+      @"filterIntensity" : @(0.9f),                //filter intensity (default 1.0, rane [0, 1])
+      @"blendImage" : [UIImage imageNamed:@"mask1.png"],       //blend image (optional)
+      @"blendMode" : @(CGE_BLEND_OVERLAY),         //blend mode (nonsense if there's no blend image), see: CGETextureBlendMode
+      @"blendIntensity" : @(0.8f)                  //blend intensity (default 1.0, range [0, 1])
     };
     
     _videoFrameRecorder = [CGEVideoFrameRecorder generateVideoWithFilter:video2Save size:CGSizeMake(0, 0) withDelegate:self videoConfig:videoConfig];
@@ -266,7 +266,7 @@ enum DemoTestCase{
 
 - (void)offscreenFilterTestCase
 {
-    NSLog(@"离屏渲染测试...");
+    NSLog(@"Offscreen filter test...");
     static BOOL tested = NO;
     
     if(tested)

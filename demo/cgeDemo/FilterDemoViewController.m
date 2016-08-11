@@ -14,9 +14,9 @@
 #import "cgeImageViewHandler.h"
 
 static const char* const s_functionList[] = {
-    "保存结果", //0
-    "人脸测试", //1
-    "显示切换", //2
+    "Save", //0
+    "FaceTest", //1
+    "ViewMode", //2
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -81,7 +81,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         MyButton* btn = [[MyButton alloc] initWithFrame:frame];
         
         if(i == 0)
-            [btn setTitle:@"原图" forState:UIControlStateNormal];
+            [btn setTitle:@"Origin" forState:UIControlStateNormal];
         else
             [btn setTitle:[NSString stringWithFormat:@"filter%d", i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -157,7 +157,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         }
             break;
         case 1:
-            NSLog(@"重要功能, 暂不添加.");
+            NSLog(@"Not available for now.");
             break;
         case 2:
         {

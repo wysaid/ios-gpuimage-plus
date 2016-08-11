@@ -19,13 +19,13 @@ const char* g_effectConfig[] = {
     "@adjust lut soft_warming.png",
     "@adjust lut wildbird.png",
     "@beautify bilateral 10 4 1 @style haze -0.5 -0.5 1 1 1 @curve RGB(0, 0)(94, 20)(160, 168)(255, 255) @curve R(0, 0)(129, 119)(255, 255)B(0, 0)(135, 151)(255, 255)RGB(0, 0)(146, 116)(255, 255)",
-    "#unpack @blur lerp 0.75", //可调节模糊强度
-    "@blur lerp 1", //可调节混合强度
-    "#unpack @dynamic wave 1", //可调节速度
-    "@dynamic wave 0.5",       //可调节混合
-    "#unpack @dynamic wave 0 40 0.01 1", //较大angle
-    "#unpack @dynamic wave 0 10 0.05 1", //较大strength
-    "#unpack @dynamic wave 8.5 20 0.012 ", //静态波纹
+    "#unpack @blur lerp 0.75", //adjust blur intensity
+    "@blur lerp 1", //adjust mix
+    "#unpack @dynamic wave 1", //adjust speed
+    "@dynamic wave 0.5",       //adjust mix
+    "#unpack @dynamic wave 0 40 0.01 1", //big angle
+    "#unpack @dynamic wave 0 10 0.05 1", //big strength
+    "#unpack @dynamic wave 8.5 20 0.012 ", //static wave
     "#unpack @style sketch 0.9",
     "@adjust brightness 0.18 @adjust contrast 1.44 @adjust hsl 0 -0.4 0 @adjust contrast 1.4 @style edge 0.07 0 @style sketch 0.7 @krblend colorburn test1.jpg 70 ",
     "#unpack @krblend sr test.jpg 100 ",

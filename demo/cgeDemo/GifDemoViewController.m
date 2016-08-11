@@ -11,9 +11,9 @@
 #import "demoUtils.h"
 
 static const char* const s_functionList[] = {
-    "保存结果", //0
-    "存为gif", //1
-    "显示切换", //2
+    "SaveFrames", //0
+    "SaveAsGif", //1
+    "ViewMode", //2
     "demo 1", //3
     "demo 2", //4
     "demo 3", //5
@@ -88,7 +88,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     scrollRT.size.height = 50;
     _myScrollView = [[UIScrollView alloc] initWithFrame:scrollRT];
     
-    CGRect frame = CGRectMake(0, 0, 85, 50);
+    CGRect frame = CGRectMake(0, 0, 100, 50);
     
     for(int i = 0; i != s_functionNum; ++i)
     {
@@ -111,7 +111,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         MyButton* btn = [[MyButton alloc] initWithFrame:frame];
         
         if(i == 0)
-            [btn setTitle:@"原图" forState:UIControlStateNormal];
+            [btn setTitle:@"Origin" forState:UIControlStateNormal];
         else
             [btn setTitle:[NSString stringWithFormat:@"filter%d", i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -186,12 +186,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             NSURL* url = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/result.gif"]];
             if([_myImageView saveAsGif:url loopCount:0])
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"gif image saved!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:[NSString stringWithFormat:@"gif image saved to %@!", url] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
             }
             else
             {
-                NSLog(@"保存为gif失败!");
+                NSLog(@"Save as gif failed!");
             }
         }
             break;
