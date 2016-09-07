@@ -17,6 +17,12 @@ GPU accelerated filters for iOS based on OpenGL.
 
 [https://github.com/wysaid/android-gpuimage-plus/wiki/Parsing-String-Rule](https://github.com/wysaid/android-gpuimage-plus/wiki/Parsing-String-Rule "http://wysaid.org")
 
+## Tool ##
+
+Some utils are available for new version: [https://github.com/wysaid/cge-tools](https://github.com/wysaid/cge-tools "http://wysaid.org")
+
+[![Tool](https://raw.githubusercontent.com/wysaid/cge-tools/master/screenshots/0.jpg "Paypal")](cge-tool)
+
 ## Donate ##
 
 Alipay:
@@ -26,9 +32,3 @@ Alipay:
 Paypal: 
 
 [![Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif "Paypal")](http://blog.wysaid.org/p/donate.html)
-
-## Tool ##
-
-Some utils are available for new version: [https://github.com/wysaid/cge-tools](https://github.com/wysaid/cge-tools "http://wysaid.org")
-
-[![Tool](https://raw.githubusercontent.com/wysaid/cge-tools/master/screenshots/0.jpg "Paypal")](cge-tool)
