@@ -42,6 +42,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>I just use it</string>
+	<string>just use camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>just use mic</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>just use album</string>
 </dict>
 </plist>
