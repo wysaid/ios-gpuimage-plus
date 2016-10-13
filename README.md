@@ -1,4 +1,4 @@
-# iOS-GPUImage-plus 
+# iOS-GPUImage-Plus 
 GPU accelerated filters for iOS based on OpenGL. 
 
 ## 简介 ##
