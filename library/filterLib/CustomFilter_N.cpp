@@ -182,3 +182,178 @@ bool CustomFilter_4::init()
     }
     return false;
 }
+
+//////////////////////////////////////////////////////
+
+static CGEConstString s_fshLum = CGE_SHADER_STRING_PRECISION_L
+(
+ varying vec2 textureCoordinate;
+ uniform sampler2D inputImageTexture;
+ void main()
+ {
+     float lum = dot(texture2D(inputImageTexture, textureCoordinate).rgb, vec3(0.299, 0.587, 0.114));
+     gl_FragColor = vec4(lum, lum, lum, 1.0);
+ }
+);
+
+//半径为2， half最大值滤波. 需要跑两遍
+static CGEConstString s_vsh5Step2 = CGE_SHADER_STRING
+(
+ attribute vec2 vPosition;
+ varying vec2 texCoords[5];
+ uniform vec2 samplerSteps;
+ 
+ void main()
+{
+    gl_Position = vec4(vPosition, 0.0, 1.0);
+    //An opportunism code. Do not use it unless you know what it means.
+    vec2 originCoord = (vPosition.xy + 1.0) / 2.0;
+    texCoords[0] = originCoord - samplerSteps * 2.0;
+    texCoords[1] = originCoord - samplerSteps;
+    texCoords[2] = originCoord;
+    texCoords[3] = originCoord + samplerSteps;
+    texCoords[4] = originCoord + samplerSteps * 2.0;
+}
+);
+
+static CGEConstString s_fsh5Step2 = CGE_SHADER_STRING_PRECISION_H
+(
+ varying vec2 texCoords[5];
+ uniform sampler2D inputImageTexture;  //此为单色纹理.
+ void main()
+ {
+     float lum = 0.0;
+     for(int i = 0; i < 5; ++i)
+     {
+         lum = max(lum, texture2D(inputImageTexture, texCoords[i]).r);
+     }
+     gl_FragColor = vec4(lum, lum, lum, 1.0);
+ }
+);
+
+static CGEConstString s_fsh5 = CGE_SHADER_STRING_PRECISION_H
+(
+ varying vec2 textureCoordinate;
+ uniform sampler2D inputImageTexture;
+ uniform sampler2D step2Texture;
+ 
+ vec3 levelFunc(vec3 src, vec2 colorLevel)
+{
+    return clamp((src - colorLevel.x) / (colorLevel.y - colorLevel.x), 0.0, 1.0);
+}
+ 
+ vec3 gammaFunc(vec3 src, float value) //value: 0~1
+{
+    return clamp(pow(src, vec3(value)), 0.0, 1.0);
+}
+ 
+ float lum(vec3 src)
+{
+    return dot(src, vec3(0.299, 0.587, 0.114));
+}
+ 
+ void main()
+ {
+     vec3 origin = texture2D(inputImageTexture, textureCoordinate).rgb; //原图
+     float originLum = lum(origin); //原图去色.
+     
+     //1. 木刻(简化版)
+     float cutOutLum = floor(originLum * 4.0) / 4.0; //色阶数4
+     float colorLevel_1 = min(cutOutLum / 0.6745, 1.0);
+     colorLevel_1 = pow(colorLevel_1, (1.0 / 1.28));
+     
+     //2. 去色 - 最大值 - 反相
+     float step2Color = texture2D(step2Texture, textureCoordinate).r;
+     //2. 颜色减淡
+     float colorDodge_2 = min(originLum / step2Color, 1.0);
+     
+     //2. 调节色阶
+     float colorLevel_2 = clamp((colorDodge_2 - 0.1412) / 0.7843, 0.0, 1.0);
+     colorLevel_2 = pow(colorDodge_2, 0.9615);
+
+     float result = colorLevel_1 * colorLevel_2;
+     float resultLevel = clamp((result - 0.196) / 0.651, 0.0, 1.0);
+     resultLevel = pow(resultLevel, 0.9259);
+     
+     gl_FragColor = vec4(resultLevel, resultLevel, resultLevel, 1.0);
+ }
+);
+
+CustomFilter_5::~CustomFilter_5()
+{
+    CGE_DELETE_GL_OBJS(glDeleteTextures, m_lumTexture, m_step2Texture);
+}
+
+bool CustomFilter_5::init()
+{
+    m_lumProgram.bindAttribLocation(paramPositionIndexName, 0);
+    m_step2Program.bindAttribLocation(paramPositionIndexName, 0);
+    if(m_lumProgram.initWithShaderStrings(g_vshDefaultWithoutTexCoord, s_fshLum) &&
+       m_step2Program.initWithShaderStrings(s_vsh5Step2, s_fsh5Step2) &&
+       m_program.initWithShaderStrings(g_vshDefaultWithoutTexCoord, s_fsh5))
+    {
+        m_step2Program.bind();
+        m_stepLoc = m_step2Program.uniformLocation("samplerSteps");
+        m_program.bind();
+        m_program.sendUniformi("step2Texture", 1);
+        return true;
+    }
+    return false;
+}
+
+void CustomFilter_5::render2Texture(CGE::CGEImageHandlerInterface *handler, GLuint srcTexture, GLuint vertexBufferID)
+{
+    const auto& sz = handler->getOutputFBOSize();
+    if(m_texSize != sz || m_lumTexture == 0 || m_step2Texture == 0)
+    {
+        m_texSize = sz;
+        m_lumTexture = cgeGenTextureWithBuffer(nullptr, sz.width, sz.height, GL_RGBA, GL_UNSIGNED_BYTE);
+        m_step2Texture = cgeGenTextureWithBuffer(nullptr, sz.width, sz.height, GL_RGBA, GL_UNSIGNED_BYTE);
+    }
+    
+    glActiveTexture(GL_TEXTURE0);
+    glViewport(0, 0, sz.width, sz.height);
+    
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    //去色
+    {
+        m_framebuffer.bindTexture2D(m_lumTexture);
+        glBindTexture(GL_TEXTURE_2D, srcTexture);
+        m_lumProgram.bind();
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+        glFlush();
+    }
+    
+    //最大值
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, handler->getFrameBufferID());
+        m_step2Program.bind();
+        glUniform2f(m_stepLoc, 1.0f / sz.width, 0.0f);
+        glBindTexture(GL_TEXTURE_2D, handler->getBufferTextureID());
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+        glFlush();
+        
+        m_framebuffer.bindTexture2D(m_step2Texture);
+        glUniform2f(m_stepLoc, 0.0f, 1.0f / sz.height);
+        glBindTexture(GL_TEXTURE_2D, handler->getTargetTextureID());
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+        glFlush();
+    }
+    
+    handler->setAsTarget();
+    glBindTexture(GL_TEXTURE_2D, m_lumTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_step2Texture);
+    
+    m_program.bind();
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+}
+
+
+
+
+
+
+
