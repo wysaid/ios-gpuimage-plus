@@ -34,7 +34,7 @@ extern "C"
             
             if(customFilter == nullptr)
             {
-                CGE_NSLog(@"create Custom filter failed!\n");;
+                CGE_NSLog(@"create Custom filter failed!\n");
                 return;
             }
             
