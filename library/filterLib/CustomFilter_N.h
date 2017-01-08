@@ -43,24 +43,5 @@ public:
     
 };
 
-class CustomFilter_5 : public CGE::CGEImageFilterInterface
-{
-public:
-    
-    ~CustomFilter_5();
-    
-    bool init();
-    
-    void render2Texture(CGE::CGEImageHandlerInterface* handler, GLuint srcTexture, GLuint vertexBufferID);
-    
-protected:
-    
-    GLuint m_lumTexture, m_step2Texture;
-    CGE::ProgramObject m_lumProgram, m_step2Program;
-    CGE::FrameBuffer m_framebuffer;
-    CGE::CGESizei m_texSize;
-    GLint m_stepLoc;
-};
-
 
 #endif

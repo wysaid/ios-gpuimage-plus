@@ -42,9 +42,6 @@ namespace CGE
             case CGE_CUSTOM_FILTER_4:
                 CREATE_FILTER(resultFilter, CustomFilter_4);
                 break;
-            case CGE_CUSTOM_FILTER_5:
-                CREATE_FILTER(resultFilter, CustomFilter_5);
-                break;
             default:
                 return nullptr;
         }

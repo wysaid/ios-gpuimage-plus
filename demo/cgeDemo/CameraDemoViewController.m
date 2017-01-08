@@ -33,7 +33,6 @@ static const char* const s_functionList[] = {
     "MyFilter2", //10
     "MyFilter3", //11
     "MyFilter4", //12
-    "MyFilter5", //13
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -524,9 +523,6 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             break;
         case 12:
             [self setCustomFilter:CGE_CUSTOM_FILTER_4];
-            break;
-        case 13:
-            [self setCustomFilter:CGE_CUSTOM_FILTER_5];
             break;
         default:
             break;
