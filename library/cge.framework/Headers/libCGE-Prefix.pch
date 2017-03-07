@@ -1,0 +1,66 @@
+//
+//  libCGE-Prefix.pch
+//  cge
+//
+//  Created by wysaid on 15/7/10.
+//  Copyright (c) 2015年 wysaid. All rights reserved.
+//
+
+#ifndef cge_libCGE_Prefix_pch
+#define cge_libCGE_Prefix_pch
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#endif
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+//仅作为编译文件内区分sdk版本使用， (V2.0.0开始)不再用来区分头文件 (各个版本分开指定相应的头文件)
+#ifndef IOS_SDK
+#define IOS_SDK 1
+#endif
+
+#ifndef CGE_TEXTURE_PREMULTIPLIED
+#define CGE_TEXTURE_PREMULTIPLIED 1
+#endif
+
+#ifndef _CGE_ONLY_FILTERS_
+#define _CGE_ONLY_FILTERS_ 1
+#endif
+
+//_CGE_STATIC_ASSERT_ 为过时设定， 用于兼容不支持 C++ 11 static_assert 配置
+//#define _CGE_STATIC_ASSERT_ 1
+
+//定义 _CGE_USE_LOG_ERR_ 可以强制开启所有的cge内建 error log
+#define _CGE_USE_LOG_ERR_
+
+#define _CGE_DISABLE_GLOBALCONTEXT_ 1
+
+#define CGE_NSLog(...) NSLog(__VA_ARGS__)
+
+#if defined(DEBUG) || defined(_DEBUG)
+
+//#define _CGE_SHOW_RENDER_FPS_ 1
+#define CGE_NSLog_Code(...) __VA_ARGS__
+
+#else
+
+#define CGE_NSLog_Code(...)
+
+#endif
+
+#define CGE_GLK_TEXTURE_OPTION @{GLKTextureLoaderApplyPremultiplication : @(YES)}
+
+//#define CGE_USE_OPENAL 1
+
+//#define _CGE_GENERAL_ERROR_TEST_ 1
+#if defined(_CGE_GENERAL_ERROR_TEST_) && _CGE_GENERAL_ERROR_TEST_
+#define CGE_UNEXPECTED_ERR_MSG(...) __VA_ARGS__
+#else
+#define CGE_UNEXPECTED_ERR_MSG(...)
+#endif
+
+//#define CGE_USE_WEBP 1
+
+#endif

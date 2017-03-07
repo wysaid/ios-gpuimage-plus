@@ -1,0 +1,6 @@
+framework module cge {
+  umbrella header "cge.h"
+
+  export *
+  module * { export * }
+}
