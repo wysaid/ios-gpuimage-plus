@@ -9,11 +9,11 @@
 // 此处为测试使用的无需显示效果的例子。(Here are the test cases that need no display.)
 
 #import "SimpleTestCasesViewController.h"
-#import "cgeVideoWriter.h"
+#import "cge/cgeVideoWriter.h"
 #import "demoUtils.h"
 
-#import "cgeVideoFrameRecorder.h"
-#import "cgeUtilFunctions.h"
+#import "cge/cgeVideoFrameRecorder.h"
+#import "cge/cgeUtilFunctions.h"
 
 #define ADD_TEXT(...) [self addText:[NSString stringWithFormat:__VA_ARGS__]];
 

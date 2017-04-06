@@ -7,11 +7,11 @@
 //
 
 #import "FilterDemoViewController.h"
-#import "cgeUtilFunctions.h"
+#import "cge/cgeUtilFunctions.h"
 #import "demoUtils.h"
-#import "cgeVideoWriter.h"
+#import "cge/cgeVideoWriter.h"
 //#import "cgeFaceFunctions.h"
-#import "cgeImageViewHandler.h"
+#import "cge/cgeImageViewHandler.h"
 
 static const char* const s_functionList[] = {
     "Save", //0

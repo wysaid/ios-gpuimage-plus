@@ -293,6 +293,6 @@ namespace CGE
 #include <memory>
 #include "cgeShaderFunctions.h"
 #include "cgeImageHandler.h"
-#include "CGEImageFilter.h"
+#include "cgeImageFilter.h"
 
 #endif /* _CGEGLFUNCTIONS_H_ */

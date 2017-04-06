@@ -7,7 +7,7 @@
 //
 
 #import "GifDemoViewController.h"
-#import "cgeDynamicImageViewHandler.h"
+#import "cge/cgeDynamicImageViewHandler.h"
 #import "demoUtils.h"
 
 static const char* const s_functionList[] = {

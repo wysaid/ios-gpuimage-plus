@@ -451,7 +451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/cge.framework/Headers $(SRCROOT)/../library/filterLib";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/filterLib";
 			};
 			name = Debug;
 		};
@@ -473,7 +473,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/cge.framework/Headers $(SRCROOT)/../library/filterLib";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/filterLib";
 			};
 			name = Release;
 		};

@@ -22,7 +22,7 @@ typedef enum CustomFilterType
 #ifdef __OBJC__
 
 #import <UIKit/UIKit.h>
-#import "cgeSharedGLContext.h"
+#import "cge/cgeSharedGLContext.h"
 
 #ifdef __cplusplus
 extern "C"

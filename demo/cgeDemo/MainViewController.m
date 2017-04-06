@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "demoUtils.h"
-#import "cgeUtilFunctions.h"
+#import "cge/cgeUtilFunctions.h"
 
 @interface MainViewController()
 @property (weak, nonatomic) IBOutlet UIButton *filterDemoBtn;

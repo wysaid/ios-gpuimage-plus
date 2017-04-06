@@ -8,9 +8,9 @@
 
 #include "cgeCustomFilters.h"
 
-#include "cgeUtilFunctions.h"
-#include "cgeImageHandlerIOS.h"
-#include "cgeMultipleEffects.h"
+#include "cge/cgeUtilFunctions.h"
+#include "cge/cgeImageHandlerIOS.h"
+#include "cge/cgeMultipleEffects.h"
 #include "CustomHelper.h"
 
 using namespace CGE;
