@@ -7,7 +7,7 @@
 //
 
 #import "demoUtils.h"
-#import <cge/cgeSharedGLContext.h>
+#import "cgeSharedGLContext.h"
 #import <AssetsLibrary/ALAssetsLibrary.h>
 
 const char* g_effectConfig[] = {

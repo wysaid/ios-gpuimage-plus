@@ -25,6 +25,8 @@
 
 #ifdef __OBJC__
 
+#define CGE_USING_FRAMEWORK 1
+
 #import <UIKit/UIKit.h>
 
 //! Project version number for cge.

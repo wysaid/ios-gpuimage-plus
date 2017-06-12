@@ -9,7 +9,7 @@
 #ifndef CommonHelper_h
 #define CommonHelper_h
 
-#include "cge/cgeGLFunctions.h"
+#include "cgeGLFunctions.h"
 #include "cgeCustomFilters.h"
 
 namespace CGE

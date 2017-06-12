@@ -9,7 +9,7 @@
 #ifndef CustomFilter_0_h
 #define CustomFilter_0_h
 
-#include "cge/cgeGLFunctions.h"
+#include "cgeGLFunctions.h"
 
 //standard demo
 
