@@ -444,6 +444,10 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../library/cge.framework/Headers/libCGE-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../library/cge/**",
+					"$(SRCROOT)/../library/filterLib",
+				);
 				INFOPLIST_FILE = cgeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -451,7 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/filterLib";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -466,6 +470,10 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/../library/cge.framework/Headers/libCGE-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../library/cge/**",
+					"$(SRCROOT)/../library/filterLib",
+				);
 				INFOPLIST_FILE = cgeDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -473,7 +481,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../library/filterLib";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
