@@ -461,13 +461,13 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             if([_myCameraViewHandler isGlobalFilterEnabled])
             {
                 [_myCameraViewHandler enableFaceBeautify:NO];
-                [sender setTitle:@"Stopped" forState:UIControlStateNormal];
+                [sender setTitle:@"Beautify" forState:UIControlStateNormal];
             }
             else
             {
                 [_myCameraViewHandler enableFaceBeautify:YES];
 //                [_myCameraViewHandler enableGlobalFilter:"@style halftone 1.2 "];
-                [sender setTitle:@"Running" forState:UIControlStateNormal];
+                [sender setTitle:@"Beautifying" forState:UIControlStateNormal];
             }
 
             break;
