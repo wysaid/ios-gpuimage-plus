@@ -370,7 +370,7 @@ typedef struct ImageFrame
         _currentImageIndex %= _vecImageFrames.size();
         _lastImageFrame = &_vecImageFrames[_currentImageIndex];
         
-        [self.sharedContext asyncProcessingQueue:^{
+        [self.sharedContext syncProcessingQueue:^{
             
             [self.sharedContext makeCurrent];
             [self flushFrameWithTexture:_lastImageFrame->imageTexture];
