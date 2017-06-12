@@ -7,8 +7,8 @@
 //
 
 #import "CameraDemoViewController.h"
-#import "cge/cgeUtilFunctions.h"
-#import "cge/cgeVideoCameraViewHandler.h"
+#import <cge/cgeUtilFunctions.h>
+#import <cge/cgeVideoCameraViewHandler.h>
 #import "demoUtils.h"
 #import "cgeCustomFilters.h"
 

@@ -9,9 +9,9 @@
 #import "PlayerDemoController.h"
 
 #import "demoUtils.h"
-#import "cge/cgeUtilFunctions.h"
+#import <cge/cgeUtilFunctions.h>
 #import <GLKit/GLKit.h>
-#import "cge/cgeVideoPlayerViewHandler.h"
+#import <cge/cgeVideoPlayerViewHandler.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
 static const char* const s_functionList[] = {
