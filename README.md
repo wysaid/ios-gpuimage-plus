@@ -1,15 +1,18 @@
 # iOS-GPUImage-Plus 
 GPU accelerated filters for iOS based on OpenGL. 
 
-## 简介 ##
+Android version: [https://github.com/wysaid/android-gpuimage-plus](https://github.com/wysaid/android-gpuimage-plus "http://wysaid.org")
 
-1. 目前只是放了个demo以及framework(cge.framework, 支持armv7 armv7s arm64 i386 x86_64)，不包含核心代码. 😋内置近百种滤镜效果， 如果要自行添加滤镜， 请参考下方的滤镜描述。
+## Abstract ##
 
-2. 不定期更新静态库文件以及demo
+1. This repo is open source now. You can use cge.framework in your project.
+Just add the cge.framework to your project, then add the code
+>#import <cge/cge.h>
+Everything is done.
 
-3. Android version: [https://github.com/wysaid/android-gpuimage-plus](https://github.com/wysaid/android-gpuimage-plus "http://wysaid.org")
+2. Hundreds of built-in filters are available in the demo. 😋If you'd like to add your own filter, please take a look at the manual page. Or you can follow the demo code. The new custom filter should be written in C++.
 
-4. <b>2.2.0 版本更新</b>: 支持gif 播放保存。
+3. To build the source code, you can just find the xcode project in the 'library' folder.
 
 ## Manual ##
 
