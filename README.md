@@ -27,7 +27,7 @@ ___Sample Code for doing a filter with UIImage___
     UIImage* srcImage = [UIImage imageNamed:@"test.jpg"];
     //HSL Adjust (hue: 0.02, saturation: -0.31, luminance: -0.17)
     //Please see the manual for more details.
-    NSString* ruleString = @"@adjust hsl 0.02 -0.31 -0.17";
+    const char* ruleString = @"@adjust hsl 0.02 -0.31 -0.17";
     UIImage* resultImage = cgeFilterUIImage_MultipleEffects(srcImage, ruleString, 1.0f, nil);
 
     //Then the dstImage is applied with the filter.
