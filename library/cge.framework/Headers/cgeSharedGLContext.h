@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import <OpenGLES/EAGL.h>
-#import <cge/cgeProcessingContext.h>
+#import "cgeProcessingContext.h"
 
 @interface CGESharedGLContext : CGEProcessingContext
 

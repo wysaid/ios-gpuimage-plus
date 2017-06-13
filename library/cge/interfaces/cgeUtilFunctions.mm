@@ -302,7 +302,7 @@ extern "C"
         
         if(sizeLimit > 0)
         {
-            float scaling = std::max(sizeLimit / (float)newWidth, sizeLimit / (float)newHeight);
+            float scaling = std::min(sizeLimit / (float)newWidth, sizeLimit / (float)newHeight);
             newWidth *= scaling;
             newHeight *= scaling;
         }

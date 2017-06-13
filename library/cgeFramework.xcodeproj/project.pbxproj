@@ -32,10 +32,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		3D2C5ED01E9736E70075EF12 /* cgeSprite2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C5ECD1E9736E70075EF12 /* cgeSprite2d.cpp */; };
-		3D2C5ED11E9736E70075EF12 /* cgeSprite3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C5ECE1E9736E70075EF12 /* cgeSprite3d.cpp */; };
-		3D2C5ED21E9736E70075EF12 /* cgeSpriteCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C5ECF1E9736E70075EF12 /* cgeSpriteCommon.cpp */; };
-		3D2C5ED51E9737140075EF12 /* cgeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C5ED41E9737140075EF12 /* cgeAction.cpp */; };
 		3DA897AE1E7945FA0076561F /* cgeColorMappingFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA897AC1E7945FA0076561F /* cgeColorMappingFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DA897AF1E7945FA0076561F /* cgeMotionFlowFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA897AD1E7945FA0076561F /* cgeMotionFlowFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DA897B21E7946030076561F /* cgeColorMappingFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA897B01E7946030076561F /* cgeColorMappingFilter.cpp */; };
@@ -191,10 +187,6 @@
 /* Begin PBXFileReference section */
 		3D24CDCC1E6E62230098670B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		3D24CDCE1E6E62280098670B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		3D2C5ECD1E9736E70075EF12 /* cgeSprite2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeSprite2d.cpp; path = cge/src/sprite/cgeSprite2d.cpp; sourceTree = SOURCE_ROOT; };
-		3D2C5ECE1E9736E70075EF12 /* cgeSprite3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeSprite3d.cpp; path = cge/src/sprite/cgeSprite3d.cpp; sourceTree = SOURCE_ROOT; };
-		3D2C5ECF1E9736E70075EF12 /* cgeSpriteCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeSpriteCommon.cpp; path = cge/src/sprite/cgeSpriteCommon.cpp; sourceTree = SOURCE_ROOT; };
-		3D2C5ED41E9737140075EF12 /* cgeAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeAction.cpp; path = cge/src/animation/cgeAction.cpp; sourceTree = SOURCE_ROOT; };
 		3DA897AC1E7945FA0076561F /* cgeColorMappingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeColorMappingFilter.h; path = cge/include/filters/cgeColorMappingFilter.h; sourceTree = SOURCE_ROOT; };
 		3DA897AD1E7945FA0076561F /* cgeMotionFlowFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeMotionFlowFilter.h; path = cge/include/filters/cgeMotionFlowFilter.h; sourceTree = SOURCE_ROOT; };
 		3DA897B01E7946030076561F /* cgeColorMappingFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeColorMappingFilter.cpp; path = cge/src/filters/cgeColorMappingFilter.cpp; sourceTree = SOURCE_ROOT; };
@@ -369,29 +361,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3D2C5EC61E9736CE0075EF12 /* sprite */ = {
-			isa = PBXGroup;
-			children = (
-				3D2C5ECD1E9736E70075EF12 /* cgeSprite2d.cpp */,
-				3D2C5ECE1E9736E70075EF12 /* cgeSprite3d.cpp */,
-				3D2C5ECF1E9736E70075EF12 /* cgeSpriteCommon.cpp */,
-			);
-			name = sprite;
-			sourceTree = "<group>";
-		};
-		3D2C5ED31E9736EA0075EF12 /* animation */ = {
-			isa = PBXGroup;
-			children = (
-				3D2C5ED41E9737140075EF12 /* cgeAction.cpp */,
-			);
-			name = animation;
-			sourceTree = "<group>";
-		};
 		D3107A341BFCA045003D8060 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				3D2C5ED31E9736EA0075EF12 /* animation */,
-				3D2C5EC61E9736CE0075EF12 /* sprite */,
 				D368397B1BFDBCF70037CC4A /* extends */,
 				D3107A7A1BFCA084003D8060 /* algorithm */,
 				D3107A7C1BFCA091003D8060 /* common */,
@@ -868,13 +840,11 @@
 				D3107C471BFCA368003D8060 /* cgeExposureAdjust.cpp in Sources */,
 				D3107B601BFCA273003D8060 /* cgeShaderFunctions.cpp in Sources */,
 				D3107C4F1BFCA368003D8060 /* cgeLerpblurFilter.cpp in Sources */,
-				3D2C5ED51E9737140075EF12 /* cgeAction.cpp in Sources */,
 				D3107B371BFCA25D003D8060 /* cgeImageHandlerIOS.mm in Sources */,
 				D3107C381BFCA368003D8060 /* cgeBilateralBlurFilter.cpp in Sources */,
 				3DBBBA151EB3445900116D0D /* cgeAnimationParser.mm in Sources */,
 				D3107C551BFCA368003D8060 /* cgeMinValueFilter.cpp in Sources */,
 				D3107C4E1BFCA368003D8060 /* cgeHueAdjust.cpp in Sources */,
-				3D2C5ED01E9736E70075EF12 /* cgeSprite2d.cpp in Sources */,
 				D3107B471BFCA25D003D8060 /* cgeVideoHandlerCV.mm in Sources */,
 				D3107C671BFCA368003D8060 /* cgeSketchFilter.cpp in Sources */,
 				D3107C641BFCA368003D8060 /* cgeSelectiveColorAdjust.cpp in Sources */,
@@ -887,11 +857,9 @@
 				D3107C6A1BFCA368003D8060 /* cgeVignetteAdjust.cpp in Sources */,
 				D3107C611BFCA368003D8060 /* cgeRandomBlurFilter.cpp in Sources */,
 				3DBBBA251EB3445900116D0D /* cgeVideoFrameRecorder.mm in Sources */,
-				3D2C5ED21E9736E70075EF12 /* cgeSpriteCommon.cpp in Sources */,
 				D3107C591BFCA368003D8060 /* cgeMultipleEffects.cpp in Sources */,
 				D3107C3C1BFCA368003D8060 /* cgeColorLevelAdjust.cpp in Sources */,
 				3DBBBA1B1EB3445900116D0D /* cgeDynamicImageViewHandler.mm in Sources */,
-				3D2C5ED11E9736E70075EF12 /* cgeSprite3d.cpp in Sources */,
 				D3107C541BFCA368003D8060 /* cgeMidValueFilter.cpp in Sources */,
 				3DBBBA231EB3445900116D0D /* cgeVideoCameraViewHandler.m in Sources */,
 				3DBBBA291EB3445900116D0D /* cgeVideoPlayerViewHandler.m in Sources */,
