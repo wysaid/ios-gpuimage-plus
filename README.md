@@ -6,9 +6,16 @@ Android version: [https://github.com/wysaid/android-gpuimage-plus](https://githu
 ## Abstract ##
 
 1. This repo is open source now. You can use cge.framework in your project.
-Just add the cge.framework to your project, then add the code
+
+1.1 You can add the cge.framework to your project, then add the code
 >#import <cge/cge.h>
 >//Everything is done.
+
+1.2 If you're using CocoaPods, add this to your Podfile:
+>pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git'
+
+or with the newest version tag:
+>pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git', :tag => '2.4.3'
 
 Note: The filters are written in C++, so you should change your source file extensions to "mm" if you want use all features. But it is not necessary when you're using the interface-headers just like the [demo](https://github.com/wysaid/ios-gpuimage-plus/tree/master/demo/cgeDemo).
 
