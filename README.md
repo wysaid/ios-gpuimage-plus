@@ -21,7 +21,7 @@ Note: The filters are written in C++, so you should change your source file exte
 
 2. Hundreds of built-in filters are available in the demo. 😋If you'd like to add your own filter, please take a look at the manual page. Or you can follow the demo code. The new custom filter should be written in C++.
 
-3. To build the source code, you can just find the xcode project in the 'library' folder.
+3. To build the source code, you can use the xcode project in the 'library' folder.
 
 ## Manual ##
 
