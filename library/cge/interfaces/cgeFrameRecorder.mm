@@ -138,7 +138,7 @@ using namespace CGE;
             
             if([fileManager fileExistsAtPath:[_cacheVideoURL path]])
             {
-                CGE_NSLog(@"🙊根据设定不进行压缩! 直接存储原始文件!");
+                CGE_NSLog(@"🙊Saving the origin file!");
                 NSError* err = nil;
                 [fileManager moveItemAtPath:[_cacheVideoURL path] toPath:[_outputVideoURL path] error:&err];
                 if(err)
@@ -159,7 +159,7 @@ using namespace CGE;
                 
                 if(!err)
                 {
-                    CGE_NSLog(@"😋压缩保存文件成功! 压缩质量: %@", quality);
+                    CGE_NSLog(@"😋Video compressed! Quality: %@", quality);
                     compressOK();
                 }
                 else
@@ -167,7 +167,7 @@ using namespace CGE;
                     NSFileManager* fileManager = [NSFileManager defaultManager];
                     if([fileManager fileExistsAtPath:[_cacheVideoURL path]])
                     {
-                        CGE_NSLog(@"😂压缩文件失败! 直接存储原始文件! err: %@\n", err);
+                        CGE_NSLog(@"😂Video compress failed! Saving the origin file! err: %@\n", err);
                         NSError* err = nil;
                         [fileManager moveItemAtPath:[_cacheVideoURL path] toPath:[_outputVideoURL path] error:&err];
                         if(err)
@@ -189,7 +189,7 @@ using namespace CGE;
         }
         else
         {
-            //强制线程同步， 等待 finishBlock 完成
+            //Force thread waiting until 'finishBlock' finished.
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             [_videoWriter finishRecording];
             
