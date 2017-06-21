@@ -76,7 +76,6 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeVec.h>
 #import <cge/cgeAdvancedEffects.h>
 #import <cge/cgeAdvancedEffectsCommon.h>
-#import <cge/cgeAlienLookFilter.h>
 #import <cge/cgeBeautifyFilter.h>
 #import <cge/cgeBilateralBlurFilter.h>
 #import <cge/cgeBlendFilter.h>
@@ -87,12 +86,10 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeCrosshatchFilter.h>
 #import <cge/cgeCurveAdjust.h>
 #import <cge/cgeDataParsingEngine.h>
-#import <cge/cgeDistortionFilter.h>
 #import <cge/cgeDynamicFilters.h>
 #import <cge/cgeDynamicWaveFilter.h>
 #import <cge/cgeEdgeFilter.h>
 #import <cge/cgeEmbossFilter.h>
-#import <cge/cgeEnlargeEyeFilter.h>
 #import <cge/cgeExposureAdjust.h>
 #import <cge/cgeEyeBrightenFilter.h>
 #import <cge/cgeEyeTintFilter.h>
@@ -103,7 +100,6 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeLerpblurFilter.h>
 #import <cge/cgeLiquidationFilter.h>
 #import <cge/cgeLookupFilter.h>
-#import <cge/cgeMarscaraFilter.h>
 #import <cge/cgeMaxValueFilter.h>
 #import <cge/cgeMidValueFilter.h>
 #import <cge/cgeMinValueFilter.h>
@@ -111,7 +107,6 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeMosaicBlurFilter.h>
 #import <cge/cgeMultipleEffects.h>
 #import <cge/cgeMultipleEffectsCommon.h>
-#import <cge/cgeMultipleEffectsDataset.h>
 #import <cge/cgePolarPixellateFilter.h>
 #import <cge/cgePolkaDotFilter.h>
 #import <cge/cgeRandomBlurFilter.h>
