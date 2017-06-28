@@ -296,6 +296,7 @@ extern "C"
             return image;
         }
         
+        CGAffineTransform transform = cgeGetUIImageOrientationTransform(image);
         
         int newWidth = image.size.width;
         int newHeight = image.size.height;
@@ -305,22 +306,19 @@ extern "C"
             float scaling = std::min(sizeLimit / (float)newWidth, sizeLimit / (float)newHeight);
             newWidth *= scaling;
             newHeight *= scaling;
+            
+            //fix transform calc for size limit.
+            transform.tx *= scaling;
+            transform.ty *= scaling;
         }
         
-        CGAffineTransform transform = cgeGetUIImageOrientationTransform(image);
-        
         CGImageRef imageRef = image.CGImage;
-//        int width = (int)CGImageGetWidth(imageRef);
-//        int height = (int)CGImageGetHeight(imageRef);
-
+        
         CGContextRef ctx = CGBitmapContextCreate(NULL, newWidth, newHeight,
                                                  CGImageGetBitsPerComponent(imageRef), 0,
                                                  CGImageGetColorSpace(imageRef),
                                                  CGImageGetBitmapInfo(imageRef));
         CGContextConcatCTM(ctx, transform);
-
-//        CGContextDrawImage(ctx, CGRectMake(0, 0, image.size.width, image.size.height), imageRef);
-        
         
         switch (image.imageOrientation) {
             case UIImageOrientationLeft:
@@ -337,10 +335,10 @@ extern "C"
         }
         
         // And now we just create a new UIImage from the drawing context
-        CGImageRef cgimg = CGBitmapContextCreateImage(ctx);  
-        UIImage *img = [UIImage imageWithCGImage:cgimg];  
-        CGContextRelease(ctx);  
-        CGImageRelease(cgimg);  
+        CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+        UIImage *img = [UIImage imageWithCGImage:cgimg];
+        CGContextRelease(ctx);
+        CGImageRelease(cgimg);
         return img;
     }
     

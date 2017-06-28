@@ -762,7 +762,7 @@
 					};
 					DB3455C01BD3DA3000AC56DE = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = KHWJX47LP8;
+						DevelopmentTeam = V2DTUY5PQ8;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1040,7 +1040,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KHWJX47LP8;
+				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1070,7 +1070,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = KHWJX47LP8;
+				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
