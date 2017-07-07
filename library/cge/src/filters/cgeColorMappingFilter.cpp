@@ -31,8 +31,6 @@ uniform sampler2D inputImageTexture;
 void main()
 {
 	gl_FragColor = texture2D(inputImageTexture, textureCoordinate);
-// 	gl_FragColor.rg = textureCoordinate;
-// 	gl_FragColor.a = 1.0;
 }
 );
 
@@ -165,24 +163,12 @@ namespace CGE
 
 		}
 
-// 		void endPushing()
-// 		{
-// 			CGEColorMappingFilter::endPushing();
-// 
-// 			glGenBuffers(1, &m_mappingVertBuffer);
-// 			glBindBuffer(GL_ARRAY_BUFFER, m_mappingVertBuffer);
-// 
-// 
-// 
-// 		}
-
 	protected:
 
 		GLuint m_mappingVertBuffer;
 		GLuint m_mappingTexVertBuffer;
 		std::vector<Vec4ub> m_cacheBufferData;
 		std::vector<Vec2f> m_texVertBufferData;
-		FrameBuffer m_framebuffer;
 		int m_drawCount;
 		TextureDrawer* m_drawer;
 	};

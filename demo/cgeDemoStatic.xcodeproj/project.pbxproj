@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D29639E1F0F9A9A0084B669 /* mapping0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D29639D1F0F9A9A0084B669 /* mapping0.jpg */; };
 		3DED06001EEE749800DBFCAD /* libcge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DED05FF1EEE746A00DBFCAD /* libcge.a */; };
 		D308A7781C1146E200C6F446 /* SimpleTestCasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */; };
 		D334E8D11BCCB81F00D32A2D /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D334E8D01BCCB81F00D32A2D /* test.mp4 */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D29639D1F0F9A9A0084B669 /* mapping0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mapping0.jpg; sourceTree = "<group>"; };
 		3DED05FA1EEE746A00DBFCAD /* cgeStatic.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cgeStatic.xcodeproj; path = ../library/cgeStatic.xcodeproj; sourceTree = "<group>"; };
 		D308A7761C1146E200C6F446 /* SimpleTestCasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTestCasesViewController.h; sourceTree = "<group>"; };
 		D308A7771C1146E200C6F446 /* SimpleTestCasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTestCasesViewController.m; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		DB3C50501B92E1CA005985C1 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				3D29639D1F0F9A9A0084B669 /* mapping0.jpg */,
 				DB7B5D5F1D4F770300D980B3 /* edgy_amber.png */,
 				DB7B5D601D4F770300D980B3 /* filmstock.png */,
 				DB7B5D611D4F770300D980B3 /* foggy_night.png */,
@@ -254,7 +257,7 @@
 				TargetAttributes = {
 					DB4342121B4FCC8A00ED886F = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = KHWJX47LP8;
+						DevelopmentTeam = V2DTUY5PQ8;
 					};
 				};
 			};
@@ -323,6 +326,7 @@
 				DB7B5D6A1D4F770300D980B3 /* wildbird.png in Resources */,
 				D334E8D11BCCB81F00D32A2D /* test.mp4 in Resources */,
 				DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */,
+				3D29639E1F0F9A9A0084B669 /* mapping0.jpg in Resources */,
 				DB7B5D651D4F770300D980B3 /* edgy_amber.png in Resources */,
 				DB7B5D691D4F770300D980B3 /* soft_warming.png in Resources */,
 				D3DD61341BF5CD9700EEF604 /* test1.jpg in Resources */,
@@ -465,7 +469,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = KHWJX47LP8;
+				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../library";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -492,7 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = KHWJX47LP8;
+				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../library";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
