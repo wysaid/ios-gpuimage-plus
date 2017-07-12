@@ -49,8 +49,12 @@ extern "C"
             return 0;
         
         CGETextureInfo texInfo = cgeUIImage2Texture(image);
-        *w = texInfo.width;
-        *h = texInfo.height;
+        
+        if(w != nullptr)
+            *w = texInfo.width;
+        if(h != nullptr)
+            *h = texInfo.height;
+        
         if(CGELoadImageCallBackClass::loadImageOK != nullptr)
         {
             CGELoadImageCallBackClass::loadImageOK(image, CGELoadImageCallBackClass::argument);
