@@ -24,6 +24,7 @@
 
 @required
 
+// The return value marks if you modified the imageBuffer. (Faster when return NO)
 // 返回值表示是否对imageBuffer进行了修改
 - (BOOL)processingHandleBuffer :(CVImageBufferRef)imageBuffer;
 
