@@ -17,7 +17,7 @@ Android version: [https://github.com/wysaid/android-gpuimage-plus](https://githu
 or with the newest version tag:
 >pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git', :tag => '2.4.6'
 
-__Dependency__:  libc++, ImageIO.framework, MobileCoreServices.framework
+__Dependencies__:  libc++, ImageIO.framework, MobileCoreServices.framework
 
 Note: The filters are written in C++, so you should change your source file extensions to "mm" if you want use all features. But it is not necessary when you're using the interface-headers just like the [demo](https://github.com/wysaid/ios-gpuimage-plus/tree/master/demo/cgeDemo).
 
