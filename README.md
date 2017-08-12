@@ -14,8 +14,8 @@ Android version: [https://github.com/wysaid/android-gpuimage-plus](https://githu
     2. If you're using CocoaPods, add this to your Podfile:
     >pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git'
 
-or with the newest version tag:
->pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git', :tag => '2.4.6'
+    or with the newest version tag:
+    >pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git', :tag => '2.4.6'
 
 __Dependencies__:  libc++, ImageIO.framework, MobileCoreServices.framework
 
