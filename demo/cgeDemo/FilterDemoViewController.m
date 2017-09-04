@@ -152,7 +152,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             UIImage* image = [_myImageView resultImage];
             [DemoUtils saveImage:image];
 //            [[[ALAssetsLibrary alloc] init] writeImageToSavedPhotosAlbum:[image CGImage] orientation:(ALAssetOrientation)[image imageOrientation] completionBlock:nil];
-            NSLog(@"文件已保存");
+            NSLog(@"saved!");
         }
             break;
         case 1:
