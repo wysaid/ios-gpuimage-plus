@@ -1,7 +1,9 @@
 # iOS-GPUImage-Plus 
 GPU accelerated filters for iOS based on OpenGL. 
 
-Android version: [https://github.com/wysaid/android-gpuimage-plus](https://github.com/wysaid/android-gpuimage-plus "http://wysaid.org")
+__New feature__: Face effects will be created with the ios11's `VNSequenceRequestHandler` & `VNDetectFaceLandmarksRequest`.
+
+>Android version: [https://github.com/wysaid/android-gpuimage-plus](https://github.com/wysaid/android-gpuimage-plus "http://wysaid.org")
 
 ## Abstract ##
 
