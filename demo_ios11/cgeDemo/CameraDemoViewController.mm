@@ -241,10 +241,19 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     const char* vsh = CGE_SHADER_STRING
     (
      attribute vec2 vPosition;
+     uniform int cameraFacing;
      void main()
      {
          //flip xy for this demo.
-         gl_Position = vec4(1.0 - vPosition * 2.0, 0.0, 1.0);
+         if(cameraFacing == 0)
+         {
+             gl_Position = vec4(1.0 - vPosition * 2.0, 0.0, 1.0);
+         }
+         else
+         {
+             gl_Position = vec4(vPosition.x * 2.0 - 1.0, 1.0 - vPosition.y * 2.0, 0.0, 1.0);
+         }
+         
          gl_PointSize = 6.0;
      }
     );
@@ -306,6 +315,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, _faceData.data());
         _drawFaceProgram->bind();
+        _drawFaceProgram->sendUniformi("cameraFacing", (int)(_myCameraViewHandler.cameraDevice.cameraPosition != AVCaptureDevicePositionFront));
         glDrawArrays(GL_POINTS, 0, (int)_faceData.size());
     }
         
@@ -317,8 +327,10 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 {
     if(dispatch_semaphore_wait(_faceDetectSema, DISPATCH_TIME_NOW) == 0)
     {
+        CFRetain(imageBuffer);
         dispatch_async(dispatch_get_main_queue(), ^{
             [_faceLandMarkHandler performRequests:_faceLandMarkRequests onCVPixelBuffer:imageBuffer orientation:kCGImagePropertyOrientationRight error:nil];
+            CFRelease(imageBuffer);
             dispatch_semaphore_signal(_faceDetectSema);
         });
     }
