@@ -245,7 +245,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
      {
          //flip xy for this demo.
          gl_Position = vec4(1.0 - vPosition * 2.0, 0.0, 1.0);
-         gl_PointSize = 4.0;
+         gl_PointSize = 6.0;
      }
     );
     
