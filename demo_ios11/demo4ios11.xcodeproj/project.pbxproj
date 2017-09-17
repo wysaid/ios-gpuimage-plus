@@ -23,7 +23,6 @@
 		DB4342241B4FCC8A00ED886F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4342231B4FCC8A00ED886F /* Images.xcassets */; };
 		DB4342271B4FCC8A00ED886F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB4342251B4FCC8A00ED886F /* LaunchScreen.xib */; };
 		DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */; };
-		DBA877A71D508CBD0006D6A9 /* libfilterLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA877A61D508CB70006D6A9 /* libfilterLib.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +32,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = DB433E231B4FB91600ED886F;
 			remoteInfo = cge;
-		};
-		DBA877A51D508CB70006D6A9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DB49260D1C43809300D1CBA5;
-			remoteInfo = filterLib;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -66,7 +58,6 @@
 		DB4342231B4FCC8A00ED886F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DB4342261B4FCC8A00ED886F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = filterLib.xcodeproj; path = ../library/filterLib.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +70,6 @@
 				3DF158D61F6DAC6A007623B4 /* CoreVideo.framework in Frameworks */,
 				3DF158D41F6DAC53007623B4 /* AVFoundation.framework in Frameworks */,
 				3DED06001EEE749800DBFCAD /* libcge.a in Frameworks */,
-				DBA877A71D508CBD0006D6A9 /* libfilterLib.a in Frameworks */,
 				DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */,
 				D36839871BFDC0A20037CC4A /* libc++.tbd in Frameworks */,
 				D36839881BFDC0A20037CC4A /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -112,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				3DED05FA1EEE746A00DBFCAD /* cgeStatic.xcodeproj */,
-				DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */,
 			);
 			name = libCGE;
 			sourceTree = "<group>";
@@ -166,14 +155,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DBA877A21D508CB70006D6A9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DBA877A61D508CB70006D6A9 /* libfilterLib.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,7 +186,7 @@
 				TargetAttributes = {
 					DB4342121B4FCC8A00ED886F = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = KHWJX47LP8;
+						DevelopmentTeam = V2DTUY5PQ8;
 					};
 				};
 			};
@@ -225,10 +206,6 @@
 					ProductGroup = 3DED05FB1EEE746A00DBFCAD /* Products */;
 					ProjectRef = 3DED05FA1EEE746A00DBFCAD /* cgeStatic.xcodeproj */;
 				},
-				{
-					ProductGroup = DBA877A21D508CB70006D6A9 /* Products */;
-					ProjectRef = DBA877A11D508CB70006D6A9 /* filterLib.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -243,13 +220,6 @@
 			fileType = archive.ar;
 			path = libcge.a;
 			remoteRef = 3DED05FE1EEE746A00DBFCAD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DBA877A61D508CB70006D6A9 /* libfilterLib.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libfilterLib.a;
-			remoteRef = DBA877A51D508CB70006D6A9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -409,7 +379,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = KHWJX47LP8;
+				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../library";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -436,7 +406,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = KHWJX47LP8;
+				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../library";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
