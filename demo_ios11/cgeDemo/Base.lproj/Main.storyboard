@@ -1,125 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="rTp-ch-MIM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="rTp-ch-MIM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--FilterDemoViewController-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" userLabel="FilterDemoViewController" customClass="FilterDemoViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UfR-O2-1xP">
-                                <rect key="frame" x="16" y="20" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="quit">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="quitBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oS5-cI-5no"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GcE-FA-ZAN" userLabel="filterDemoGallery">
-                                <rect key="frame" x="54" y="20" width="87" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="gallery">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="galleryBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xUC-eH-Ngm"/>
-                                </connections>
-                            </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="qxi-FC-fn2">
-                                <rect key="frame" x="18" y="58" width="258" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="intensityChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hwV-aO-jfu"/>
-                                </connections>
-                            </slider>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="galleryBtn" destination="GcE-FA-ZAN" id="mmZ-5g-Ibv"/>
-                        <outlet property="intensitySlider" destination="qxi-FC-fn2" id="uDe-vM-GuV"/>
-                        <outlet property="quitBtn" destination="UfR-O2-1xP" id="RY5-RV-SVM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="375" y="77"/>
-        </scene>
-        <!--PlayerDemoViewController-->
-        <scene sceneID="5al-dy-ASq">
-            <objects>
-                <viewController id="0xK-vX-cXS" userLabel="PlayerDemoViewController" customClass="PlayerDemoController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SxS-PF-9Jf">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AkX-nV-glM">
-                                <rect key="frame" x="16" y="20" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="quit">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="quitBtnClicked:" destination="0xK-vX-cXS" eventType="touchUpInside" id="Cfq-wM-rBI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M8K-aX-XZz" userLabel="playerDemoGallery">
-                                <rect key="frame" x="70" y="20" width="108" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="gallery"/>
-                                <connections>
-                                    <action selector="choosVideoBtnClicked:" destination="0xK-vX-cXS" eventType="touchUpInside" id="Aab-SG-kdZ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="quitBtn" destination="AkX-nV-glM" id="S8d-vM-pOt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e7Y-jI-yBx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-111" y="1010"/>
-        </scene>
-        <!--Gif Demo View Controller-->
-        <scene sceneID="ysu-8P-3ra">
-            <objects>
-                <viewController id="d5I-m4-1RQ" customClass="GifDemoViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yfr-db-H9b">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T8U-Uc-nUC">
-                                <rect key="frame" x="28" y="20" width="40" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="quit"/>
-                                <connections>
-                                    <action selector="quitBtnClicked:" destination="d5I-m4-1RQ" eventType="touchUpInside" id="cV2-o9-cUT"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="quitBtn" destination="T8U-Uc-nUC" id="Dba-Xj-C6z"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BGf-Zd-kKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="375" y="731"/>
-        </scene>
         <!--MainViewController-->
         <scene sceneID="hCy-D6-p9A">
             <objects>
@@ -157,57 +45,6 @@
             </objects>
             <point key="canvasLocation" x="-149.5" y="149.5"/>
         </scene>
-        <!--Advanced Test View Controller-->
-        <scene sceneID="AMN-VV-fVl">
-            <objects>
-                <viewController id="xBh-Bh-bht" customClass="AdvancedTestViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Yjq-N5-A4b">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R7M-vR-dwL">
-                                <rect key="frame" x="24" y="20" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="quit"/>
-                                <connections>
-                                    <action selector="quitBtnClicked:" destination="xBh-Bh-bht" eventType="touchUpInside" id="CJt-ev-pzR"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="baW-kb-YID" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-150" y="-690"/>
-        </scene>
-        <!--Simple Test Cases View Controller-->
-        <scene sceneID="XEZ-3t-vkL">
-            <objects>
-                <viewController id="q5Z-Ce-WcC" customClass="SimpleTestCasesViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="b9N-LX-Fl9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RT8-k3-oSw">
-                                <rect key="frame" x="28" y="28" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="quit"/>
-                                <connections>
-                                    <action selector="quitBtnClicked:" destination="q5Z-Ce-WcC" eventType="touchUpInside" id="AoE-VB-fFr"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="quitBtn" destination="RT8-k3-oSw" id="Syi-g5-WA3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FkC-fx-wXg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="375" y="-657"/>
-        </scene>
         <!--CameraDemoViewController-->
         <scene sceneID="GHr-Lb-TW7">
             <objects>
@@ -226,13 +63,6 @@
                                     <action selector="quitBtnClicked:" destination="YPn-5I-Eaz" eventType="touchUpInside" id="uQ3-po-wmD"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="ZQa-N5-mSp">
-                                <rect key="frame" x="14" y="58" width="258" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="intensityChanged:" destination="YPn-5I-Eaz" eventType="valueChanged" id="ACi-gK-5Tt"/>
-                                </connections>
-                            </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C3Z-Pc-hdi">
                                 <rect key="frame" x="118" y="20" width="51" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -278,7 +108,6 @@
                     </view>
                     <connections>
                         <outlet property="glkView" destination="eVl-vs-Cwb" id="WdA-37-fe7"/>
-                        <outlet property="intensitySlider" destination="ZQa-N5-mSp" id="jKd-Yy-uwj"/>
                         <outlet property="quitBtn" destination="D9Y-3z-xXh" id="K4H-HD-clr"/>
                     </connections>
                 </viewController>

@@ -23,6 +23,7 @@
 
 static const char* const s_functionList[] = {
     "ShowFace", //0
+    "(A)Sync", //1
 };
 
 static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList);
@@ -36,12 +37,11 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
-@property (weak, nonatomic) IBOutlet UISlider *intensitySlider;
 @property CGECameraViewHandler* myCameraViewHandler;
 @property (nonatomic) UIScrollView* myScrollView;
 @property (nonatomic) GLKView* glkView;
-@property (nonatomic) int currentFilterIndex;
 @property (nonatomic) NSURL* movieURL;
+@property (nonatomic, assign) BOOL forceDetectAsync;
 
 //This will show you how to do a simple face emoji.
 @property (nonatomic) VNSequenceRequestHandler* faceLandMarkHandler;
@@ -74,7 +74,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
         [DemoUtils saveImage:image];
         NSLog(@"Take Picture OK, Saved To The Album!\n");
         
-    } filterConfig:g_effectConfig[_currentFilterIndex] filterIntensity:1.0f isFrontCameraMirrored:YES];
+    } filterConfig:nil filterIntensity:0.0f isFrontCameraMirrored:YES];
 }
 
 - (IBAction)recordingBtnClicked:(UIButton*)sender {
@@ -127,12 +127,8 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     [super viewDidLoad];
     
     _movieURL = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Movie.mp4"]];
-    
+
     CGRect rt = [[UIScreen mainScreen] bounds];
-    
-    CGRect sliderRT = [_intensitySlider bounds];
-    sliderRT.size.width = rt.size.width - 20;
-    [_intensitySlider setBounds:sliderRT];
     
 #if SHOW_FULLSCREEN
     
@@ -235,7 +231,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             [_faceDataLock unlock];
         }
     }];
-    [req setPreferBackgroundProcessing:NO];
+    [req setPreferBackgroundProcessing:YES];
     _faceLandMarkRequests = @[req];
     
     const char* vsh = CGE_SHADER_STRING
@@ -325,7 +321,11 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
 //The realtime buffer for processing. Default format is YUV, and you can change the return value of "bufferRequestRGBA" to recieve buffer of format-RGBA.
 - (BOOL)processingHandleBuffer:(CVImageBufferRef)imageBuffer
 {
-    if(dispatch_semaphore_wait(_faceDetectSema, DISPATCH_TIME_NOW) == 0)
+    if(!_forceDetectAsync)
+    {
+        [_faceLandMarkHandler performRequests:_faceLandMarkRequests onCVPixelBuffer:imageBuffer orientation:kCGImagePropertyOrientationRight error:nil];
+    }
+    else if(dispatch_semaphore_wait(_faceDetectSema, DISPATCH_TIME_NOW) == 0)
     {
         CFRetain(imageBuffer);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -334,6 +334,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
             dispatch_semaphore_signal(_faceDetectSema);
         });
     }
+    
     return NO;
 }
 
@@ -354,6 +355,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                 [[_myCameraViewHandler cameraRecorder] setProcessingDelegate:nil];
                 [sender setTitle:@"Stopped" forState:UIControlStateNormal];
             }
+            break;
+        case 1:
+            _forceDetectAsync = !_forceDetectAsync;
             break;
         default:;
     }
