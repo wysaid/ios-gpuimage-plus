@@ -12,19 +12,33 @@
 #ifndef _CGE_UTILFUNCTIONS_H_
 #define _CGE_UTILFUNCTIONS_H_
 
+#ifdef __OBJC__
+
 #import "cgeSharedGLContext.h"
 #import <GLKit/GLKit.h>
+
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
     
+#ifdef __OBJC__
+    
     typedef UIImage* (*LoadImageCallback)(const char* name, void* arg);
     typedef void (*LoadImageOKCallback)(UIImage*, void* arg);
     
     void cgeSetLoadImageCallback(LoadImageCallback, LoadImageOKCallback, void* arg);
+    
+#endif
    
     GLuint cgeGlobalTextureLoadFunc(const char* source, GLint* w, GLint* h, void* arg);
+    
+    //通过配置创建单个滤镜
+    void* cgeCreateFilterByConfig(const char* config);
+    
+    //通过配置创建多重滤镜, 返回值一定是 CGEMutipleEffectFilter 类型
+    void* cgeCreateMultipleFilterByConfig(const char* config, float intensity);
     
     typedef struct CGETextureInfo
     {
@@ -33,6 +47,8 @@ extern "C" {
 //        GLenum channelFormat; //取值: GL_RGBA, GL_RGB, GL_LUMINANCE_ALPHA, GL_LUMINANCE
 //        GLenum dataFormat; //一般为 GL_UNSIGNED_BYTE
     }CGETextureInfo;
+    
+#ifdef __OBJC__
     
     // 注意， 图片格式必须为 GL_RGBA + GL_UNSIGNED_BYTE
     typedef struct CGEFilterImageInfo
@@ -51,12 +67,6 @@ extern "C" {
     //         intensity  - 滤镜强度， 范围 [0, 1]
     // processingContext  - 附加的context, 如果为 nil， 将使用 globalContext。 如果需要多线程使用， 请自行创建新的  context.
     UIImage* cgeFilterUIImage_MultipleEffects(UIImage* uiimage, const char* config, float intensity, CGESharedGLContext* processingContext);
-    
-    //通过配置创建单个滤镜
-    void* cgeCreateFilterByConfig(const char* config);
-
-    //通过配置创建多重滤镜, 返回值一定是 CGEMutipleEffectFilter 类型
-    void* cgeCreateMultipleFilterByConfig(const char* config, float intensity);
     
     //通过Buffer创建GL纹理, 如果可能， 请使用 GLKTextureLoader 直接完成
     //某些情况下 GLKTextureLoader 工作不正常， 在 GLKTextureLoader 工作不正常的情况下， 请使用本函数
@@ -160,6 +170,8 @@ extern "C" {
      */
     
     NSString* cgeGetMachineDescriptionString();
+    
+#endif
     
     typedef enum { CGEDevice_Simulator, CGEDevice_iPod, CGEDevice_iPhone, CGEDevice_iPad } CGEDeviceEnum;
     
