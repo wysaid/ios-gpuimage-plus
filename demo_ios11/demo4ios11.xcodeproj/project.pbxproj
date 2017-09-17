@@ -12,6 +12,7 @@
 		3DF158D61F6DAC6A007623B4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF158D51F6DAC6A007623B4 /* CoreVideo.framework */; };
 		3DF158D81F6DAC91007623B4 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF158D71F6DAC91007623B4 /* CoreMedia.framework */; };
 		3DF158DA1F6DAC9A007623B4 /* Vision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF158D91F6DAC9A007623B4 /* Vision.framework */; };
+		3DFA52AD1F6E3F7C00FFF6BA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFA52AC1F6E3F7C00FFF6BA /* MobileCoreServices.framework */; };
 		D33BBD571B942EB900B1E285 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD561B942EB900B1E285 /* MainViewController.m */; };
 		D33BBD5D1B943AE800B1E285 /* CameraDemoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD5C1B943AE800B1E285 /* CameraDemoViewController.mm */; };
 		D36839871BFDC0A20037CC4A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D36839851BFDC0A20037CC4A /* libc++.tbd */; };
@@ -41,6 +42,7 @@
 		3DF158D51F6DAC6A007623B4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		3DF158D71F6DAC91007623B4 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		3DF158D91F6DAC9A007623B4 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
+		3DFA52AC1F6E3F7C00FFF6BA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D33BBD561B942EB900B1E285 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D33BBD581B942ED800B1E285 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D33BBD5B1B943AE800B1E285 /* CameraDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDemoViewController.h; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DFA52AD1F6E3F7C00FFF6BA /* MobileCoreServices.framework in Frameworks */,
 				3DF158DA1F6DAC9A007623B4 /* Vision.framework in Frameworks */,
 				3DF158D81F6DAC91007623B4 /* CoreMedia.framework in Frameworks */,
 				3DF158D61F6DAC6A007623B4 /* CoreVideo.framework in Frameworks */,
@@ -90,6 +93,7 @@
 		3DF158D21F6DAC53007623B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DFA52AC1F6E3F7C00FFF6BA /* MobileCoreServices.framework */,
 				3DF158D91F6DAC9A007623B4 /* Vision.framework */,
 				3DF158D71F6DAC91007623B4 /* CoreMedia.framework */,
 				3DF158D51F6DAC6A007623B4 /* CoreVideo.framework */,
@@ -393,7 +397,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
+				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.ios11demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -420,7 +424,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.gpuImagePlus;
+				PRODUCT_BUNDLE_IDENTIFIER = org.wysaid.ios11demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";

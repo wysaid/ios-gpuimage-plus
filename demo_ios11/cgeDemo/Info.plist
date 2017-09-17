@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Just save to gallery</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -28,6 +26,8 @@
 	<string>just use camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>just use mic</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Just save to gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>just use album</string>
 	<key>UILaunchStoryboardName</key>
