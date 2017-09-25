@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeSharpenBlurAdjust.h
  *
  *  Created on: 2013-12-26
@@ -21,10 +21,10 @@ namespace CGE
 		CGESharpenBlurFilter() {}
 		~CGESharpenBlurFilter(){}
 
-		//<0: edge
-		//0: the max blur
-		//1: the original image
-		//>1: sharpen
+		// <0: edge
+		// 0: the max blur
+		// 1: the original image
+		// >1: sharpen
 		virtual void setIntensity(float value);
 
 		//the two methods below are only some wrapping from 'setIntensity' .
