@@ -511,6 +511,7 @@ using namespace CGE;
                 
                 if([_processingDelegate respondsToSelector:@selector(drawProcResults:)])
                 {
+                    videoHandler->setAsTarget();
                     [_processingDelegate drawProcResults:videoHandler];
                 }
             }
