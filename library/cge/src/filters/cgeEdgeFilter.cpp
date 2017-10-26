@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeEdgeFilter.cpp
  *
  *  Created on: 2013-12-29
@@ -78,7 +78,7 @@ void main()
 	vec3 h = -colors[0] - 2.0 * colors[1] - colors[2] + colors[5] + 2.0 * colors[6] + colors[7];
 	vec3 v = -colors[0] + colors[2] - 2.0 * colors[3] + 2.0 * colors[4] - colors[5] + colors[7];
 
-	gl_FragColor = vec4(mix(src.rgb, sqrt(h * h + v * v), intensity), 1.0);
+	gl_FragColor = vec4(mix(src.rgb, sqrt(h * h + v * v), intensity), src.a);
 }
 );
 

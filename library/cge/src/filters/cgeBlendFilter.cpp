@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeBlendFilter.cpp
  *
  *  Created on: 2015-2-13
@@ -712,7 +712,7 @@ static const char* s_shaderEnum[] =
 	s_colorBW,
 };
 
-const int s_nShaderEnum = sizeof(s_shaderEnum) / sizeof(*s_shaderEnum);
+static const int s_nShaderEnum = sizeof(s_shaderEnum) / sizeof(*s_shaderEnum);
 
 namespace CGE
 {
