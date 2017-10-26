@@ -211,11 +211,12 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     VNDetectFaceLandmarksRequest* req = [[VNDetectFaceLandmarksRequest alloc] initWithCompletionHandler:^(VNRequest * _Nonnull request, NSError * _Nullable error) {
         VNDetectFaceLandmarksRequest* req = (id)request;
         NSArray<VNFaceObservation*>* results = req.results;
+        [_faceDataLock lock];
+        _faceData.clear();
+        
         if(results && results.count != 0)
         {
             NSLog(@"find face: %d", (int)results.count);
-            [_faceDataLock lock];
-            _faceData.clear();
             for(VNFaceObservation* observation in results)
             {
                 VNFaceLandmarkRegion2D* landmarks = observation.landmarks.allPoints;
@@ -228,8 +229,9 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
                     _faceData.push_back(v);
                 }
             }
-            [_faceDataLock unlock];
         }
+        
+        [_faceDataLock unlock];
     }];
     [req setPreferBackgroundProcessing:YES];
     _faceLandMarkRequests = @[req];
