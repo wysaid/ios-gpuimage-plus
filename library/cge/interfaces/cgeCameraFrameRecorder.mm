@@ -618,7 +618,7 @@ using namespace CGE;
         
         _globalFilterIntensity = 1.0f;
         CGEMutipleEffectFilter* filter = new CGEMutipleEffectFilter();
-        
+        filter->setTextureLoadFunction(cgeGlobalTextureLoadFunc, nullptr);
         if(!filter->initWithEffectString(config))
         {
             delete filter;
