@@ -186,8 +186,9 @@ extern "C"
         info.height = image.size.height;
         
         CGAffineTransform transform = cgeGetUIImageOrientationTransform(image);
+        int bufferSize = info.width * info.height * 4;
         
-        unsigned char* imageBuffer = (unsigned char*) malloc(info.width * info.height * 4);
+        unsigned char* imageBuffer = (unsigned char*) malloc(bufferSize);
         
         if(imageBuffer == nullptr)
         {
@@ -195,6 +196,8 @@ extern "C"
             assert(0);
             return info;
         }
+        
+        memset(imageBuffer, 0, bufferSize);
         
         CGContextRef context = CGBitmapContextCreate(imageBuffer, info.width, info.height, 8, 4 * info.width, cgeCGColorSpaceRGB(), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         
@@ -530,7 +533,7 @@ extern "C"
             s_sysVer = [sysVer intValue];
         }
         
-        if(s_sysVer == 10)
+        if(s_sysVer >= 10)
         {
             UIImage* tmpImg = [UIImage imageWithContentsOfFile:path];
             if(tmpImg)
