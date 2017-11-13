@@ -201,8 +201,8 @@ extern "C"
         
         CGContextRef context = CGBitmapContextCreate(imageBuffer, info.width, info.height, 8, 4 * info.width, cgeCGColorSpaceRGB(), kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         
+        CGContextSetInterpolationQuality(context, kCGInterpolationNone);
         CGContextConcatCTM(context, transform);
-        
         CGContextDrawImage(context, CGRectMake(0, 0, info.width, info.height), imageRef);
         
         info.name = cgeGenTextureWithBuffer(imageBuffer, (int)info.width, (int)info.height, GL_RGBA, GL_UNSIGNED_BYTE);
