@@ -13,6 +13,8 @@
 const char* g_effectConfig[] = {
     nil,
     "@curve RGB(0,255)(255,0) @style cm mapping0.jpg 80 80 8 3", // ASCII art (字符画效果)
+    "@dynamic motionflow 12 0",
+    "@dynamic soulstuff 240 320",
     "@adjust lut edgy_amber.png",
     "@adjust lut filmstock.png",
     "@adjust lut foggy_night.png",
