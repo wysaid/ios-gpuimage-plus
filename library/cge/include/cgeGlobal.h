@@ -30,7 +30,9 @@ namespace CGE
 	public:
 		static int viewWidth, viewHeight;
 
+#if _CGE_USE_GLOBAL_GL_CACHE_
 		static GLuint sVertexBufferCommon;
+#endif
 		static float sVertexDataCommon[8];
 
 		enum InitArguments

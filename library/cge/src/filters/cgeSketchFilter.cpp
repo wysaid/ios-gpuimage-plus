@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeSketchFilter.cpp
 *
 *  Created on: 2015-3-20
@@ -116,7 +116,10 @@ namespace CGE
 		glBindTexture(GL_TEXTURE_2D, m_textureCache);
 
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+        cgeCheckGLError("glDrawArrays");
+        )
 	}
 
 	void CGESketchFilter::flush()

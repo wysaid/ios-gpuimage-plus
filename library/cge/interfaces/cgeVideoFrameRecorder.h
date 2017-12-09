@@ -86,7 +86,7 @@
    @"blendIntensity" : (float)blendIntensity            //混合强度 (不写默认 1.0, 范围[0, 1])
              @"mute" : (BOOL)isMuted                    //是否静音 (不写默认保留声音)
  
-        @"slideshow" : @[                               //增强型功能， 目前提供简单的slideshow动画支持. (暂未开放)
+        @"slideshow" : @[                               //增强型功能， 目前提供简单的slideshow动画支持.
             {
              "image" : "instance of UIImage",
              //"imageFile" : "/path/of/image/xx.png or xx.jpg",

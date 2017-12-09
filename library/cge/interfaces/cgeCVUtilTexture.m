@@ -247,7 +247,7 @@
     
     CVPixelBufferPoolRef bufferPool = NULL;
     CVReturn ret = CVPixelBufferPoolCreate(kCFAllocatorDefault, NULL, (__bridge CFDictionaryRef)attributes, &bufferPool);
-    NSAssert(kCVReturnSuccess == ret, @"CVPixelBufferPoolCreate Failed!");
+    CGE_NSAssert(kCVReturnSuccess == ret, @"CVPixelBufferPoolCreate Failed!");
     if (kCVReturnSuccess != ret)
     {
         return nil;
@@ -258,7 +258,7 @@
 
 + (void)releasePixelBufferPoolRef:(CVPixelBufferPoolRef)bufferPoolRef
 {
-    NSAssert(bufferPoolRef != nil, @"CGECVUtilTexture: buffer pool should not be nil!");
+    CGE_NSAssert(bufferPoolRef != nil, @"CGECVUtilTexture: buffer pool should not be nil!");
     CVPixelBufferPoolRelease(bufferPoolRef);
 }
 
@@ -303,7 +303,7 @@
 #if defined(DEBUG) || defined(_DEBUG)
         
         GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-        NSAssert(status == GL_FRAMEBUFFER_COMPLETE, @"CGECVUtilTextureWithFramebuffer - initWithSize: Incomplete FBO: %x\n", status);
+        CGE_NSAssert(status == GL_FRAMEBUFFER_COMPLETE, @"CGECVUtilTextureWithFramebuffer - initWithSize: Incomplete FBO: %x\n", status);
         
 #endif
         

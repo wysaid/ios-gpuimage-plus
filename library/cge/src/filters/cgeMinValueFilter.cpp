@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeMinValueFilter.cpp
 *
 *  Created on: 2015-3-20
@@ -216,7 +216,10 @@ namespace CGE
 		glBindTexture(GL_TEXTURE_2D, srcTexture);
 
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 }
 

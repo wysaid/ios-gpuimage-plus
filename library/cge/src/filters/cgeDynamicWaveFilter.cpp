@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeDynamicWaveFilter.cpp
  *
  *  Created on: 2015-11-12
@@ -72,7 +72,10 @@ namespace CGE
             m_uniformParam->assignUniforms(handler, m_program.programID());
 
         glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-        cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 
 	void CGEDynamicWaveFilter::setIntensity(float value)

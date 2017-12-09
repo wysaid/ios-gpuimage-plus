@@ -193,7 +193,7 @@ extern "C"
         if(imageBuffer == nullptr)
         {
             CGE_NSLog(@"❌Alloc buffer failed!!");
-            assert(0);
+            CGEAssert(0);
             return info;
         }
         
@@ -213,6 +213,26 @@ extern "C"
         cgeCheckGLError("genTexture");
         
         return info;
+    }
+    
+    UIImage* cgeGrabUIImageWithCurrentFramebuffer(int x, int y, int w, int h)
+    {
+        std::vector<char> vecData(w * h * 4);
+        glReadPixels(x, y, w, h, GL_RGBA, GL_UNSIGNED_BYTE, vecData.data());
+        return cgeCreateUIImageWithBufferRGBA(vecData.data(), w, h, 8, w * 4);
+    }
+    
+    UIImage* cgeGrabUIImageWithFramebuffer(int x, int y, int w, int h, GLuint fbo)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+        return cgeGrabUIImageWithCurrentFramebuffer(x, y, w, h);
+    }
+    
+    UIImage* cgeGrabUIImageWithTexture(int x, int y, int w, int h, GLuint texture)
+    {
+        FrameBuffer fbo;
+        fbo.bindTexture2D(texture);
+        return cgeGrabUIImageWithCurrentFramebuffer(x, y, w, h);
     }
     
     GLuint cgeCGImage2Texture(CGImageRef imgRef, void* imageBuffer)
@@ -389,7 +409,7 @@ extern "C"
     
     static inline UIImage* cgeCreateUIImageWithBuffer(void* buffer, size_t width, size_t height, size_t bitsPerComponent, size_t bytesPerRow, int flag, CGColorSpaceRef colorSpaceRef)
     {
-        assert(colorSpaceRef != nil);
+        CGEAssert(colorSpaceRef != nil);
         CGContextRef contextOut = CGBitmapContextCreate(buffer, width, height, bitsPerComponent, bytesPerRow, colorSpaceRef, flag);
         
         CGImageRef frame = CGBitmapContextCreateImage(contextOut);
@@ -495,6 +515,11 @@ extern "C"
         return colorSpace;
     }
     
+    CGETextureInfo cgeLoadTextureByFile(const char* pathName)
+    {
+        return cgeLoadTextureByPath(@(pathName));
+    }
+    
     CGETextureInfo cgeLoadTextureByPath(NSString* path)
     {
 #ifdef CGE_USE_WEBP
@@ -521,9 +546,20 @@ extern "C"
 #endif
         
         CGETextureInfo info = {0};
+        
+#if 1 //不使用GLKTextureLoader - 2017/10/25
+        UIImage* tmpImg = [UIImage imageWithContentsOfFile:path];
+        if(tmpImg)
+        {
+            info = cgeUIImage2Texture(tmpImg);
+        }
+        return info;
+        
+#else
+        
         NSError* err = nil;
         
-#if 1 //修正ios10的bug: https://forums.developer.apple.com/thread/61190
+#if 1 //修正ios10+的bug: https://forums.developer.apple.com/thread/61190
         
         static int s_sysVer = -1;
         
@@ -576,6 +612,7 @@ extern "C"
         }
         
         return info;
+#endif
     }
     
     CGETextureInfo cgeLoadTextureByURL(NSURL* url)

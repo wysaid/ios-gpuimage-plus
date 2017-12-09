@@ -28,4 +28,14 @@ namespace CGE
     {
         COMMON_FUNC(CGEMotionFlowFilter);
     }
+    
+    CGEMotionFlow2Filter* createMotionFlow2Filter()
+    {
+        COMMON_FUNC(CGEMotionFlow2Filter);
+    }
+    
+    CGESoulStuffFilter* createSoulStuffFilter()
+    {
+        COMMON_FUNC(CGESoulStuffFilter);
+    }
 }

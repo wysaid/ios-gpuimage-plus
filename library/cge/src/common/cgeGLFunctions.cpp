@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeGLFunctions.cpp
 *
 *  Created on: 2013-12-5
@@ -260,17 +260,22 @@ namespace CGE
     
     void SharedTexture::forceRelease(bool bDelTexture)
     {
-        assert(m_refCount == nullptr || *m_refCount == 1); // 使用 forceRelease 时 SharedTexture 必须保证只存在一个实例
+        CGEAssert(m_refCount == nullptr || *m_refCount == 1); // 使用 forceRelease 时 SharedTexture 必须保证只存在一个实例
+        
+        CGE_LOG_CODE
+        (
+         if(m_refCount != nullptr)
+            --sTextureCount;
+         );
+        
         if(bDelTexture)
             glDeleteTextures(1, &m_textureID);
+        
         m_textureID = 0;
+        
         CGE_DELETE(m_refCount);
         width = 0;
         height = 0;
-        CGE_LOG_CODE
-        (
-         --sTextureCount;
-         );
     }
     
     void SharedTexture::clear()
@@ -286,7 +291,7 @@ namespace CGE
              CGE_LOG_INFO("###CGESharedTexture deleting, textureID %d, now total : %d ###\n", m_textureID, --sTextureCount);
          });
         
-        assert(*m_refCount == 0); // 未知错误
+        CGEAssert(*m_refCount == 0); // 未知错误
         
         glDeleteTextures(1, &m_textureID);
         m_textureID = 0;

@@ -12,7 +12,7 @@
 #ifndef _CGE_ONLY_FILTERS_
 
 #include "cgeSprite2d.h"
-#include "cgeAction.h"
+//#include "cgeAction.h"
 
 #endif
 
@@ -28,7 +28,10 @@ namespace CGE
 
 	int CGEGlobalConfig::viewWidth = 1024;
 	int CGEGlobalConfig::viewHeight = 768;
+    
+#if _CGE_USE_GLOBAL_GL_CACHE_
 	GLuint CGEGlobalConfig::sVertexBufferCommon = 0;
+#endif
 	float CGEGlobalConfig::sVertexDataCommon[8] = {-1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f};
 
 	void cgeInitFilterStatus()
@@ -77,6 +80,8 @@ namespace CGE
 			return true;
 		}
 
+#if _CGE_USE_GLOBAL_GL_CACHE_
+        
         if((arg & CGEGlobalConfig::CGE_INIT_COMMONVERTEXBUFFER) && CGEGlobalConfig::sVertexBufferCommon == 0)
 		{
 			glGenBuffers(1, &CGEGlobalConfig::sVertexBufferCommon);
@@ -87,6 +92,8 @@ namespace CGE
 			glBufferData(GL_ARRAY_BUFFER, sizeof(CGEGlobalConfig::sVertexDataCommon), CGEGlobalConfig::sVertexDataCommon, GL_STATIC_DRAW);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
+        
+#endif
 
 #ifndef _CGE_ONLY_FILTERS_
 
@@ -95,8 +102,8 @@ namespace CGE
 			SpriteCommonSettings::sSetCanvasSize(width, height);
 		}
 
-		if(arg & CGEGlobalConfig::CGE_INIT_SPRITEBUILTIN)
-			cgeSpritesInitBuiltin();
+//		if(arg & CGEGlobalConfig::CGE_INIT_SPRITEBUILTIN)
+//			cgeSpritesInitBuiltin();
 
 #endif
 
@@ -108,12 +115,14 @@ namespace CGE
 	void cgeCleanup()
 	{
 		using namespace CGE;
+#if _CGE_USE_GLOBAL_GL_CACHE_
 		glDeleteBuffers(1, &CGEGlobalConfig::sVertexBufferCommon);
 		CGEGlobalConfig::sVertexBufferCommon = 0;
+#endif
 
 #ifndef _CGE_ONLY_FILTERS_
 
-		cgeSpritesCleanupBuiltin();
+//		cgeSpritesCleanupBuiltin();
 
 		CGE_LOG_CODE
         (
@@ -122,10 +131,10 @@ namespace CGE
              CGE_LOG_ERROR("Warning! %d sprites are not deleted!\n", (int)CGE::SpriteCommonSettings::getDebugManager().size());
          }
          
-         if(!CGE::TimeActionInterfaceAbstract::getDebugManager().empty())
-         {
-             CGE_LOG_ERROR("Warning! %d sprites are not deleted!\n", (int)CGE::TimeActionInterfaceAbstract::getDebugManager().size());
-         }
+//         if(!CGE::TimeActionInterfaceAbstract::getDebugManager().empty())
+//         {
+//             CGE_LOG_ERROR("Warning! %d sprites are not deleted!\n", (int)CGE::TimeActionInterfaceAbstract::getDebugManager().size());
+//         }
          );
 #endif
 	}

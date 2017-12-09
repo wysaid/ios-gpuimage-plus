@@ -78,7 +78,7 @@ static CGESharedGLContext* s_globalContext = nil;
     else
         context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2 sharegroup:sharedgroup];
     
-    NSAssert(context != nil, @"Unable to create an OpenGL ES 2.0 context. Requires OpenGL ES 2.0 support to work.");
+    CGE_NSAssert(context != nil, @"Unable to create an OpenGL ES 2.0 context. Requires OpenGL ES 2.0 support to work.");
     return context;
 }
 
@@ -94,7 +94,7 @@ static CGESharedGLContext* s_globalContext = nil;
     if(s_globalContext == nil)
     {
         EAGLContext* ctx = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-        assert(ctx != nil);
+        CGE_NSAssert(ctx != nil, @"Alloc EAGLContext failed!\n");
         s_globalContext = [[CGESharedGLContext alloc] initAsGlobalContext:ctx];
     }
     
@@ -142,7 +142,7 @@ static CGESharedGLContext* s_globalContext = nil;
 
 + (void)globalSyncProcessingQueue:(void (^)(void))block
 {
-    NSAssert(block != nil, @"block could not be nil!!");
+    CGE_NSAssert(block != nil, @"block could not be nil!!");
     
     if (dispatch_get_specific([CGESharedGLContext globalGLContext]->_contextKey))
     {
@@ -157,7 +157,7 @@ static CGESharedGLContext* s_globalContext = nil;
 
 + (void)globalAsyncProcessingQueue:(void (^)(void))block
 {
-    NSAssert(block != nil, @"block could not be nil!!");
+    CGE_NSAssert(block != nil, @"block could not be nil!!");
     
     if (dispatch_get_specific([CGESharedGLContext globalGLContext]->_contextKey))
     {

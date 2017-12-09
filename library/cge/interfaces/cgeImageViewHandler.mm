@@ -68,7 +68,7 @@ using namespace CGE;
         [_sharedContext makeCurrent];
         _imageHandler = new CGEImageHandlerIOS;
         TextureDrawer* drawer = _imageHandler->getResultDrawer();
-        assert(drawer != nullptr);
+        CGEAssert(drawer != nullptr);
         drawer->setFlipScale(1.0f, -1.0f);
     }];
 }

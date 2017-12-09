@@ -67,7 +67,7 @@ static void contextRelease()
 
 - (void)syncProcessingQueue:(void (^)(void))block
 {
-    NSAssert(block != nil, @"block could not be nil!!");
+    CGE_NSAssert(block != nil, @"block could not be nil!!");
     
     if (dispatch_get_specific(_contextKey))
     {
@@ -83,7 +83,7 @@ static void contextRelease()
 
 - (void)asyncProcessingQueue:(void (^)(void))block
 {
-    NSAssert(block != nil, @"block could not be nil!!");
+    CGE_NSAssert(block != nil, @"block could not be nil!!");
     
     if (dispatch_get_specific(_contextKey))
     {

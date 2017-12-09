@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeFilterBasic.cpp
 *
 *  Created on: 2013-12-25
@@ -64,6 +64,14 @@ namespace CGE
 	{
 		COMMON_FUNC(CGESaturationFilter);
 	}
+    
+    CGEMotionBlurFilter* createMotionBlurFilter(){
+        COMMON_FUNC(CGEMotionBlurFilter);
+    }
+    
+    CGEMotionBlurCurveFilter* createMotionBlurCurveFilter(){
+        COMMON_FUNC(CGEMotionBlurCurveFilter);
+    }
 	
 	CGEShadowHighlightFilter* createShadowHighlightFilter()
 	{

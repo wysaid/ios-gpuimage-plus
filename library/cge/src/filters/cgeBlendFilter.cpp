@@ -1013,7 +1013,10 @@ namespace CGE
 		if(m_uniformParam != nullptr)
 			m_uniformParam->assignUniforms(handler, m_program.programID());
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 
 	//////////////////////////////////////////////////////////////////////////

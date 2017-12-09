@@ -98,7 +98,7 @@ CGE_UNEXPECTED_ERR_MSG
         }
         
         _textureDrawer = TextureDrawer::create();
-        assert(_textureDrawer != nullptr);
+        CGEAssert(_textureDrawer != nullptr);
         
         _textureDrawer->setFlipScale(_drawerFlipScaleX, _drawerFlipScaleY);
     }];
@@ -315,7 +315,7 @@ CGE_UNEXPECTED_ERR_MSG
 
 - (void)takeShot :(void (^)(UIImage*))block
 {
-    NSAssert(block != nil, @"takeshot: block should not be nil!");
+    CGE_NSAssert(block != nil, @"takeshot: block should not be nil!");
     
     if(_sharedContext == nil || _videoHandler == nil) {
         CGE_NSLog(@"Err: taking shot after release!!\n");

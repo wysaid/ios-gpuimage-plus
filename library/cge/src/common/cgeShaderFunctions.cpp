@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeShaderFunctions.cpp
 *
 *  Created on: 2013-12-5
@@ -9,6 +9,7 @@
 #include "cgeCommonDefine.h"
 #include "cgeGLFunctions.h"
 #include "cgeShaderFunctions.h"
+#include <vector>
 
 CGE_UNEXPECTED_ERR_MSG
 (
@@ -41,12 +42,11 @@ namespace CGE
 		if(m_shaderID == 0)
 		{
 			m_shaderID = glCreateShader(m_shaderType);
-			CGE_LOG_CODE(
-			if(m_shaderID == 0) 
+			if(m_shaderID == 0)
 			{
 				CGE_LOG_ERROR("glCreateShader Failed!");
 				return false;
-			})
+			}
 		}
 		glShaderSource(m_shaderID, 1, (const GLchar**)&shaderString, nullptr);
 		glCompileShader(m_shaderID);
@@ -55,19 +55,15 @@ namespace CGE
 
 		if(compiled == GL_TRUE) return true;
 
-		CGE_LOG_CODE(
 		GLint logLen;
 		glGetShaderiv(m_shaderID, GL_INFO_LOG_LENGTH, &logLen);
 		if(logLen > 0)
 		{
-			char *buf = new char[logLen];
-			if(buf != nullptr)
-			{
-				glGetShaderInfoLog(m_shaderID, logLen, &logLen, buf);
-				CGE_LOG_ERROR("Shader %d compile faild: \n%s\n", m_shaderID, buf);
-				delete[] buf;
-			}
-		})
+            std::vector<char> buf(logLen + 1);
+            glGetShaderInfoLog(m_shaderID, logLen, &logLen, buf.data());
+            buf[logLen] = '\0';
+            CGE_LOG_ERROR("Shader %d compile faild: \n%s\n", m_shaderID, buf.data());
+		}
 		return false;
 	}
 
@@ -173,9 +169,11 @@ namespace CGE
 
 	void UniformParameters::clear()
 	{
-		for(std::vector<UniformData*>::iterator iter = m_vecUniforms.begin();
-			iter != m_vecUniforms.end(); ++iter)
-			delete *iter;
+        for(UniformData* data : m_vecUniforms)
+        {
+            delete data;
+        }
+        
 		m_vecUniforms.clear();
 	}
 
@@ -369,13 +367,10 @@ namespace CGE
 			glGetProgramiv(m_programID, GL_INFO_LOG_LENGTH, &logLen);
 			if(logLen != 0)
 			{
-				char *buf = new char[logLen];
-				if(buf != nullptr)
-				{
-					glGetProgramInfoLog(m_programID, logLen, &logLen, buf);
-					CGE_LOG_ERROR("Failed to link the program!\n%s", buf);
-					delete[] buf;
-				}
+                std::vector<char> buf(logLen + 1);
+                glGetProgramInfoLog(m_programID, logLen, &logLen, buf.data());
+                buf[logLen] = '\0';
+                CGE_LOG_ERROR("Failed to link the program!\n%s", buf.data());
 			}
 			CGE_LOG_ERROR("LINK %d Failed\n", m_programID);
 			return false;

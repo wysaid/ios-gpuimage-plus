@@ -1,4 +1,4 @@
-﻿/*
+/*
 @Author: wysaid
 @Blog: blog.wysaid.org
 @Date: 2013-10-31
@@ -848,6 +848,7 @@ namespace CGE
         inline operator CGPoint() const { cgeStaticAssert(DIM == 2); return CGPointMake(m_data[0], m_data[1]); }
         inline operator CGSize() const { cgeStaticAssert(DIM == 2); return CGSizeMake(m_data[0], m_data[1]); }
         inline Vec& operator=(const CGPoint& p) { cgeStaticAssert(DIM == 2); m_data[0] = p.x; m_data[1] = p.y; return *this; }
+        inline Vec& operator=(const CGSize& p) { cgeStaticAssert(DIM == 2); m_data[0] = p.width; m_data[1] = p.height; return *this; }
         
 #endif
         

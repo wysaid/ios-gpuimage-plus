@@ -29,11 +29,13 @@
 #define _CGE_ONLY_FILTERS_ 1
 #endif
 
+#define _CGE_USE_GLOBAL_GL_CACHE_ 0
+
 //_CGE_STATIC_ASSERT_ 为过时设定， 用于兼容不支持 C++ 11 static_assert 配置
 //#define _CGE_STATIC_ASSERT_ 1
 
 //定义 _CGE_USE_LOG_ERR_ 可以强制开启所有的cge内建 error log
-#define _CGE_USE_LOG_ERR_
+#define _CGE_USE_LOG_ERR_ 1
 
 #define _CGE_DISABLE_GLOBALCONTEXT_ 1
 
@@ -43,10 +45,12 @@
 
 //#define _CGE_SHOW_RENDER_FPS_ 1
 #define CGE_NSLog_Code(...) __VA_ARGS__
+#define CGE_NSAssert NSAssert
 
 #else
 
 #define CGE_NSLog_Code(...)
+#define CGE_NSAssert(...)
 
 #endif
 
@@ -62,5 +66,7 @@
 #endif
 
 //#define CGE_USE_WEBP 1
+
+//#define CGE_USE_RAPIDJSON 1
 
 #endif

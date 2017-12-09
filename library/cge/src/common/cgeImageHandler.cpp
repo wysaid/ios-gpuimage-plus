@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeImageHandler.cpp
 *
 *  Created on: 2013-12-13
@@ -8,8 +8,6 @@
 
 #include "cgeImageHandler.h"
 #include "cgeTextureUtils.h"
-
-#include <cassert>
 
 CGE_UNEXPECTED_ERR_MSG
 (
@@ -68,7 +66,7 @@ namespace CGE
 
     void CGEImageHandlerInterface::copyTextureData(void* data, int w, int h, GLuint texID, GLenum dataFmt, GLenum channelFmt)
     {
-        assert(texID != 0); //Invalid Texture ID
+        CGEAssert(texID != 0); //Invalid Texture ID
 
         CGE_ENABLE_GLOBAL_GLCONTEXT();
 
@@ -192,6 +190,9 @@ namespace CGE
 		if(textureID == 0 || w < 1 || h < 1)
 			return false;
 
+        if(m_srcTexture != 0)
+            glDeleteTextures(1, &m_srcTexture);
+        
 		m_srcTexture = textureID;
 		m_dstImageSize.set(w, h);
 
@@ -209,6 +210,23 @@ namespace CGE
 			m_srcTexture = 0;
 		return true;
 	}
+    
+    bool CGEImageHandler::updateTexture(GLuint textureID, int w, int h)
+    {
+        if(m_bufferTextures[0] != 0 && textureID != 0 && w == m_dstImageSize.width && h == m_dstImageSize.height)
+        {
+            GLuint srcTexture = m_srcTexture;
+            bool revEnabled = m_bRevertEnabled;
+            m_bRevertEnabled = true;
+            m_srcTexture = textureID;
+            revertToKeptResult(false);
+            m_srcTexture = srcTexture;
+            m_bRevertEnabled = revEnabled;
+            
+            return true;
+        }
+        return false;
+    }
 
 #ifdef _CGE_USE_ES_API_3_0_
 	extern bool g_shouldUsePBO;
@@ -455,7 +473,7 @@ namespace CGE
 
 	bool CGEImageHandler::copyTexture(GLuint dst, GLuint src, int xOffset, int yOffset, int x, int y, int w, int h)
 	{
-		assert(dst != 0 && src != 0);
+		CGEAssert(dst != 0 && src != 0);
 		useImageFBO();
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, src, 0);
 		glBindTexture(GL_TEXTURE_2D, dst);
@@ -581,25 +599,17 @@ namespace CGE
 		}
 
 		CGE_ENABLE_GLOBAL_GLCONTEXT();
-		assert(m_vertexArrayBuffer != 0);
+		CGEAssert(m_vertexArrayBuffer != 0);
 
         glDisable(GL_BLEND);
-
-        CGE_LOG_CODE(int index = 0;);
-        CGE_LOG_CODE(clock_t total = clock(););
         for(std::vector<CGEImageFilterInterfaceAbstract*>::iterator iter = m_vecFilters.begin();
             iter < m_vecFilters.end(); ++iter)
         {
             swapBufferFBO();
-            CGE_LOG_CODE(clock_t t = clock();)
-            CGE_LOG_INFO("####Start Processing step %d...\n", ++index);
 			glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffer);
             (*iter)->render2Texture(this, m_bufferTextures[1], m_vertexArrayBuffer);
             glFlush();
-            CGE_LOG_INFO("####Processing step %d finished. Time: %gs .\n", index, float(clock() - t) / CLOCKS_PER_SEC);
         }
-		glFinish();
-        CGE_LOG_INFO("####Finished Processing All! Total time: %gs \n", float(clock() - total) / CLOCKS_PER_SEC);
     }
 
 	bool CGEImageHandler::processingWithFilter(GLint index)
@@ -615,17 +625,13 @@ namespace CGE
 			return false;
 
 		CGE_ENABLE_GLOBAL_GLCONTEXT();
-		assert(m_vertexArrayBuffer != 0);
+		CGEAssert(m_vertexArrayBuffer != 0);
 
 		glDisable(GL_BLEND);
 		glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffer);
 		swapBufferFBO();
-
-//		CGE_LOG_CODE(clock_t t = clock());
-//		CGE_LOG_INFO("####Start Processing...");
 		proc->render2Texture(this, m_bufferTextures[1], m_vertexArrayBuffer);
 		glFlush();
-//		CGE_LOG_INFO("####Finished Processing! Time: %gs \n", float(clock() - t) / CLOCKS_PER_SEC);
 		return true;
 	}
 

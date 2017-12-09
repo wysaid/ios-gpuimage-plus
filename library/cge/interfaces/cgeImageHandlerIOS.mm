@@ -140,7 +140,7 @@ namespace CGE
         }
         
         glDisable(GL_BLEND);
-        assert(m_vertexArrayBuffer != 0);
+        CGEAssert(m_vertexArrayBuffer != 0);
         
         for(auto* filter : m_vecFilters)
         {

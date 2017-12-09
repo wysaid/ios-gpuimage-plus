@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeMultipleEffectsCommon.cpp
  *
  *  Created on: 2014-1-2
@@ -7,6 +7,7 @@
 */
 
 #include "cgeMultipleEffectsCommon.h"
+#include <cstdlib>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -462,7 +463,10 @@ namespace CGE
 		}
 
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -542,7 +546,10 @@ namespace CGE
 		}
 
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -707,7 +714,10 @@ namespace CGE
 		}
 
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeMultipleEffects.cpp
  *
  *  Created on: 2013-12-13
@@ -69,7 +69,10 @@ namespace CGE
 		glBindTexture(GL_TEXTURE_2D, srcTexture);
 
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+         cgeCheckGLError("glDrawArrays");
+         )
 	}
 
 	bool CGEMutipleMixFilter::needToMix()
@@ -347,7 +350,7 @@ namespace CGE
              if(m_isWrapper)
              {
                  CGE_LOG_ERROR("Invalid usage!! A wrapper should not be directly rendered!\n");
-                 assert(0);
+                 CGEAssert(0);
              }
             )
             

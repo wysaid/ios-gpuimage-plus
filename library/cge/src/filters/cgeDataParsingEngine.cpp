@@ -573,8 +573,9 @@ do{\
 				return nullptr;
 			}
 		}
-		else if(strcmp(buffer, "lut") == 0)
+		else if(strcmp(buffer, "lut") == 0 || strcmp(buffer, "lut2") == 0)
 		{
+            bool isLut2 = strcmp(buffer, "lut2") == 0;
 			char lutName[128];
 			if(sscanf(pstr, "%127s", lutName) != 1)
 			{
@@ -582,17 +583,35 @@ do{\
 				return nullptr;
 			}
 
-			CGELookupFilter* filter = createLookupFilter();
-			GLuint tex = fatherFilter->loadResources(lutName);
-			if(filter != nullptr && tex != 0)
+            GLuint tex = fatherFilter->loadResources(lutName);
+            
+            if(tex == 0)
+            {
+                CGE_LOG_ERROR("Load resource %s failed!\n", lutName);
+                return nullptr;
+            }
+            
+            if(isLut2)
+            {
+                CGECurveTexFilter* filter = createCurveTexFilter();
+                if(filter != nullptr)
+                {
+                    filter->setCurveTexture(tex);
+                    proc = filter;
+                }
+            }
+            else
+            {
+                CGELookupFilter* filter = createLookupFilter();
+                if(filter != nullptr)
+                {
+                    filter->setLookupTexture(tex);
+                    proc = filter;
+                }
+            }
+            
+            if(proc == nullptr)
 			{
-				filter->setLookupTexture(tex);
-				proc = filter;
-			}
-			else
-			{
-				delete filter;
-				glDeleteTextures(1, &tex);
 				CGE_LOG_ERROR("CGEDataParsingEngine::adjustParser Create Lookup filter Failed\n");
 			}
 		}
@@ -1380,6 +1399,39 @@ do{\
                 proc = filter;
                 filter->setTotalFrames(totalFrames);
                 filter->setFrameDelay(framesDelay);
+            }
+        }
+        else if(strcmp(buffer, "mf2") == 0 || strcmp(buffer, "motionflow2") == 0)
+        {
+            int totalFrames, framesDelay;
+            if(sscanf(pstr, "%d%*c%d", &totalFrames, &framesDelay) != 2)
+            {
+                LOG_ERROR_PARAM(pstr);
+                return nullptr;
+            }
+            
+            auto* filter = createMotionFlow2Filter();
+            if(filter != nullptr)
+            {
+                proc = filter;
+                filter->setTotalFrames(totalFrames);
+                filter->setFrameDelay(framesDelay);
+            }
+        }
+        else if(strcmp(buffer, "soulstuff") == 0 || strcmp(buffer, "ss") == 0)
+        {
+            auto* filter = createSoulStuffFilter();
+            
+            if(filter != nullptr)
+            {
+                float x, y;
+                
+                filter->enableContinuouslyTrigger(true);
+                if(sscanf(pstr, "%f%*c%f", &x, &y) == 2)
+                {
+                    proc = filter;
+                    filter->setSoulStuffPos(x, y);
+                }
             }
         }
 		else

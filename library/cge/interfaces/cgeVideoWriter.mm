@@ -142,7 +142,7 @@ private:
     _assetWriter = [[AVAssetWriter alloc] initWithURL:_fileURL fileType:_fileType error:&error];
     [_assetWriter setShouldOptimizeForNetworkUse:YES];
     
-    NSAssert(error == nil, @"initializeMovieWithOutputSettings error: %@", error);
+    CGE_NSAssert(error == nil, @"initializeMovieWithOutputSettings error: %@", error);
     
 //    [_assetWriter setShouldOptimizeForNetworkUse:YES];
     
@@ -189,7 +189,7 @@ private:
         NSString *videoCodec = [outputSettings objectForKey:AVVideoCodecKey];
         NSNumber *width = [outputSettings objectForKey:AVVideoWidthKey];
         NSNumber *height = [outputSettings objectForKey:AVVideoHeightKey];
-        NSAssert(videoCodec, @"OutputSettings is missing required parameters.");
+        CGE_NSAssert(videoCodec, @"OutputSettings is missing required parameters.");
         if(videoCodec == nil)
         {
             CGE_LOG_ERROR("Invalid outputSetting!!");
@@ -247,7 +247,7 @@ private:
     
     err = CVPixelBufferPoolCreatePixelBuffer (NULL, [_assetPixelBufferInput pixelBufferPool], &_pixelBufferRef);
     
-    NSAssert(err == kCVReturnSuccess, @"CVPixelBufferPoolCreatePixelBuffer failed!\n");    
+    CGE_NSAssert(err == kCVReturnSuccess, @"CVPixelBufferPoolCreatePixelBuffer failed!\n");    
     
     /* AVAssetWriter will use BT.601 conversion matrix for RGB to YCbCr conversion
      * regardless of the kCVImageBufferYCbCrMatrixKey value.
@@ -260,7 +260,7 @@ private:
     
     err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, [_sharedContext context], NULL, &_textureCacheRef);
     
-    NSAssert(err == kCVReturnSuccess, @"CVOpenGLESTextureCacheCreate failed!\n");
+    CGE_NSAssert(err == kCVReturnSuccess, @"CVOpenGLESTextureCacheCreate failed!\n");
     
     err = CVOpenGLESTextureCacheCreateTextureFromImage (kCFAllocatorDefault, _textureCacheRef, _pixelBufferRef,
                                                   NULL, // texture attributes
@@ -273,7 +273,7 @@ private:
                                                   0,
                                                   &_textureRef);
     
-    NSAssert(err == kCVReturnSuccess, @"CVOpenGLESTextureCacheCreateTextureFromImage failed!\n");
+    CGE_NSAssert(err == kCVReturnSuccess, @"CVOpenGLESTextureCacheCreateTextureFromImage failed!\n");
     
     glBindTexture(CVOpenGLESTextureGetTarget(_textureRef), CVOpenGLESTextureGetName(_textureRef));
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -285,7 +285,7 @@ private:
     
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     
-    NSAssert(status == GL_FRAMEBUFFER_COMPLETE, @"Incomplete filter FBO: %x\n", status);
+    CGE_NSAssert(status == GL_FRAMEBUFFER_COMPLETE, @"Incomplete filter FBO: %x\n", status);
     
 #endif
     
@@ -437,7 +437,7 @@ private:
     _encodingLiveVideo = value;
 //    if (_isRecording)
 //    {
-//        NSAssert(NO, @"Can not change Encoding Live Video while recording");
+//        CGE_NSAssert(NO, @"Can not change Encoding Live Video while recording");
 //    }
 //    else
 //    {
@@ -1092,7 +1092,7 @@ private:
 
 + (void)remuxingVideoWithTimescale:(NSURL *)outputVideoURL inputURL:(NSURL *)inputURL timescale:(double)timescale quality:(NSString *)quality completionHandler:(void (^)(BOOL))block
 {
-    assert(block != nil); //block should not be nil!
+    CGEAssert(block != nil); //block should not be nil!
     
     NSFileManager* fileManager = [NSFileManager defaultManager];
     
@@ -1192,7 +1192,7 @@ private:
 
 + (void)reverseVideo:(NSURL *)outputVideoURL inputURL:(NSURL *)inputURL completionHandler:(void (^)(BOOL))block
 {
-    assert(block != nil);
+    CGEAssert(block != nil);
     
     {
         NSFileManager* fileManager = [NSFileManager defaultManager];
@@ -1472,7 +1472,7 @@ private:
 {
     CGE_NSLog(@"recompressVideo start...");
     
-    assert(block != nil);
+    CGEAssert(block != nil);
     
     {
         NSFileManager* fileManager = [NSFileManager defaultManager];

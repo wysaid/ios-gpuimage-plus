@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeFilterBasic.h
  *
  *  Created on: 2013-12-25
@@ -25,6 +25,7 @@
 #include "cgeHueAdjust.h"
 #include "cgeColorBalanceAdjust.h"
 #include "cgeLookupFilter.h"
+#include "cgeMotionBlurAdjust.h"
 
 namespace CGE
 {
@@ -37,6 +38,8 @@ namespace CGE
 	CGESharpenBlurSimpleBetterFilter* createSharpenBlurSimpleBetterFilter();
 	CGESaturationHSLFilter* createSaturationHSLFilter();
 	CGESaturationFilter* createSaturationFilter();
+    CGEMotionBlurFilter* createMotionBlurFilter();
+    CGEMotionBlurCurveFilter *createMotionBlurCurveFilter();
 	CGEShadowHighlightFilter* createShadowHighlightFilter();
 	CGEShadowHighlightFastFilter* createShadowHighlightFastFilter();
 	CGEWhiteBalanceFilter* createWhiteBalanceFilter();

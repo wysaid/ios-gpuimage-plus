@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeAdvancedEffectsCommon.cpp
  *
  *  Created on: 2013-12-13
@@ -29,7 +29,10 @@ namespace CGE
 			 m_program.sendUniformf(paramStepsName, 1.0f / sz.width, 1.0f / sz.height);
 		 }
 		 glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		 cgeCheckGLError("glDrawArrays");
+         CGE_LOG_CODE
+         (
+         cgeCheckGLError("glDrawArrays");
+         )
 	 }
 
 	 //////////////////////////////////////////////////////////////////////////

@@ -62,7 +62,7 @@ namespace CGE
     {
         clear();
         
-        assert(frames > 0);
+        CGEAssert(frames > 0);
         
         if(frames <= 0)
             return;

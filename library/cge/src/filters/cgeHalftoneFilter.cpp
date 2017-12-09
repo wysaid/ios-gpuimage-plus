@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeHalftoneFilter.cpp
  *
  *  Created on: 2015-1-29
@@ -67,6 +67,9 @@ namespace CGE
 		m_program.sendUniformf(paramAspectRatio, aspectRatio);
 		m_program.sendUniformf(paramDotPercent, dotPercent, dotPercent / aspectRatio);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-		cgeCheckGLError("glDrawArrays");
+        CGE_LOG_CODE
+        (
+        cgeCheckGLError("glDrawArrays");
+        )
 	}
 }

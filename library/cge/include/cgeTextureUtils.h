@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeTextureUtils.h
 *
 *  Created on: 2015-7-29
@@ -174,10 +174,54 @@ namespace CGE
     private:
         bool init();
     };
+    
+    ////////////////////////////////////////////////////////////
+
+    enum CGETextureDrawerOutputFormat {
+        CGETextureDrawerOutputFormat_Default, //RGBA
+        CGETextureDrawerOutputFormat_BGRA, //BGRA
+    };
+    
+    class TextureDrawerRGB2YUV420P : public TextureDrawer
+    {
+    public:
+        
+        CGE_COMMON_CREATE_FUNC_WITH_PARAM(TextureDrawerRGB2YUV420P, initWithOutputFormat, CGETextureDrawerOutputFormat, = CGETextureDrawerOutputFormat_Default);
+        
+    	void setOutputSize(int width, int height);
+        
+    protected:
+        bool initWithOutputFormat(CGETextureDrawerOutputFormat format);
+        
+        CGEConstString getFragmentShaderString();
+        CGEConstString getVertexShaderString();
+    };
+    
+    class TextureDrawerRGB2NV21 : public TextureDrawerRGB2YUV420P
+    {
+    public:
+        
+        CGE_COMMON_CREATE_FUNC_WITH_PARAM(TextureDrawerRGB2NV21, initWithOutputFormat, CGETextureDrawerOutputFormat, = CGETextureDrawerOutputFormat_Default);
+        
+    protected:
+        CGEConstString getFragmentShaderString();
+    };
+    
+    class TextureDrawerRGB2NV12 : public TextureDrawerRGB2YUV420P
+    {
+    public:
+        
+        CGE_COMMON_CREATE_FUNC_WITH_PARAM(TextureDrawerRGB2NV12, initWithOutputFormat, CGETextureDrawerOutputFormat, = CGETextureDrawerOutputFormat_Default);
+        
+    protected:
+        CGEConstString getFragmentShaderString();
+    };
+    
     ////////////////////////////////////////////////////////////
 
     class CGELerpBlurUtil
     {
+    protected:
         CGELerpBlurUtil();
     public:
         

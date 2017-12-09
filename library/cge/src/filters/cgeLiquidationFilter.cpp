@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeLiquidation.cpp
 *
 *  Created on: 2014-5-15
@@ -328,7 +328,10 @@ namespace CGE
 		}
 #endif
 		
-		cgeCheckGLError("glDrawElements");
+        CGE_LOG_CODE
+        (
+        cgeCheckGLError("glDrawElements");
+        )
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}

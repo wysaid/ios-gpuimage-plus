@@ -992,11 +992,13 @@ static int s_fpsCount;
     {
         [CGESharedGLContext globalSyncProcessingQueue:^{
             [CGESharedGLContext useGlobalGLContext];
+#if _CGE_USE_GLOBAL_GL_CACHE_
             if(CGEGlobalConfig::sVertexBufferCommon == 0)
             {
                 cgeInitialize(videoFrameRecorder.videoResolution.width, videoFrameRecorder.videoResolution.height, CGEGlobalConfig::CGE_INIT_DEFAULT);
             }
             else
+#endif
             {
                 cgeSetGlobalViewSize(videoFrameRecorder.videoResolution.width, videoFrameRecorder.videoResolution.height);
             }
