@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeGlobal.h
 *
 *  Created on: 2014-9-9
@@ -70,11 +70,11 @@ namespace CGE
 extern "C" {
 #endif
     
-    void cgePrintGLInfo();
-    const char* cgeQueryGLExtensions();
+    void cgePrintGLInfo(void);
+    const char* cgeQueryGLExtensions(void);
     bool cgeCheckGLExtension(const char* ext);
 
-	GLuint cgeGenCommonQuadArrayBuffer();
+	GLuint cgeGenCommonQuadArrayBuffer(void);
     
 #ifdef __cplusplus
 }

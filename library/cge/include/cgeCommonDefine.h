@@ -326,7 +326,7 @@ extern "C" {
         CGEGLOBAL_BLEND_SCREEN_EXT,
     }CGEGlobalBlendMode;
     
-    const char* cgeGetVersion();
+    const char* cgeGetVersion(void);
     void cgePrintGLString(const char*, GLenum);
     bool _cgeCheckGLError(const char* name, const char* file, int line); //请直接使用 cgeCheckGLError
     
