@@ -217,7 +217,7 @@ static const int s_functionNum = sizeof(s_functionList) / sizeof(*s_functionList
     
     [CGESharedGLContext globalSyncProcessingQueue:^{
         [CGESharedGLContext useGlobalGLContext];
-        void cgePrintGLInfo();
+        void cgePrintGLInfo(void);
         cgePrintGLInfo();
     }];
     
