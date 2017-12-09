@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D19047F1FDBEAA400A69B36 /* cgeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D19047E1FDBEAA400A69B36 /* cgeAction.cpp */; };
+		3D1904841FDBEAC400A69B36 /* cgeMotionBlurAdjust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1904821FDBEAC400A69B36 /* cgeMotionBlurAdjust.cpp */; };
+		3D1904851FDBEAC400A69B36 /* cgeZoomBlurAdjust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1904831FDBEAC400A69B36 /* cgeZoomBlurAdjust.cpp */; };
+		3D1904881FDBEAE000A69B36 /* cgeSoulStuffFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1904871FDBEAE000A69B36 /* cgeSoulStuffFilter.cpp */; };
 		3D88CC7B1E96453F00889D6B /* cgeColorMappingFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D88CC781E96453F00889D6B /* cgeColorMappingFilter.cpp */; };
 		3D88CC7C1E96453F00889D6B /* cgeMotionFlowFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D88CC791E96453F00889D6B /* cgeMotionFlowFilter.cpp */; };
 		3D88CC921E96483800889D6B /* cgeAnimationParser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3D88CC911E96483800889D6B /* cgeAnimationParser.mm */; };
@@ -92,6 +96,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D1904761FDBEA9A00A69B36 /* cgeSlideshowSprite2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSlideshowSprite2d.h; path = include/cgeSlideshowSprite2d.h; sourceTree = "<group>"; };
+		3D1904771FDBEA9A00A69B36 /* cgeSlideshow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSlideshow.h; path = include/cgeSlideshow.h; sourceTree = "<group>"; };
+		3D1904781FDBEA9A00A69B36 /* cgeSprite3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSprite3d.h; path = include/cgeSprite3d.h; sourceTree = "<group>"; };
+		3D1904791FDBEA9A00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSlideshowSprite2dWith3dSpace.h; path = include/cgeSlideshowSprite2dWith3dSpace.h; sourceTree = "<group>"; };
+		3D19047A1FDBEA9A00A69B36 /* cgeSpriteCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSpriteCommon.h; path = include/cgeSpriteCommon.h; sourceTree = "<group>"; };
+		3D19047B1FDBEA9A00A69B36 /* cgeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeAnimation.h; path = include/cgeAnimation.h; sourceTree = "<group>"; };
+		3D19047C1FDBEA9A00A69B36 /* cgeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeAction.h; path = include/cgeAction.h; sourceTree = "<group>"; };
+		3D19047D1FDBEA9A00A69B36 /* cgeSprite2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSprite2d.h; path = include/cgeSprite2d.h; sourceTree = "<group>"; };
+		3D19047E1FDBEAA400A69B36 /* cgeAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeAction.cpp; path = src/animation/cgeAction.cpp; sourceTree = "<group>"; };
+		3D1904801FDBEAB900A69B36 /* cgeMotionBlurAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeMotionBlurAdjust.h; path = include/filters/cgeMotionBlurAdjust.h; sourceTree = "<group>"; };
+		3D1904811FDBEAB900A69B36 /* cgeZoomBlurAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeZoomBlurAdjust.h; path = include/filters/cgeZoomBlurAdjust.h; sourceTree = "<group>"; };
+		3D1904821FDBEAC400A69B36 /* cgeMotionBlurAdjust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeMotionBlurAdjust.cpp; path = src/filters/cgeMotionBlurAdjust.cpp; sourceTree = "<group>"; };
+		3D1904831FDBEAC400A69B36 /* cgeZoomBlurAdjust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeZoomBlurAdjust.cpp; path = src/filters/cgeZoomBlurAdjust.cpp; sourceTree = "<group>"; };
+		3D1904861FDBEAD900A69B36 /* cgeSoulStuffFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSoulStuffFilter.h; path = include/filters/cgeSoulStuffFilter.h; sourceTree = "<group>"; };
+		3D1904871FDBEAE000A69B36 /* cgeSoulStuffFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeSoulStuffFilter.cpp; path = src/filters/cgeSoulStuffFilter.cpp; sourceTree = "<group>"; };
 		3D88CC751E96451800889D6B /* cgeColorMappingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeColorMappingFilter.h; path = include/filters/cgeColorMappingFilter.h; sourceTree = "<group>"; };
 		3D88CC761E96451800889D6B /* cgeMotionFlowFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeMotionFlowFilter.h; path = include/filters/cgeMotionFlowFilter.h; sourceTree = "<group>"; };
 		3D88CC781E96453F00889D6B /* cgeColorMappingFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeColorMappingFilter.cpp; path = src/filters/cgeColorMappingFilter.cpp; sourceTree = "<group>"; };
@@ -134,8 +153,6 @@
 		D34CD3111BD4EB0500154CEE /* cgeEdgeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEdgeFilter.h; path = include/filters/cgeEdgeFilter.h; sourceTree = "<group>"; };
 		D34CD3121BD4EB0500154CEE /* cgeEmbossFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEmbossFilter.h; path = include/filters/cgeEmbossFilter.h; sourceTree = "<group>"; };
 		D34CD3141BD4EB0500154CEE /* cgeExposureAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeExposureAdjust.h; path = include/filters/cgeExposureAdjust.h; sourceTree = "<group>"; };
-		D34CD3151BD4EB0500154CEE /* cgeEyeBrightenFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEyeBrightenFilter.h; path = include/filters/cgeEyeBrightenFilter.h; sourceTree = "<group>"; };
-		D34CD3161BD4EB0500154CEE /* cgeEyeTintFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEyeTintFilter.h; path = include/filters/cgeEyeTintFilter.h; sourceTree = "<group>"; };
 		D34CD3181BD4EB0500154CEE /* cgeFilterBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeFilterBasic.h; path = include/filters/cgeFilterBasic.h; sourceTree = "<group>"; };
 		D34CD3191BD4EB0500154CEE /* cgeHalftoneFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeHalftoneFilter.h; path = include/filters/cgeHalftoneFilter.h; sourceTree = "<group>"; };
 		D34CD31A1BD4EB0500154CEE /* cgeHazeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeHazeFilter.h; path = include/filters/cgeHazeFilter.h; sourceTree = "<group>"; };
@@ -259,6 +276,15 @@
 		3D88CC811E9645A500889D6B /* animation */ = {
 			isa = PBXGroup;
 			children = (
+				3D19047E1FDBEAA400A69B36 /* cgeAction.cpp */,
+				3D19047C1FDBEA9A00A69B36 /* cgeAction.h */,
+				3D19047B1FDBEA9A00A69B36 /* cgeAnimation.h */,
+				3D1904771FDBEA9A00A69B36 /* cgeSlideshow.h */,
+				3D1904761FDBEA9A00A69B36 /* cgeSlideshowSprite2d.h */,
+				3D1904791FDBEA9A00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h */,
+				3D19047D1FDBEA9A00A69B36 /* cgeSprite2d.h */,
+				3D1904781FDBEA9A00A69B36 /* cgeSprite3d.h */,
+				3D19047A1FDBEA9A00A69B36 /* cgeSpriteCommon.h */,
 			);
 			name = animation;
 			sourceTree = "<group>";
@@ -323,6 +349,8 @@
 		D3107A0C1BFC8409003D8060 /* advanced */ = {
 			isa = PBXGroup;
 			children = (
+				3D1904871FDBEAE000A69B36 /* cgeSoulStuffFilter.cpp */,
+				3D1904861FDBEAD900A69B36 /* cgeSoulStuffFilter.h */,
 				D34CD3611BD4EB0500154CEE /* cgeAdvancedEffects.cpp */,
 				D34CD3051BD4EB0500154CEE /* cgeAdvancedEffects.h */,
 				D34CD3621BD4EB0500154CEE /* cgeAdvancedEffectsCommon.cpp */,
@@ -335,8 +363,6 @@
 				D34CD30D1BD4EB0500154CEE /* cgeCrosshatchFilter.h */,
 				D34CD36D1BD4EB0500154CEE /* cgeEdgeFilter.cpp */,
 				D34CD3111BD4EB0500154CEE /* cgeEdgeFilter.h */,
-				D34CD3151BD4EB0500154CEE /* cgeEyeBrightenFilter.h */,
-				D34CD3161BD4EB0500154CEE /* cgeEyeTintFilter.h */,
 				D34CD3751BD4EB0500154CEE /* cgeHalftoneFilter.cpp */,
 				D34CD3191BD4EB0500154CEE /* cgeHalftoneFilter.h */,
 				D34CD3761BD4EB0500154CEE /* cgeHazeFilter.cpp */,
@@ -362,6 +388,10 @@
 		D3107A0D1BFC8418003D8060 /* basic */ = {
 			isa = PBXGroup;
 			children = (
+				3D1904821FDBEAC400A69B36 /* cgeMotionBlurAdjust.cpp */,
+				3D1904831FDBEAC400A69B36 /* cgeZoomBlurAdjust.cpp */,
+				3D1904801FDBEAB900A69B36 /* cgeMotionBlurAdjust.h */,
+				3D1904811FDBEAB900A69B36 /* cgeZoomBlurAdjust.h */,
 				D34CD3651BD4EB0500154CEE /* cgeBrightnessAdjust.cpp */,
 				D34CD3091BD4EB0500154CEE /* cgeBrightnessAdjust.h */,
 				D34CD3661BD4EB0500154CEE /* cgeColorBalanceAdjust.cpp */,
@@ -617,6 +647,7 @@
 				D34CD3C71BD4EB0500154CEE /* cgeMonochromeAdjust.cpp in Sources */,
 				D34CD3B31BD4EB0500154CEE /* cgeCurveAdjust.cpp in Sources */,
 				D34CD3D31BD4EB0500154CEE /* cgeSelectiveColorAdjust.cpp in Sources */,
+				3D19047F1FDBEAA400A69B36 /* cgeAction.cpp in Sources */,
 				D34CD3A41BD4EB0500154CEE /* cgeGLFunctions.cpp in Sources */,
 				D34CD3C81BD4EB0500154CEE /* cgeMosaicBlurFilter.cpp in Sources */,
 				D34CD3C11BD4EB0500154CEE /* cgeLerpblurFilter.cpp in Sources */,
@@ -628,6 +659,7 @@
 				D34CD3AF1BD4EB0500154CEE /* cgeColorBalanceAdjust.cpp in Sources */,
 				D34CD3B01BD4EB0500154CEE /* cgeColorLevelAdjust.cpp in Sources */,
 				D34CD3B91BD4EB0500154CEE /* cgeExposureAdjust.cpp in Sources */,
+				3D1904851FDBEAC400A69B36 /* cgeZoomBlurAdjust.cpp in Sources */,
 				3D88CC7B1E96453F00889D6B /* cgeColorMappingFilter.cpp in Sources */,
 				D34CD3D41BD4EB0500154CEE /* cgeShadowHighlightAdjust.cpp in Sources */,
 				D34CD3CE1BD4EB0500154CEE /* cgePolarPixellateFilter.cpp in Sources */,
@@ -647,6 +679,7 @@
 				D34CD3C61BD4EB0500154CEE /* cgeMinValueFilter.cpp in Sources */,
 				D3107A241BFC9D43003D8060 /* cgeDynamicWaveFilter.cpp in Sources */,
 				D34CD3B71BD4EB0500154CEE /* cgeEmbossFilter.cpp in Sources */,
+				3D1904881FDBEAE000A69B36 /* cgeSoulStuffFilter.cpp in Sources */,
 				D34CD3971BD4EB0500154CEE /* cgeImageHandlerIOS.mm in Sources */,
 				D34CD3D91BD4EB0500154CEE /* cgeVignetteAdjust.cpp in Sources */,
 				D34CD3A31BD4EB0500154CEE /* cgeCommonDefine.cpp in Sources */,
@@ -666,6 +699,7 @@
 				D3E919851C0D843D00469EA7 /* cgeThread.cpp in Sources */,
 				DB04059E1D2B9BCE004F481C /* cgeLookupFilter.cpp in Sources */,
 				D34CD3951BD4EB0500154CEE /* cgeFrameRenderer.mm in Sources */,
+				3D1904841FDBEAC400A69B36 /* cgeMotionBlurAdjust.cpp in Sources */,
 				D34CD3A11BD4EB0500154CEE /* cgeVideoPlayerViewHandler.m in Sources */,
 				D34CD3A61BD4EB0500154CEE /* cgeImageFilter.cpp in Sources */,
 				D34CD3A51BD4EB0500154CEE /* cgeGlobal.cpp in Sources */,
