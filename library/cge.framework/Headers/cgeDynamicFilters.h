@@ -1,4 +1,4 @@
-/*
+﻿/*
  * cgeDynamicFilters.h
  *
  *  Created on: 2015-11-18
@@ -10,11 +10,14 @@
 
 #include "cgeDynamicWaveFilter.h"
 #include "cgeMotionFlowFilter.h"
+#include "cgeSoulStuffFilter.h"
 
 namespace CGE
 {
 	CGEDynamicWaveFilter* createDynamicWaveFilter();
     CGEMotionFlowFilter* createMotionFlowFilter();
+    CGEMotionFlow2Filter* createMotionFlow2Filter();
+    CGESoulStuffFilter* createSoulStuffFilter();
 }
 
 #endif

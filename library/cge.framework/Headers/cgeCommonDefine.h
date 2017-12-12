@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgeCommonDefine.h
  *
  *  Created on: 2013-12-6
@@ -114,6 +114,20 @@ CGE_LOG_ERROR("create %s failed!", #cls); \
 return instance; \
 }
 
+#define CGE_COMMON_CREATE_FUNC_WITH_PARAM2(cls, funcName, paramName) \
+static inline cls* create(paramName param) \
+{\
+cls* instance = new cls(param); \
+if(!instance->funcName()) \
+{ \
+delete instance; \
+instance = nullptr; \
+CGE_LOG_ERROR("create %s failed!", #cls); \
+} \
+return instance; \
+}
+
+
 #define CGE_ARRAY_LEN(x) (sizeof(x) / sizeof(*x))
 
 #ifdef __cplusplus
@@ -150,26 +164,27 @@ class CGEBlockLimit
 {
     CGEBlockLimit& operator=(const CGEBlockLimit& other) { return *this; }
 public:
-    explicit CGEBlockLimit(const T& _func) : func(_func) {}
+    explicit CGEBlockLimit(T f) : func(f) {}
     ~CGEBlockLimit() { func(); }
     
 private:
-    const T& func;
+    T func;
 };
 
 template<class T>
-inline CGEBlockLimit<const T&> ___cgeMakeBlockLimit(const T& f)
+inline CGEBlockLimit<const T&> CGE_BLOCK_LIMIT_HELPER3(const T& f)
 {
     return CGEBlockLimit<const T&>(f);
 }
 
-#define __cgeMakeBlockLimit(ARG, ANYSIGN) \
-const auto& ANYSIGN = ___cgeMakeBlockLimit(ARG); \
+#define CGE_BLOCK_LIMIT_HELPER2(ARG, ANYSIGN, LAMBDA_REF) \
+const auto& LAMBDA_REF = ARG; \
+const auto& ANYSIGN = CGE_BLOCK_LIMIT_HELPER3(LAMBDA_REF); \
 (void)ANYSIGN;  // Avoid warning for unused variable.
 
-#define _cgeMakeBlockLimit(ARG, VAR, LINE) __cgeMakeBlockLimit(ARG, VAR ## LINE)
-#define _cgeMakeBlockLimit_(ARG, VAR, LINE) _cgeMakeBlockLimit(ARG, VAR, LINE)
-#define cgeMakeBlockLimit(...) _cgeMakeBlockLimit_(__VA_ARGS__, _blockVar, __LINE__)
+#define CGE_BLOCK_LIMIT_HELPER1(ARG, VAR, LINE) CGE_BLOCK_LIMIT_HELPER2(ARG, VAR ## LINE, VAR ## LINE ## LAMBDA_REF)
+#define CGE_BLOCK_LIMIT_HELPER0(ARG, VAR, LINE) CGE_BLOCK_LIMIT_HELPER1(ARG, VAR, LINE)
+#define cgeMakeBlockLimit(...) CGE_BLOCK_LIMIT_HELPER0(__VA_ARGS__, cge_blockVar, __LINE__)
 
 namespace CGE
 {
@@ -311,7 +326,7 @@ extern "C" {
         CGEGLOBAL_BLEND_SCREEN_EXT,
     }CGEGlobalBlendMode;
     
-    const char* cgeGetVersion();
+    const char* cgeGetVersion(void);
     void cgePrintGLString(const char*, GLenum);
     bool _cgeCheckGLError(const char* name, const char* file, int line); //请直接使用 cgeCheckGLError
     

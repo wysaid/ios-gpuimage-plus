@@ -48,6 +48,8 @@ extern "C" {
 //        GLenum dataFormat; //一般为 GL_UNSIGNED_BYTE
     }CGETextureInfo;
     
+    CGETextureInfo cgeLoadTextureByFile(const char* path);
+    
 #ifdef __OBJC__
     
     // 注意， 图片格式必须为 GL_RGBA + GL_UNSIGNED_BYTE
@@ -73,6 +75,12 @@ extern "C" {
     //info 的 width 和 height 将被写入texture的真实宽高 (tips: 后期可能存在UIImage过大时， 纹理将被压缩， 所以只有从这里获得的参数才是准确值)
     CGETextureInfo cgeUIImage2Texture(UIImage* uiimage);
     
+    
+    //下面三个函数必须在绑定到正确状态之后才能正确调用.
+    UIImage* cgeGrabUIImageWithCurrentFramebuffer(int x, int y, int w, int h); //从当前的fbo抓取UIImage
+    UIImage* cgeGrabUIImageWithFramebuffer(int x, int y, int w, int h, GLuint fbo);
+    UIImage* cgeGrabUIImageWithTexture(int x, int y, int w, int h, GLuint texture);
+    
     //较快创建Texture的方法， 当imageBuffer为NULL 时将使用malloc创建合适大小的buffer。
     GLuint cgeCGImage2Texture(CGImageRef cgImage, void* imageBuffer);
     
@@ -92,9 +100,9 @@ extern "C" {
 
     ///////////////////////////////////
     
-    CGColorSpaceRef cgeCGColorSpaceRGB();
-    CGColorSpaceRef cgeCGColorSpaceGray();
-    CGColorSpaceRef cgeCGColorSpaceCMYK();
+    CGColorSpaceRef cgeCGColorSpaceRGB(void);
+    CGColorSpaceRef cgeCGColorSpaceGray(void);
+    CGColorSpaceRef cgeCGColorSpaceCMYK(void);
     
     CGETextureInfo cgeLoadTextureByPath(NSString* path);
     CGETextureInfo cgeLoadTextureByURL(NSURL* url);
@@ -169,7 +177,7 @@ extern "C" {
      @"x86_64" => @"Simulator"
      */
     
-    NSString* cgeGetMachineDescriptionString();
+    NSString* cgeGetMachineDescriptionString(void);
     
 #endif
     
@@ -181,7 +189,7 @@ extern "C" {
         int majorVerion, minorVersion;
     } CGEDeviceDescription;
     
-    CGEDeviceDescription cgeGetDeviceDescription();
+    CGEDeviceDescription cgeGetDeviceDescription(void);
     
 #ifdef __cplusplus
 }

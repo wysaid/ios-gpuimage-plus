@@ -139,6 +139,15 @@ namespace CGE
 			const float* curveG, size_t nG,
 			const float* curveB, size_t nB);
 
+        inline void setCurveTexture(GLuint texID)
+        {
+            if(m_curveTexture != 0 && m_curveTexture != texID)
+            {
+                glDeleteTextures(1, &m_curveTexture);
+            }
+            m_curveTexture = texID;
+        }
+        
 	protected:
 		void initSampler();
 		void flush();

@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeGLFunctions.h
 *
 *  Created on: 2013-12-5
@@ -10,7 +10,6 @@
 #define _CGEGLFUNCTIONS_H_
 
 #include "cgeCommonDefine.h"
-#include <assert.h>
 
 #if defined(_CGE_DISABLE_GLOBALCONTEXT_) && _CGE_DISABLE_GLOBALCONTEXT_
 
@@ -88,7 +87,7 @@ namespace CGE
 
 		inline SharedTexture& operator =(const SharedTexture& other)
 		{
-			assert(this != &other && (other.m_refCount == nullptr || other.m_textureID != 0));
+			CGEAssert(this != &other && (other.m_refCount == nullptr || other.m_textureID != 0));
 
 			if(m_refCount != nullptr && --*m_refCount <= 0)
 			{
@@ -97,7 +96,7 @@ namespace CGE
 
 			m_textureID = other.m_textureID;
 			m_refCount = other.m_refCount;
-			if (m_refCount)
+			if (m_refCount != nullptr)
 			{
 				++*m_refCount;
 				CGE_LOG_INFO("CGESharedTexture assgin: textureID %d, refCount: %d\n", m_textureID, *m_refCount);

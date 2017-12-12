@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeImageHandler.h
 *
 *  Created on: 2013-12-13
@@ -78,6 +78,7 @@ namespace CGE
 		bool updateData(const void* data, int w, int h, CGEBufferFormat format);
 
 		bool initWithTexture(GLuint textureID, GLint w, GLint h, CGEBufferFormat format, bool bEnableReversion = false);
+        bool updateTexture(GLuint textureID, int w, int h);
 
 		bool getOutputBufferData(void* data, CGEBufferFormat format);
 		size_t getOutputBufferLen(size_t channel);

@@ -32,6 +32,21 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3D1904941FDBF59D00A69B36 /* cgeSlideshowSprite2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D19048C1FDBF59C00A69B36 /* cgeSlideshowSprite2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904951FDBF59D00A69B36 /* cgeSlideshow.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D19048D1FDBF59C00A69B36 /* cgeSlideshow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904961FDBF59D00A69B36 /* cgeSprite3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D19048E1FDBF59C00A69B36 /* cgeSprite3d.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904971FDBF59D00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D19048F1FDBF59C00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904981FDBF59D00A69B36 /* cgeSpriteCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1904901FDBF59C00A69B36 /* cgeSpriteCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904991FDBF59D00A69B36 /* cgeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1904911FDBF59C00A69B36 /* cgeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D19049A1FDBF59D00A69B36 /* cgeAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1904921FDBF59C00A69B36 /* cgeAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D19049B1FDBF59D00A69B36 /* cgeSprite2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1904931FDBF59D00A69B36 /* cgeSprite2d.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D19049D1FDBF5AD00A69B36 /* cgeAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D19049C1FDBF5AC00A69B36 /* cgeAction.cpp */; };
+		3D1904A01FDBF5C000A69B36 /* cgeMotionBlurAdjust.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D19049E1FDBF5C000A69B36 /* cgeMotionBlurAdjust.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904A11FDBF5C000A69B36 /* cgeZoomBlurAdjust.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D19049F1FDBF5C000A69B36 /* cgeZoomBlurAdjust.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904A41FDBF5CD00A69B36 /* cgeMotionBlurAdjust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1904A21FDBF5CD00A69B36 /* cgeMotionBlurAdjust.cpp */; };
+		3D1904A51FDBF5CD00A69B36 /* cgeZoomBlurAdjust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1904A31FDBF5CD00A69B36 /* cgeZoomBlurAdjust.cpp */; };
+		3D1904A71FDBF5DB00A69B36 /* cgeSoulStuffFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D1904A61FDBF5DB00A69B36 /* cgeSoulStuffFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D1904A91FDBF5E400A69B36 /* cgeSoulStuffFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D1904A81FDBF5E300A69B36 /* cgeSoulStuffFilter.cpp */; };
 		3DA897AE1E7945FA0076561F /* cgeColorMappingFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA897AC1E7945FA0076561F /* cgeColorMappingFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DA897AF1E7945FA0076561F /* cgeMotionFlowFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DA897AD1E7945FA0076561F /* cgeMotionFlowFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3DA897B21E7946030076561F /* cgeColorMappingFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA897B01E7946030076561F /* cgeColorMappingFilter.cpp */; };
@@ -111,8 +126,6 @@
 		D3107BD41BFCA35C003D8060 /* cgeEdgeFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107B9C1BFCA35C003D8060 /* cgeEdgeFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3107BD51BFCA35C003D8060 /* cgeEmbossFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107B9D1BFCA35C003D8060 /* cgeEmbossFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3107BD71BFCA35C003D8060 /* cgeExposureAdjust.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107B9F1BFCA35C003D8060 /* cgeExposureAdjust.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3107BD81BFCA35C003D8060 /* cgeEyeBrightenFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107BA01BFCA35C003D8060 /* cgeEyeBrightenFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3107BD91BFCA35C003D8060 /* cgeEyeTintFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107BA11BFCA35C003D8060 /* cgeEyeTintFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3107BDB1BFCA35C003D8060 /* cgeFilterBasic.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107BA31BFCA35C003D8060 /* cgeFilterBasic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3107BDC1BFCA35C003D8060 /* cgeHalftoneFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107BA41BFCA35C003D8060 /* cgeHalftoneFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3107BDD1BFCA35C003D8060 /* cgeHazeFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3107BA51BFCA35C003D8060 /* cgeHazeFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -185,6 +198,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D19048C1FDBF59C00A69B36 /* cgeSlideshowSprite2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSlideshowSprite2d.h; path = cge/include/cgeSlideshowSprite2d.h; sourceTree = SOURCE_ROOT; };
+		3D19048D1FDBF59C00A69B36 /* cgeSlideshow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSlideshow.h; path = cge/include/cgeSlideshow.h; sourceTree = SOURCE_ROOT; };
+		3D19048E1FDBF59C00A69B36 /* cgeSprite3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSprite3d.h; path = cge/include/cgeSprite3d.h; sourceTree = SOURCE_ROOT; };
+		3D19048F1FDBF59C00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSlideshowSprite2dWith3dSpace.h; path = cge/include/cgeSlideshowSprite2dWith3dSpace.h; sourceTree = SOURCE_ROOT; };
+		3D1904901FDBF59C00A69B36 /* cgeSpriteCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSpriteCommon.h; path = cge/include/cgeSpriteCommon.h; sourceTree = SOURCE_ROOT; };
+		3D1904911FDBF59C00A69B36 /* cgeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeAnimation.h; path = cge/include/cgeAnimation.h; sourceTree = SOURCE_ROOT; };
+		3D1904921FDBF59C00A69B36 /* cgeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeAction.h; path = cge/include/cgeAction.h; sourceTree = SOURCE_ROOT; };
+		3D1904931FDBF59D00A69B36 /* cgeSprite2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSprite2d.h; path = cge/include/cgeSprite2d.h; sourceTree = SOURCE_ROOT; };
+		3D19049C1FDBF5AC00A69B36 /* cgeAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeAction.cpp; path = cge/src/animation/cgeAction.cpp; sourceTree = SOURCE_ROOT; };
+		3D19049E1FDBF5C000A69B36 /* cgeMotionBlurAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeMotionBlurAdjust.h; path = cge/include/filters/cgeMotionBlurAdjust.h; sourceTree = SOURCE_ROOT; };
+		3D19049F1FDBF5C000A69B36 /* cgeZoomBlurAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeZoomBlurAdjust.h; path = cge/include/filters/cgeZoomBlurAdjust.h; sourceTree = SOURCE_ROOT; };
+		3D1904A21FDBF5CD00A69B36 /* cgeMotionBlurAdjust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeMotionBlurAdjust.cpp; path = cge/src/filters/cgeMotionBlurAdjust.cpp; sourceTree = SOURCE_ROOT; };
+		3D1904A31FDBF5CD00A69B36 /* cgeZoomBlurAdjust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeZoomBlurAdjust.cpp; path = cge/src/filters/cgeZoomBlurAdjust.cpp; sourceTree = SOURCE_ROOT; };
+		3D1904A61FDBF5DB00A69B36 /* cgeSoulStuffFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeSoulStuffFilter.h; path = cge/include/filters/cgeSoulStuffFilter.h; sourceTree = SOURCE_ROOT; };
+		3D1904A81FDBF5E300A69B36 /* cgeSoulStuffFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cgeSoulStuffFilter.cpp; path = cge/src/filters/cgeSoulStuffFilter.cpp; sourceTree = SOURCE_ROOT; };
 		3D24CDCC1E6E62230098670B /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		3D24CDCE1E6E62280098670B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3DA897AC1E7945FA0076561F /* cgeColorMappingFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeColorMappingFilter.h; path = cge/include/filters/cgeColorMappingFilter.h; sourceTree = SOURCE_ROOT; };
@@ -266,8 +294,6 @@
 		D3107B9C1BFCA35C003D8060 /* cgeEdgeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEdgeFilter.h; path = cge/include/filters/cgeEdgeFilter.h; sourceTree = SOURCE_ROOT; };
 		D3107B9D1BFCA35C003D8060 /* cgeEmbossFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEmbossFilter.h; path = cge/include/filters/cgeEmbossFilter.h; sourceTree = SOURCE_ROOT; };
 		D3107B9F1BFCA35C003D8060 /* cgeExposureAdjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeExposureAdjust.h; path = cge/include/filters/cgeExposureAdjust.h; sourceTree = SOURCE_ROOT; };
-		D3107BA01BFCA35C003D8060 /* cgeEyeBrightenFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEyeBrightenFilter.h; path = cge/include/filters/cgeEyeBrightenFilter.h; sourceTree = SOURCE_ROOT; };
-		D3107BA11BFCA35C003D8060 /* cgeEyeTintFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeEyeTintFilter.h; path = cge/include/filters/cgeEyeTintFilter.h; sourceTree = SOURCE_ROOT; };
 		D3107BA31BFCA35C003D8060 /* cgeFilterBasic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeFilterBasic.h; path = cge/include/filters/cgeFilterBasic.h; sourceTree = SOURCE_ROOT; };
 		D3107BA41BFCA35C003D8060 /* cgeHalftoneFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeHalftoneFilter.h; path = cge/include/filters/cgeHalftoneFilter.h; sourceTree = SOURCE_ROOT; };
 		D3107BA51BFCA35C003D8060 /* cgeHazeFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cgeHazeFilter.h; path = cge/include/filters/cgeHazeFilter.h; sourceTree = SOURCE_ROOT; };
@@ -352,6 +378,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D19048B1FDBF58F00A69B36 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				3D19049C1FDBF5AC00A69B36 /* cgeAction.cpp */,
+				3D1904921FDBF59C00A69B36 /* cgeAction.h */,
+				3D1904911FDBF59C00A69B36 /* cgeAnimation.h */,
+				3D19048D1FDBF59C00A69B36 /* cgeSlideshow.h */,
+				3D19048C1FDBF59C00A69B36 /* cgeSlideshowSprite2d.h */,
+				3D19048F1FDBF59C00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h */,
+				3D1904931FDBF59D00A69B36 /* cgeSprite2d.h */,
+				3D19048E1FDBF59C00A69B36 /* cgeSprite3d.h */,
+				3D1904901FDBF59C00A69B36 /* cgeSpriteCommon.h */,
+			);
+			name = animation;
+			sourceTree = "<group>";
+		};
 		3D24CDCB1E6E62230098670B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +406,7 @@
 		D3107A341BFCA045003D8060 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3D19048B1FDBF58F00A69B36 /* animation */,
 				D368397B1BFDBCF70037CC4A /* extends */,
 				D3107A7A1BFCA084003D8060 /* algorithm */,
 				D3107A7C1BFCA091003D8060 /* common */,
@@ -480,8 +523,6 @@
 				D3107B9C1BFCA35C003D8060 /* cgeEdgeFilter.h */,
 				D3107C0D1BFCA368003D8060 /* cgeEmbossFilter.cpp */,
 				D3107B9D1BFCA35C003D8060 /* cgeEmbossFilter.h */,
-				D3107BA01BFCA35C003D8060 /* cgeEyeBrightenFilter.h */,
-				D3107BA11BFCA35C003D8060 /* cgeEyeTintFilter.h */,
 				D3107C141BFCA368003D8060 /* cgeHalftoneFilter.cpp */,
 				D3107BA41BFCA35C003D8060 /* cgeHalftoneFilter.h */,
 				D3107C151BFCA368003D8060 /* cgeHazeFilter.cpp */,
@@ -500,6 +541,8 @@
 				D3107BB91BFCA35C003D8060 /* cgeRandomBlurFilter.h */,
 				D3107C2F1BFCA368003D8060 /* cgeSketchFilter.cpp */,
 				D3107BBF1BFCA35C003D8060 /* cgeSketchFilter.h */,
+				3D1904A81FDBF5E300A69B36 /* cgeSoulStuffFilter.cpp */,
+				3D1904A61FDBF5DB00A69B36 /* cgeSoulStuffFilter.h */,
 			);
 			name = advanced;
 			sourceTree = "<group>";
@@ -507,8 +550,6 @@
 		D3107ABE1BFCA17A003D8060 /* basic */ = {
 			isa = PBXGroup;
 			children = (
-				DB0405A11D2BA518004F481C /* cgeLookupFilter.cpp */,
-				DB04059F1D2BA50C004F481C /* cgeLookupFilter.h */,
 				D3107C021BFCA368003D8060 /* cgeBrightnessAdjust.cpp */,
 				D3107B921BFCA35C003D8060 /* cgeBrightnessAdjust.h */,
 				D3107C031BFCA368003D8060 /* cgeColorBalanceAdjust.cpp */,
@@ -525,8 +566,12 @@
 				D3107BA31BFCA35C003D8060 /* cgeFilterBasic.h */,
 				D3107C161BFCA368003D8060 /* cgeHueAdjust.cpp */,
 				D3107BA61BFCA35C003D8060 /* cgeHueAdjust.h */,
+				DB0405A11D2BA518004F481C /* cgeLookupFilter.cpp */,
+				DB04059F1D2BA50C004F481C /* cgeLookupFilter.h */,
 				D3107C1E1BFCA368003D8060 /* cgeMonochromeAdjust.cpp */,
 				D3107BAE1BFCA35C003D8060 /* cgeMonochromeAdjust.h */,
+				3D1904A21FDBF5CD00A69B36 /* cgeMotionBlurAdjust.cpp */,
+				3D19049E1FDBF5C000A69B36 /* cgeMotionBlurAdjust.h */,
 				D3107C2B1BFCA368003D8060 /* cgeSaturationAdjust.cpp */,
 				D3107BBB1BFCA35C003D8060 /* cgeSaturationAdjust.h */,
 				D3107C2C1BFCA368003D8060 /* cgeSelectiveColorAdjust.cpp */,
@@ -541,6 +586,8 @@
 				D3107BC21BFCA35C003D8060 /* cgeVignetteAdjust.h */,
 				D3107C331BFCA368003D8060 /* cgeWhiteBalanceAdjust.cpp */,
 				D3107BC31BFCA35C003D8060 /* cgeWhiteBalanceAdjust.h */,
+				3D1904A31FDBF5CD00A69B36 /* cgeZoomBlurAdjust.cpp */,
+				3D19049F1FDBF5C000A69B36 /* cgeZoomBlurAdjust.h */,
 			);
 			name = basic;
 			sourceTree = "<group>";
@@ -655,7 +702,6 @@
 				D3107BC81BFCA35C003D8060 /* cgeBilateralBlurFilter.h in Headers */,
 				D3107BC91BFCA35C003D8060 /* cgeBlendFilter.h in Headers */,
 				D3107BD51BFCA35C003D8060 /* cgeEmbossFilter.h in Headers */,
-				D3107BD81BFCA35C003D8060 /* cgeEyeBrightenFilter.h in Headers */,
 				D3107BCD1BFCA35C003D8060 /* cgeContrastAdjust.h in Headers */,
 				D3107BE61BFCA35C003D8060 /* cgeMonochromeAdjust.h in Headers */,
 				D3107BD21BFCA35C003D8060 /* cgeDynamicWaveFilter.h in Headers */,
@@ -666,7 +712,6 @@
 				D3107BEA1BFCA35C003D8060 /* cgeMultipleEffectsCommon.h in Headers */,
 				D3107B3A1BFCA25D003D8060 /* cgeProcessingContext.h in Headers */,
 				D3107BE51BFCA35C003D8060 /* cgeMinValueFilter.h in Headers */,
-				D3107BD91BFCA35C003D8060 /* cgeEyeTintFilter.h in Headers */,
 				D3107BCF1BFCA35C003D8060 /* cgeCurveAdjust.h in Headers */,
 				D3107BCB1BFCA35C003D8060 /* cgeColorBalanceAdjust.h in Headers */,
 				D3107B7B1BFCA2C3003D8060 /* cgeGLFunctions.h in Headers */,
@@ -709,6 +754,17 @@
 				3DBBBA1C1EB3445900116D0D /* cgeFrameRecorder.h in Headers */,
 				3DBBBA141EB3445900116D0D /* cgeAnimationParser.h in Headers */,
 				3DBBBA221EB3445900116D0D /* cgeVideoCameraViewHandler.h in Headers */,
+				3D1904A01FDBF5C000A69B36 /* cgeMotionBlurAdjust.h in Headers */,
+				3D1904941FDBF59D00A69B36 /* cgeSlideshowSprite2d.h in Headers */,
+				3D1904991FDBF59D00A69B36 /* cgeAnimation.h in Headers */,
+				3D1904971FDBF59D00A69B36 /* cgeSlideshowSprite2dWith3dSpace.h in Headers */,
+				3D1904A71FDBF5DB00A69B36 /* cgeSoulStuffFilter.h in Headers */,
+				3D1904981FDBF59D00A69B36 /* cgeSpriteCommon.h in Headers */,
+				3D1904A11FDBF5C000A69B36 /* cgeZoomBlurAdjust.h in Headers */,
+				3D19049A1FDBF59D00A69B36 /* cgeAction.h in Headers */,
+				3D1904951FDBF59D00A69B36 /* cgeSlideshow.h in Headers */,
+				3D1904961FDBF59D00A69B36 /* cgeSprite3d.h in Headers */,
+				3D19049B1FDBF59D00A69B36 /* cgeSprite2d.h in Headers */,
 				3DBBBA161EB3445900116D0D /* cgeCameraDevice.h in Headers */,
 				3DBBBA281EB3445900116D0D /* cgeVideoPlayerViewHandler.h in Headers */,
 				3DBBBA181EB3445900116D0D /* cgeCameraFrameRecorder.h in Headers */,
@@ -749,7 +805,7 @@
 		DB3455B81BD3DA3000AC56DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = wysaid;
 				TargetAttributes = {
 					3D2C5EE61E973F250075EF12 = {
@@ -842,6 +898,7 @@
 				D3107C4F1BFCA368003D8060 /* cgeLerpblurFilter.cpp in Sources */,
 				D3107B371BFCA25D003D8060 /* cgeImageHandlerIOS.mm in Sources */,
 				D3107C381BFCA368003D8060 /* cgeBilateralBlurFilter.cpp in Sources */,
+				3D19049D1FDBF5AD00A69B36 /* cgeAction.cpp in Sources */,
 				3DBBBA151EB3445900116D0D /* cgeAnimationParser.mm in Sources */,
 				D3107C551BFCA368003D8060 /* cgeMinValueFilter.cpp in Sources */,
 				D3107C4E1BFCA368003D8060 /* cgeHueAdjust.cpp in Sources */,
@@ -853,6 +910,7 @@
 				3DBBBA191EB3445900116D0D /* cgeCameraFrameRecorder.mm in Sources */,
 				D3107C5A1BFCA368003D8060 /* cgeMultipleEffectsCommon.cpp in Sources */,
 				D3107C361BFCA368003D8060 /* cgeAdvancedEffects.cpp in Sources */,
+				3D1904A51FDBF5CD00A69B36 /* cgeZoomBlurAdjust.cpp in Sources */,
 				3DBBBA1D1EB3445900116D0D /* cgeFrameRecorder.mm in Sources */,
 				D3107C6A1BFCA368003D8060 /* cgeVignetteAdjust.cpp in Sources */,
 				D3107C611BFCA368003D8060 /* cgeRandomBlurFilter.cpp in Sources */,
@@ -872,6 +930,7 @@
 				D3107C3F1BFCA368003D8060 /* cgeCurveAdjust.cpp in Sources */,
 				D3107C441BFCA368003D8060 /* cgeEdgeFilter.cpp in Sources */,
 				D3107C4C1BFCA368003D8060 /* cgeHalftoneFilter.cpp in Sources */,
+				3D1904A91FDBF5E400A69B36 /* cgeSoulStuffFilter.cpp in Sources */,
 				D3107B5E1BFCA273003D8060 /* cgeImageFilter.cpp in Sources */,
 				D3107C531BFCA368003D8060 /* cgeMaxValueFilter.cpp in Sources */,
 				D3107C691BFCA368003D8060 /* cgeTiltshiftAdjust.cpp in Sources */,
@@ -891,6 +950,7 @@
 				D3107B5B1BFCA273003D8060 /* cgeCommonDefine.cpp in Sources */,
 				D3107C511BFCA368003D8060 /* cgeLiquidationFilter.cpp in Sources */,
 				3DBBBA2B1EB3445900116D0D /* cgeVideoWriter.mm in Sources */,
+				3D1904A41FDBF5CD00A69B36 /* cgeMotionBlurAdjust.cpp in Sources */,
 				D3107B5F1BFCA273003D8060 /* cgeImageHandler.cpp in Sources */,
 				3DA897B21E7946030076561F /* cgeColorMappingFilter.cpp in Sources */,
 				D3107C631BFCA368003D8060 /* cgeSaturationAdjust.cpp in Sources */,
@@ -946,14 +1006,20 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -978,7 +1044,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -997,14 +1063,20 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1023,7 +1095,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1038,7 +1110,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1050,7 +1122,7 @@
 				GCC_PREFIX_HEADER = "cge/libCGE-Prefix.pch";
 				INFOPLIST_FILE = cgeFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = "-fembed-bitcode";
@@ -1068,7 +1140,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = V2DTUY5PQ8;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1080,7 +1152,7 @@
 				GCC_PREFIX_HEADER = "cge/libCGE-Prefix.pch";
 				INFOPLIST_FILE = cgeFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				OTHER_CFLAGS = "-fembed-bitcode";

@@ -1,4 +1,4 @@
-﻿/*
+/*
 * cgeGlobal.h
 *
 *  Created on: 2014-9-9
@@ -30,7 +30,9 @@ namespace CGE
 	public:
 		static int viewWidth, viewHeight;
 
+#if _CGE_USE_GLOBAL_GL_CACHE_
 		static GLuint sVertexBufferCommon;
+#endif
 		static float sVertexDataCommon[8];
 
 		enum InitArguments
@@ -68,11 +70,11 @@ namespace CGE
 extern "C" {
 #endif
     
-    void cgePrintGLInfo();
-    const char* cgeQueryGLExtensions();
+    void cgePrintGLInfo(void);
+    const char* cgeQueryGLExtensions(void);
     bool cgeCheckGLExtension(const char* ext);
 
-	GLuint cgeGenCommonQuadArrayBuffer();
+	GLuint cgeGenCommonQuadArrayBuffer(void);
     
 #ifdef __cplusplus
 }

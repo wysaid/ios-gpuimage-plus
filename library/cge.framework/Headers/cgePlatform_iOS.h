@@ -1,4 +1,4 @@
-﻿/*
+/*
  * cgePlatforms.h
  *
  *  Created on: 2013-12-31
@@ -11,6 +11,10 @@
 
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
+
+#ifndef CGE_SHADER_CONFIG_PLATFORM
+#define CGE_SHADER_CONFIG_PLATFORM "\n#ifndef CGE_PLATFORM_IOS\n#define CGE_PLATFORM_IOS\n#endif\n"
+#endif
 
 #if (defined(DEBUG) || defined(_DEBUG) || defined(_CGE_USE_LOG_ERR_))
 #include <stdio.h>
@@ -26,6 +30,8 @@
 #define CGE_LOG_CODE(...) __VA_ARGS__
 #endif
 
+#include <assert.h>
+#define CGEAssert assert
 #else
 
 #ifndef CGE_LOG_INFO
@@ -34,6 +40,8 @@
 
 #ifndef CGE_LOG_CODE
 #define CGE_LOG_CODE(...)
+
+#define CGEAssert(...)
 #endif
 
 #endif

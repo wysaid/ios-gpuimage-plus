@@ -1,4 +1,4 @@
-/*
+﻿/*
  * cgeExposureAdjust.h
  *
  *  Created on: 2015-1-29

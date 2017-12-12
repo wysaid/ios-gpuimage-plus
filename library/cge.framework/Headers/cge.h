@@ -23,9 +23,13 @@
 #define _CGE_ONLY_FILTERS_ 1
 #endif
 
-#ifdef __OBJC__
+#ifndef _CGE_USE_GLOBAL_GL_CACHE_
+#define _CGE_USE_GLOBAL_GL_CACHE_ 0
+#endif
 
 #define CGE_USING_FRAMEWORK 1
+
+#ifdef __OBJC__
 
 #import <UIKit/UIKit.h>
 
@@ -91,8 +95,6 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeEdgeFilter.h>
 #import <cge/cgeEmbossFilter.h>
 #import <cge/cgeExposureAdjust.h>
-#import <cge/cgeEyeBrightenFilter.h>
-#import <cge/cgeEyeTintFilter.h>
 #import <cge/cgeFilterBasic.h>
 #import <cge/cgeHalftoneFilter.h>
 #import <cge/cgeHazeFilter.h>
@@ -118,6 +120,7 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeVignetteAdjust.h>
 #import <cge/cgeWhiteBalanceAdjust.h>
 
+#import <cge/cgeSprite2d.h>
 
 #endif
 
