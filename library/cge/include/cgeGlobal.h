@@ -13,7 +13,7 @@
 #include "cgePlatform_GLEW.h"
 #elif defined(ANDROID_NDK)
 #include "cgePlatform_ANDROID.h"
-#elif defined(IOS_SDK)
+#elif defined(IOS_SDK) || (defined(TARGET_OS_IOS) && TARGET_OS_IOS) || (defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE)
 #include "cgePlatform_iOS.h"
 #elif defined(LIBCGE4QT_LIB)
 #include "cgePlatform_QT.h"
