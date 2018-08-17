@@ -342,9 +342,9 @@ extern "C"
         CGImageRef imageRef = image.CGImage;
         
         CGContextRef ctx = CGBitmapContextCreate(NULL, newWidth, newHeight,
-                                                 CGImageGetBitsPerComponent(imageRef), 0,
-                                                 CGImageGetColorSpace(imageRef),
-                                                 CGImageGetBitmapInfo(imageRef));
+                                                 8, 0,
+                                                 cgeCGColorSpaceRGB(),
+                                                 kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little);
         CGContextConcatCTM(ctx, transform);
         
         switch (image.imageOrientation) {

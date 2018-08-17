@@ -7,7 +7,7 @@
  */
 
 
-// 仅提供与安卓版一致的接口， 如需更佳的使用体验， 可直接调用C++代码！
+// Provide some useful functions.
 
 #ifndef _CGE_UTILFUNCTIONS_H_
 #define _CGE_UTILFUNCTIONS_H_
@@ -34,18 +34,16 @@ extern "C" {
    
     GLuint cgeGlobalTextureLoadFunc(const char* source, GLint* w, GLint* h, void* arg);
     
-    //通过配置创建单个滤镜
+    //Create single filter with config
     void* cgeCreateFilterByConfig(const char* config);
     
-    //通过配置创建多重滤镜, 返回值一定是 CGEMutipleEffectFilter 类型
+    //Create multiple filter with config. the return value must be kind of `CGEMutipleEffectFilter`
     void* cgeCreateMultipleFilterByConfig(const char* config, float intensity);
     
     typedef struct CGETextureInfo
     {
         GLint width, height;
         GLuint name;
-//        GLenum channelFormat; //取值: GL_RGBA, GL_RGB, GL_LUMINANCE_ALPHA, GL_LUMINANCE
-//        GLenum dataFormat; //一般为 GL_UNSIGNED_BYTE
     }CGETextureInfo;
     
     CGETextureInfo cgeLoadTextureByFile(const char* path);
@@ -60,18 +58,17 @@ extern "C" {
         int height; //图片高 (真实高度， 需要将对齐计算在内)
     }CGEFilterImageInfo;
     
-    //图像处理接口 (废弃)
+    // deprecated.
     void cgeFilterImage_MultipleEffects(CGEFilterImageInfo dataIn, CGEFilterImageInfo dataOut, const char* config, float intensity, CGESharedGLContext* processingContext);
 
-    //图像处理接口 (推荐)
-    //参数:       uiimage － 输入图像
-    //            config  - 附加等滤镜配置
-    //         intensity  - 滤镜强度， 范围 [0, 1]
-    // processingContext  - 附加的context, 如果为 nil， 将使用 globalContext。 如果需要多线程使用， 请自行创建新的  context.
+    //image processing interface (recommand)
+    //args:      uiimage － the input image
+    //            config  - the filter rule string
+    //         intensity  - range [0, 1]
+    // processingContext  - additional context, if it's nil, the function will use a globalContext。
+    //                      So if you want to use it in different threads, you need to create it in each thread.
     UIImage* cgeFilterUIImage_MultipleEffects(UIImage* uiimage, const char* config, float intensity, CGESharedGLContext* processingContext);
     
-    //通过Buffer创建GL纹理, 如果可能， 请使用 GLKTextureLoader 直接完成
-    //某些情况下 GLKTextureLoader 工作不正常， 在 GLKTextureLoader 工作不正常的情况下， 请使用本函数
     //info 的 width 和 height 将被写入texture的真实宽高 (tips: 后期可能存在UIImage过大时， 纹理将被压缩， 所以只有从这里获得的参数才是准确值)
     CGETextureInfo cgeUIImage2Texture(UIImage* uiimage);
     

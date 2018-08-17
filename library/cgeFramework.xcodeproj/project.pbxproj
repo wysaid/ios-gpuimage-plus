@@ -864,7 +864,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -rf \"$(pwd)/cge.framework/Headers\" /Users/yangwang/work/kwai/FM2/facesense/Pods/libCGE/cge.framework/";
+			shellScript = "cp -rf \"$(pwd)/cge.framework/Headers\" /Users/wysaid/work/github/ios-gpuimage-plus-pod/cge.framework/";
 		};
 		DB0091AD1C27DC8900E07D6B /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;

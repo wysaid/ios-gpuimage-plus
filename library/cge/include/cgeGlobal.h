@@ -9,6 +9,10 @@
 #ifndef _CGEGLOBAL_H_
 #define _CGEGLOBAL_H_
 
+#if defined(__APPLE__)
+#include <TargetConditionals.h>
+#endif
+
 #ifdef GLEW_USED
 #include "cgePlatform_GLEW.h"
 #elif defined(ANDROID_NDK)
