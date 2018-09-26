@@ -14,10 +14,10 @@ __New feature__: Face effects will be created with the ios11's `VNSequenceReques
     >//Everything is done.
 
     2. If you're using CocoaPods, add this to your Podfile:
-    >pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git'
+    >pod 'cge', :git => 'https://github.com/wysaid/ios-gpuimage-plus.git'
 
-    or with the newest version tag:
-    >pod 'libCGE', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git', :tag => '2.5.1'
+    or with the latest static library:
+    >pod 'cge', :git => 'https://github.com/wysaid/ios-gpuimage-plus-pod.git', :tag => '2.5.1'
 
     __Dependencies__:  libc++, ImageIO.framework, MobileCoreServices.framework
 
