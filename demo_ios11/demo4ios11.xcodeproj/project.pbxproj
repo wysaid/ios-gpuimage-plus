@@ -16,7 +16,6 @@
 		D33BBD571B942EB900B1E285 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD561B942EB900B1E285 /* MainViewController.m */; };
 		D33BBD5D1B943AE800B1E285 /* CameraDemoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D33BBD5C1B943AE800B1E285 /* CameraDemoViewController.mm */; };
 		D36839871BFDC0A20037CC4A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D36839851BFDC0A20037CC4A /* libc++.tbd */; };
-		D36839881BFDC0A20037CC4A /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D36839861BFDC0A20037CC4A /* libstdc++.6.0.9.tbd */; };
 		D3FCC7B51B9C5446003B1D34 /* demoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FCC7B41B9C5446003B1D34 /* demoUtils.m */; };
 		DB4342191B4FCC8A00ED886F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4342181B4FCC8A00ED886F /* main.m */; };
 		DB43421C1B4FCC8A00ED886F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB43421B1B4FCC8A00ED886F /* AppDelegate.m */; };
@@ -48,7 +47,6 @@
 		D33BBD5B1B943AE800B1E285 /* CameraDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDemoViewController.h; sourceTree = "<group>"; };
 		D33BBD5C1B943AE800B1E285 /* CameraDemoViewController.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = CameraDemoViewController.mm; sourceTree = "<group>"; };
 		D36839851BFDC0A20037CC4A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		D36839861BFDC0A20037CC4A /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		D3FCC7B31B9C5446003B1D34 /* demoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demoUtils.h; sourceTree = "<group>"; };
 		D3FCC7B41B9C5446003B1D34 /* demoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demoUtils.m; sourceTree = "<group>"; };
 		DB4342131B4FCC8A00ED886F /* libCGE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = libCGE.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +73,6 @@
 				3DED06001EEE749800DBFCAD /* libcge.a in Frameworks */,
 				DB7EAD7F1C32B4D400F662FE /* ImageIO.framework in Frameworks */,
 				D36839871BFDC0A20037CC4A /* libc++.tbd in Frameworks */,
-				D36839881BFDC0A20037CC4A /* libstdc++.6.0.9.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +113,6 @@
 				DB4342151B4FCC8A00ED886F /* cgeDemo */,
 				D3FCC7AC1B9C4922003B1D34 /* libCGE */,
 				D36839851BFDC0A20037CC4A /* libc++.tbd */,
-				D36839861BFDC0A20037CC4A /* libstdc++.6.0.9.tbd */,
 				DB7EAD7E1C32B4D400F662FE /* ImageIO.framework */,
 				DB4342141B4FCC8A00ED886F /* Products */,
 				3DF158D21F6DAC53007623B4 /* Frameworks */,
@@ -199,6 +195,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
