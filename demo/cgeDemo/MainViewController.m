@@ -54,7 +54,7 @@
 
             for(UIView* view in subviews)
             {
-                [view setFrame:CGRectMake(20.0, 25 + index * (buttonHeight + 25), buttonWidth, buttonHeight)];
+                [view setFrame:CGRectMake(20.0, 80 + index * (buttonHeight + 25), buttonWidth, buttonHeight)];
                 //                [view setBackgroundColor:[UIColor redColor]];
                 [view.layer setShadowColor:[UIColor redColor].CGColor];
                 [view.layer setShadowOffset:CGSizeMake(2, 2)];
