@@ -66,7 +66,8 @@ using namespace CGE;
     
     [_sharedContext syncProcessingQueue:^{
         [_sharedContext makeCurrent];
-        _imageHandler = new CGEImageHandlerIOS;
+        auto handler = new CGEImageHandlerIOS();
+        self->_imageHandler =handler;
         TextureDrawer* drawer = _imageHandler->getResultDrawer();
         CGEAssert(drawer != nullptr);
         drawer->setFlipScale(1.0f, -1.0f);
@@ -103,7 +104,7 @@ using namespace CGE;
     [_glkView bindDrawable];
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-
+    
     if(_imageHandler == nullptr || _imageHandler->getTargetTextureID() == 0)
         return;
     
@@ -118,7 +119,7 @@ using namespace CGE;
     }
     
     _imageHandler->drawResult();
-
+    
 }
 
 - (void)setGlkView:(GLKView*)glkView

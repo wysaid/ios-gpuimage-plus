@@ -16,6 +16,10 @@
 #define CGE_SHADER_CONFIG_PLATFORM "\n#ifndef CGE_PLATFORM_IOS\n#define CGE_PLATFORM_IOS\n#endif\n"
 #endif
 
+#ifndef GLES_SILENCE_DEPRECATION
+#define GLES_SILENCE_DEPRECATION 1
+#endif
+
 #if (defined(DEBUG) || defined(_DEBUG) || defined(_CGE_USE_LOG_ERR_))
 #include <stdio.h>
 #endif
