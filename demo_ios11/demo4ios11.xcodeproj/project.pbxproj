@@ -186,7 +186,7 @@
 				TargetAttributes = {
 					DB4342121B4FCC8A00ED886F = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = V2DTUY5PQ8;
+						DevelopmentTeam = KHWJX47LP8;
 					};
 				};
 			};
@@ -380,7 +380,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V2DTUY5PQ8;
+				DEVELOPMENT_TEAM = KHWJX47LP8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../library";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -407,7 +407,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V2DTUY5PQ8;
+				DEVELOPMENT_TEAM = KHWJX47LP8;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../library";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
