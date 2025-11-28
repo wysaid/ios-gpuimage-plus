@@ -23,6 +23,12 @@ using namespace CGE;
 
 + (instancetype)createWithWidth:(float)width height:(float)height stride:(float)stride
 {
+    // Validate input parameters
+    if (width <= 0 || height <= 0 || stride <= 0) {
+        NSLog(@"CGEDeformFilterWrapper.create failed: Invalid parameters (width: %.2f, height: %.2f, stride: %.2f). All values must be positive.", width, height, stride);
+        return nil;
+    }
+    
     CGEDeformFilterWrapper* wrapper = [[CGEDeformFilterWrapper alloc] initWithWidth:width height:height stride:stride];
     if (wrapper && wrapper->_filter == nullptr) {
         wrapper = nil;

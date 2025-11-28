@@ -14,6 +14,19 @@
 #import "cgeImageHandlerIOS.h"
 #include "cgeMultipleEffects.h"
 
+// Constants for deform parameters
+static const CGFloat kDefaultTouchRadius = 100.0f;
+static const CGFloat kDefaultTouchIntensity = 0.15f;
+static const CGFloat kRadiusIncrement = 20.0f;
+static const CGFloat kMinRadius = 20.0f;
+static const CGFloat kMaxRadius = 400.0f;
+static const CGFloat kIntensityIncrement = 0.05f;
+static const CGFloat kMinIntensity = 0.02f;
+static const CGFloat kMaxIntensity = 0.9f;
+static const CGFloat kMaxImageDimension = 2048.0f;
+static const CGFloat kMaxProcessingDimension = 1280.0f;
+static const int kDefaultUndoSteps = 200;
+
 typedef NS_ENUM(NSInteger, DeformMode) {
     DeformModeRestore,
     DeformModeForward,
@@ -53,8 +66,8 @@ typedef NS_ENUM(NSInteger, DeformMode) {
     
     // Default values
     _deformMode = DeformModeForward;
-    _touchRadius = 100.0f;
-    _touchIntensity = 0.15f;
+    _touchRadius = kDefaultTouchRadius;
+    _touchIntensity = kDefaultTouchIntensity;
     _showMesh = NO;
     _isMoving = NO;
     _hasMotion = NO;
@@ -172,7 +185,7 @@ typedef NS_ENUM(NSInteger, DeformMode) {
         // Create deform wrapper with scaled size
         int w = (int)image.size.width;
         int h = (int)image.size.height;
-        float scaling = MIN(1280.0f / w, 1280.0f / h);
+        float scaling = MIN(kMaxProcessingDimension / w, kMaxProcessingDimension / h);
         if (scaling < 1.0f) {
             w = (int)(w * scaling);
             h = (int)(h * scaling);
@@ -180,7 +193,7 @@ typedef NS_ENUM(NSInteger, DeformMode) {
         
         _deformWrapper = [CGEDeformFilterWrapper createWithWidth:w height:h stride:10.0f];
         if (_deformWrapper) {
-            [_deformWrapper setUndoSteps:200];
+            [_deformWrapper setUndoSteps:kDefaultUndoSteps];
             
             // Add filter to handler
             CGE::CGEMutipleEffectFilter* filter = new CGE::CGEMutipleEffectFilter();
@@ -262,9 +275,9 @@ typedef NS_ENUM(NSInteger, DeformMode) {
         case UIGestureRecognizerStateBegan:
             _isMoving = YES;
             _lastTouchPoint = imagePoint;
-            if (![_deformWrapper canUndo]) {
-                [_deformWrapper pushDeformStep];
-            }
+            _hasMotion = NO;
+            // Always push a deform step at the start of a new gesture for undo functionality
+            [_deformWrapper pushDeformStep];
             break;
             
         case UIGestureRecognizerStateChanged: {
@@ -429,26 +442,26 @@ typedef NS_ENUM(NSInteger, DeformMode) {
 }
 
 - (void)radiusIncClicked:(id)sender {
-    _touchRadius += 20.0f;
-    if (_touchRadius > 400.0f) _touchRadius = 400.0f;
+    _touchRadius += kRadiusIncrement;
+    if (_touchRadius > kMaxRadius) _touchRadius = kMaxRadius;
     [self showToast:[NSString stringWithFormat:@"Radius: %.0f", _touchRadius]];
 }
 
 - (void)radiusDecClicked:(id)sender {
-    _touchRadius -= 20.0f;
-    if (_touchRadius < 20.0f) _touchRadius = 20.0f;
+    _touchRadius -= kRadiusIncrement;
+    if (_touchRadius < kMinRadius) _touchRadius = kMinRadius;
     [self showToast:[NSString stringWithFormat:@"Radius: %.0f", _touchRadius]];
 }
 
 - (void)intensityIncClicked:(id)sender {
-    _touchIntensity += 0.05f;
-    if (_touchIntensity > 0.9f) _touchIntensity = 0.9f;
+    _touchIntensity += kIntensityIncrement;
+    if (_touchIntensity > kMaxIntensity) _touchIntensity = kMaxIntensity;
     [self showToast:[NSString stringWithFormat:@"Intensity: %.2f", _touchIntensity]];
 }
 
 - (void)intensityDecClicked:(id)sender {
-    _touchIntensity -= 0.05f;
-    if (_touchIntensity < 0.02f) _touchIntensity = 0.02f;
+    _touchIntensity -= kIntensityIncrement;
+    if (_touchIntensity < kMinIntensity) _touchIntensity = kMinIntensity;
     [self showToast:[NSString stringWithFormat:@"Intensity: %.2f", _touchIntensity]];
 }
 
@@ -475,7 +488,7 @@ typedef NS_ENUM(NSInteger, DeformMode) {
         // Scale down if needed
         int w = (int)image.size.width;
         int h = (int)image.size.height;
-        float s = MAX(w / 2048.0f, h / 2048.0f);
+        float s = MAX(w / kMaxImageDimension, h / kMaxImageDimension);
         
         if (s > 1.0f) {
             w = (int)(w / s);
