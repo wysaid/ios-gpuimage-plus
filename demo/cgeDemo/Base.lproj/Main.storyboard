@@ -197,6 +197,14 @@
                                             <segue destination="q5Z-Ce-WcC" kind="modal" id="SkW-TZ-1by"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deform-btn-001">
+                                        <rect key="frame" x="16" y="373" width="175" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Image Deform Demo"/>
+                                        <connections>
+                                            <segue destination="deform-vc-001" kind="modal" id="deform-segue-001"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -325,6 +333,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7X-rp-pHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-864" y="666"/>
+        </scene>
+        <!--ImageDeformViewController-->
+        <scene sceneID="deform-scene-001">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="deform-vc-001" customClass="ImageDeformViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="deform-top-001"/>
+                        <viewControllerLayoutGuide type="bottom" id="deform-bottom-001"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="deform-view-001">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="deform-responder-001" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="796" y="1008"/>
         </scene>
     </scenes>
 </document>

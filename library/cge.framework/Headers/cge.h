@@ -59,6 +59,7 @@ FOUNDATION_EXPORT const unsigned char cgeVersionString[];
 #import <cge/cgeVideoPlayer.h>
 #import <cge/cgeVideoPlayerViewHandler.h>
 #import <cge/cgeVideoWriter.h>
+#import <cge/cgeDeformFilterWrapper.h>
 
 #ifdef __cplusplus
 

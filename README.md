@@ -1,7 +1,12 @@
 # iOS-GPUImage-Plus 
 GPU accelerated filters for iOS based on OpenGL. 
 
-__New feature__: Face effects will be created with the ios11's `VNSequenceRequestHandler` & `VNDetectFaceLandmarksRequest`.
+__Features__:
+- Hundreds of built-in image filters
+- Real-time camera filters
+- Video player with filters
+- **Image Deformation/Liquify** - Interactive mesh-based image deformation with forward, bloat, wrinkle, and restore tools (similar to Photoshop's Liquify tool)
+- Face effects with iOS 11's `VNSequenceRequestHandler` & `VNDetectFaceLandmarksRequest`
 
 >Android version: [https://github.com/wysaid/android-gpuimage-plus](https://github.com/wysaid/android-gpuimage-plus "http://wysaid.org")
 
@@ -96,6 +101,57 @@ Please see this: [https://github.com/wysaid/ios-gpuimage-plus/blob/master/librar
 En: [https://github.com/wysaid/android-gpuimage-plus/wiki/Parsing-String-Rule-En](https://github.com/wysaid/android-gpuimage-plus/wiki/Parsing-String-Rule-En "http://wysaid.org")
 
 Ch: [https://github.com/wysaid/android-gpuimage-plus/wiki/Parsing-String-Rule](https://github.com/wysaid/android-gpuimage-plus/wiki/Parsing-String-Rule "http://wysaid.org")
+
+### 4. Image Deformation (Liquify) ###
+
+The library includes a powerful mesh-based image deformation feature, similar to Photoshop's Liquify tool. This allows interactive image manipulation with various deformation modes:
+
+- **Forward**: Push pixels in the direction of your finger movement
+- **Bloat**: Expand/inflate pixels outward from the touch point
+- **Wrinkle**: Contract/shrink pixels toward the touch point  
+- **Restore**: Restore deformed areas back to the original image
+
+___Sample Code for Image Deformation___
+```objc
+#import "cgeDeformFilterWrapper.h"
+
+// Create a deform filter wrapper
+CGEDeformFilterWrapper* deformWrapper = [CGEDeformFilterWrapper createWithWidth:imageWidth 
+                                                                          height:imageHeight 
+                                                                          stride:10.0f];
+
+// Set undo steps
+[deformWrapper setUndoSteps:50];
+
+// Forward deform (push)
+[deformWrapper forwardDeformWithStartX:startX startY:startY 
+                                  endX:endX endY:endY 
+                                 width:canvasWidth height:canvasHeight 
+                                radius:100.0f intensity:0.15f];
+
+// Bloat deform (expand)
+[deformWrapper bloatDeformWithX:x y:y 
+                          width:canvasWidth height:canvasHeight 
+                         radius:100.0f intensity:0.15f];
+
+// Wrinkle deform (shrink)
+[deformWrapper wrinkleDeformWithX:x y:y 
+                            width:canvasWidth height:canvasHeight 
+                           radius:100.0f intensity:0.15f];
+
+// Undo/Redo
+if ([deformWrapper canUndo]) {
+    [deformWrapper undo];
+}
+
+// Restore mesh to original
+[deformWrapper restore];
+
+// Show/hide mesh overlay
+[deformWrapper showMesh:YES];
+```
+
+Check out the **Image Deform Demo** in the demo app to see this feature in action!
 
 ## Tool ##
 
